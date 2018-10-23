@@ -1,0 +1,186 @@
+@font-face {
+  font-family: 'grampus';
+  src:  url('../fonts/grampus.eot?uhmm53');
+  src:  url('../fonts/grampus.eot?uhmm53#iefix') format('embedded-opentype'),
+    url('../fonts/grampus.ttf?uhmm53') format('truetype'),
+    url('../fonts/grampus.woff?uhmm53') format('woff'),
+    url('../fonts/grampus.svg?uhmm53#grampus') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[class^="icon-"], [class*=" icon-"] {
+  /* use !important to prevent issues with browser extensions that change fonts */
+  font-family: 'grampus' !important;
+  speak: none;
+  font-style: normal;
+  font-weight: normal;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+
+  /* Better Font Rendering =========== */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.icon-phone-call:before {
+  content: "\e924";
+}
+.icon-vk-circle:before {
+  content: "\e925";
+}
+.icon-phone:before {
+  content: "\e922";
+}
+.icon-telephone:before {
+  content: "\e922";
+}
+.icon-contact:before {
+  content: "\e922";
+}
+.icon-support:before {
+  content: "\e922";
+}
+.icon-call:before {
+  content: "\e922";
+}
+.icon-twitter-inverse:before {
+  content: "\e923";
+}
+.icon-flru .path1:before {
+  content: "\e91f";
+  color: rgb(0, 0, 0);
+}
+.icon-flru .path2:before {
+  content: "\e920";
+  margin-left: -1em;
+  color: rgb(0, 0, 0);
+  opacity: 0.2;
+}
+.icon-flru .path3:before {
+  content: "\e921";
+  margin-left: -1em;
+  color: rgb(255, 255, 255);
+}
+.icon-addthis:before {
+  content: "\e900";
+  color: #ff6550;
+}
+.icon-adobeaftereffects:before {
+  content: "\e901";
+  color: #d291ff;
+}
+.icon-adobeillustrator:before {
+  content: "\e902";
+  color: #ff7c00;
+}
+.icon-adobephotoshop:before {
+  content: "\e903";
+  color: #00c8ff;
+}
+.icon-americanexpress:before {
+  content: "\e904";
+  color: #2e77bc;
+}
+.icon-css3:before {
+  content: "\e905";
+  color: #1572b6;
+}
+.icon-dropbox:before {
+  content: "\e906";
+  color: #0061ff;
+}
+.icon-facebook:before {
+  content: "\e907";
+  color: #3b5998;
+}
+.icon-flickr:before {
+  content: "\e908";
+  color: #0063dc;
+}
+.icon-github:before {
+  content: "\e909";
+}
+.icon-google:before {
+  content: "\e90a";
+  color: #4285f4;
+}
+.icon-googlehangouts:before {
+  content: "\e90b";
+  color: #0c9d58;
+}
+.icon-googleplus:before {
+  content: "\e90c";
+  color: #dc4e41;
+}
+.icon-html5:before {
+  content: "\e90d";
+  color: #e34f26;
+}
+.icon-instagram:before {
+  content: "\e90e";
+  color: #e4405f;
+}
+.icon-linkedin:before {
+  content: "\e90f";
+  color: #0077b5;
+}
+.icon-minutemailer:before {
+  content: "\e910";
+  color: #3abfe6;
+}
+.icon-odnoklassniki:before {
+  content: "\e911";
+  color: #f4731c;
+}
+.icon-pinterest:before {
+  content: "\e912";
+  color: #bd081c;
+}
+.icon-plurk:before {
+  content: "\e913";
+  color: #e9443d;
+}
+.icon-processwire:before {
+  content: "\e914";
+  color: #ef145f;
+}
+.icon-producthunt:before {
+  content: "\e915";
+  color: #da552f;
+}
+.icon-skype:before {
+  content: "\e916";
+  color: #00aff0;
+}
+.icon-sublimetext:before {
+  content: "\e917";
+}
+.icon-telegram:before {
+  content: "\e918";
+  color: #2ca5e0;
+}
+.icon-twitter:before {
+  content: "\e919";
+  color: #1da1f2;
+}
+.icon-viber:before {
+  content: "\e91a";
+  color: #665cac;
+}
+.icon-visa:before {
+  content: "\e91b";
+  color: #142787;
+}
+.icon-vk:before {
+  content: "\e91c";
+}
+.icon-yandex:before {
+  content: "\e91d";
+  color: #f00;
+}
+.icon-youtube:before {
+  content: "\e91e";
+  color: #f00;
+}

@@ -1,19 +1,81 @@
 /* Header
  ----------------------------------------------------------------------------- */
 .header {
-	background-color: #ccc;
-	padding: 10px 0;
+	// background-color: #ccc;
+	padding: 25px 0;
+	margin-bottom: 20px;
+	transition: .5s;
+	top: -80px;
+	// position: fixed;
+	z-index: 50;
+	@media (min-width: 768px) {
+		// position: static;
+		padding: 40px 0;
+		margin-bottom: 50px;
+	}
 	@extend %clear_a;
 	&__logo {
-		float: left;
-		width: 150px;
+		@media (min-width: 768px) {
+			float: left;
+			width: 150px;
+		}
+		@media (max-width: 767px) {
+		    // margin-bottom: 10px;
+		}
+	}
+	&__action {
+		margin-top: 15px;
+		@media (min-width: 768px) {
+			float: right;
+			margin-top: -4px;
+		}
+		a {
+			color: $color_withe;
+			font-size: 18px;
+			font-weight: 700;
+			text-decoration: none;
+			padding-right: 15px;
+			@media (min-width: 768px) {
+				font-size: 20px;
+				padding-right: 0;
+			}
+			// &:before {
+			// 	content: url('../img/phone-call.png');
+			// 	display: inline-block;
+			// 	vertical-align: middle;
+			// 	margin-right: 10px;
+			// 	margin-bottom: -5px;
+			// }
+			i {
+				color: $color_success;
+				vertical-align: middle;
+				font-size: 24px;
+			}
+			&:hover {
+				color: $color_success;
+			}
+		}
+	}
+	&__nav {
+		@media (min-width: 768px) {
+			padding: 0px 15px;
+			overflow: hidden;
+			
+		}
 	}
 }
 
 // stiky menu
 .stiky {
+	background-color: $color_dark;
 	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;
+	padding: 20px 0;
+	@media (min-width: 768px) {
+		// position: static;
+		padding: 15px 0;
+		margin-bottom: 0;
+	}
 }

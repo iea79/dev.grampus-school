@@ -1,0 +1,81 @@
+extends template.jade
+
+block variables
+	-var pageClass = "";
+	-var courses = 'active';
+
+mixin courseProgramm(courseList)
+	.programm
+	.programm__item
+		.programm__name= courseList.title
+		div= courseList.list
+
+mixin courseAction
+	.training__action
+		button.btn.btn_primary(data-toggle="modal" data-target="#order") Оставить заявку на обучение
+		a(href="https://vk.com/write-31893650" target="blank").btn Задать вопрос онлайн
+
+	
+
+block title
+	title #{courseTitle}
+
+block content
+	a.backLink(href="/courses/") Расписание очных и онлайн курсов в школе Grampus
+
+	.training
+		.training__top
+			.training__left
+				.training__type !{courseType}
+				.training__title !{courseTitle}
+				.training__subtitle !{courseSub}
+				.training__info #{courseDescription}
+
+				.training__date 
+					|Старт группы: #{courseDate} <br>
+					|Продолжительность: #{courseDuration} <br>
+					|Занятия по #{courseTime}
+
+			.training__right
+				.training__img
+					img(src= courseImg, alt="")
+		.training__promo Акция до #{coursePromoDate}
+		.training__bottom
+			.training__sales
+				.training__salesWrap
+					.training__salesItem
+						.training__price #{courseSemiPrice} руб.
+						.training__priceSub при оплате в рассрочку
+					.training__or или
+					.training__salesItem
+						.training__price #{courseTotalPrice} руб.
+						.training__priceSub одним платежом
+			.training__teacher
+				.training__photo
+					.img_circle
+						img(src=courseCoachPhoto, alt="")
+				.training__teacherDescr Преподаватель: #{courseCoachName} <br> !{courseCoachExp}
+		.training__students Для студентов и школьников скидка 20%
+
+		+courseAction
+
+	h2.programm__title Программа курса
+	.programm
+		for courseList in programList
+			+courseProgramm(courseList)
+
+		.programm__info Мы используем уникальный подход к обучению. Вы получите гораздо больше, чем рассчитывали ;)
+	
+	+courseAction
+
+	-var formLink = 'https://app.moyklass.com/api/site/widget/forms?id='+ vidgetId;
+
+	.modal.fade.order#order
+		.modal-dialog
+			.modal-content
+				a(href="#" class="modal-close" data-dismiss="modal")
+				.modal-body 
+					div(id=''+formId+'')
+
+	script(src= formLink)
+	script WdgMoyklass['forms#{vidgetId}'].init('#{formId}')

@@ -3,9 +3,9 @@
 	color: $btn_default_text_color;
 	font-family: $main_font_family;
 	font-size: 16px;
-	font-weight: 300;
-	padding: 5px 15px 7px;
-	border: none;
+	font-weight: 600;
+	padding: 14px 20px;
+	border: 1px solid $color_light;
 	outline: none;
 	text-decoration: none;
 	display: inline-block;
@@ -13,31 +13,75 @@
 	text-align: center;
 	max-width: 100%;
 	cursor: pointer;
-	border-radius: 5px;
+	border-radius: 25px;
 	transition: all 0.3s;
 	text-decoration: none;
 	&:hover {
 		background-color: #fff;
-		color: #000;
+		color: $color_dark;
 		text-decoration: none;
 	}
-	&:focus,&:active {
+	&:active {
 		background-color: transparentize(#fff, .2);
-		color: #000;
+		color: $color_dark;
 	}
-	@each $status_el, $color_bg in $el_colors {
-		&_#{$status_el} {
-			background-color: $color_bg;
-			border-color: $color_bg;
-			color: $btn_contrast_text_color;
-			&:hover {
-				background-color: darken($color_bg, 7%);
-				color: $btn_contrast_text_color;
-			}
-			&:focus,&:active {
-				background-color: darken($color_bg, 10%);
-				color: $btn_contrast_text_color;
-			}
+	// @each $status_el, $color_bg in $el_colors {
+	// 	&_#{$status_el} {
+	// 		background-color: $color_bg;
+	// 		border-color: $color_bg;
+	// 		color: $btn_contrast_text_color;
+	// 		&:hover {
+	// 			background-color: darken($color_bg, 7%);
+	// 			color: $btn_contrast_text_color;
+	// 		}
+	// 		&:focus,&:active {
+	// 			background-color: darken($color_bg, 10%);
+	// 			color: $btn_contrast_text_color;
+	// 		}
+	// 	}
+	// }
+
+	&_primary {
+		border: 2px solid $color_info;
+		background-color: $color_info;
+		background-image: linear-gradient(to top, lighten($color_info, 33%), rgba($color_info, 0) 50%);
+		color: $color_dark;
+		font-weight: 600;
+		box-shadow: 0 4px 10px rgba(#fff, 0.3);
+		&:hover {
+			background-color: lighten($color_info, 15%);
+			background-image: linear-gradient(to top, lighten($color_info, 33%), rgba($color_info, 0) 50%);
+			box-shadow: 0 2px 4px rgba(#fff, 0.3);
+		}
+		&:active {
+			background-color: darken($color_info, 10%);
+			background-image: linear-gradient(to top, lighten($color_info, 33%), rgba($color_info, 0) 50%);
+			
 		}
 	}	
+}
+
+.wdgMoyklass-btn {
+	border-radius: 26px !important;
+	padding: 18px 20px !important;
+	font-family: $main_font_family !important;
+	border: 2px solid $color_info;
+	background-color: $color_info !important;
+	background-image: linear-gradient(to top, lighten($color_info, 33%), rgba($color_info, 0) 50%);
+	color: $color_dark !important;
+	font-weight: 600 !important;
+	margin-right: 4px;
+	box-shadow: 0 4px 10px rgba(#fff, 0.3);
+	transition: .3s;
+	// margin-bottom: 4px;
+	&:hover {
+		background-color: lighten($color_info, 15%);
+		background-image: linear-gradient(to top, lighten($color_info, 33%), rgba($color_info, 0) 50%);
+		box-shadow: 0 2px 4px rgba(#fff, 0.3);
+	}
+	&:active {
+		background-color: darken($color_info, 10%);
+		background-image: linear-gradient(to top, lighten($color_info, 33%), rgba($color_info, 0) 50%);
+		
+	}
 }

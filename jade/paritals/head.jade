@@ -1,13 +1,14 @@
 //- Переменная для сброса кэша для скриптов и стилей
--var versionsFront = "0.1";
+-var versionsFront = "0.7";
 
 head
 	meta(charset="UTF-8")
 	block title
-		title Template
-	meta(name="keywords" content="")
-	meta(name="description" content="")
+		title Школа веб-дизайна Grampus
+	block meta
+		meta(name="keywords" content="Веб-дизайн, школа, дизайн сайтов, web-дизайн пермь, курсы web дизайна, курсы веб дизайна с нуля, веб дизайн обучение, веб дизайн обучение с нуля курсы, обучение веб дизайну")
+		meta(name="description" content="Очные курсы в центре Перми. C Grampus ты можешь за 2-3 месяца освоить профессию, которая позволит тебе работать на фрилансе, из любой точки земного шара")
 	meta(name="viewport" content="width=device-width, initial-scale=1.0")
 
-	link(href="css/style.css?"+versionsFront+"" rel="stylesheet")
+	link(href="/css/style.css?"+versionsFront+"" rel="stylesheet")
 

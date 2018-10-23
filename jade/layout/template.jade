@@ -5,12 +5,12 @@ block variables
 <!DOCTYPE html>
 html(lang="en")
 	
-	include paritals/head.jade
+	include ../paritals/head.jade
 
 	body(class=pageClass)
 		.wrapper
 			
-			include paritals/header.jade
+			include ../paritals/header.jade
 
 			// begin main__content
 			main.main__content
@@ -20,6 +20,10 @@ html(lang="en")
 
 			// end main__content 
 
-		include paritals/footer.jade
+		include ../paritals/footer.jade
 
-		include paritals/scripts.jade
+		include ../paritals/scripts.jade
+
+		include ../paritals/counters.jade
+
+		include ../paritals/modals.jade

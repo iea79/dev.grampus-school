@@ -1,22 +1,19 @@
 // Social link
 .soc {
-	float: left;
 	a {
 		display: inline-block;
-		width: 30px;
-		height: 30px;
-		border-radius: 50%;
-		background-color: #000;
-		text-align: center;
 		text-decoration: none;
+		font-size: 1.6em;
+		vertical-align: middle;
+		margin: 4px 8px;
+		color: $color_withe;
 		@include trs(0.3s);
 		&:hover {
-			opacity: .8;
+			transform: scale(1.1);
+			color: $color_info;
 		}
-		&:before {
-			content: 'soc';
-			color: #fff;
-			text-decoration: none;
-		}
+	}
+	.icon-phone {
+		font-size: 1.1em;
 	}
 }

@@ -1,21 +1,26 @@
-// begin header 
 header.header
 	.container_center
 
-		a.logo
-			img(src="img/logo.png")
+		.header__left
+			a(href="/").header__logo
+				img(src="/img/logo.png")
 
-		// begin navbar 
+		.header__nav
+			.navbar__toggle
+			ul.navbar
+				li.navbar__item
+					a(href="/" class=about).navbar__link О школе
+				//- li.navbar__item
+					a(href="/gallery/" class=gallery).navbar__link Фотогалерея
+				li.navbar__item
+					a(href="/courses/" class=courses).navbar__link Курсы 
+				li.navbar__item
+					a(href="/raspisanie/" class=raspisanie).navbar__link Расписание
+				li.navbar__item
+					a(href="/faq/" class=faq).navbar__link Вопрос-ответ
 
-		ul.navbar
+				.header__action
+					a.tel(href="tel:+79222098659")
+						i.icon-phone-call 
+						|+7(922)209-86-59
 
-			li.navbar__item
-				a.navbar__link Item_1
-			li.navbar__item
-				a.navbar__link Item_2
-			li.navbar__item
-				a.navbar__link Item_3
-
-		// end navbar 
-
-// end header 

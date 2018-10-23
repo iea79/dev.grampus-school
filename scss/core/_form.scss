@@ -39,13 +39,14 @@ input[type=datetime],
 textarea {
 	background-color: $input_bg_color;
 	border: 1px solid $input_border_color;
-	padding: 6px 15px;
+	padding: 13px 20px !important;
 	outline: none;
-	font-size: 16px;
-	font-weight: 300;
-	font-family: $main_font_family;
-	border-radius: 5px;
+	font-size: 16px !important;
+	font-weight: 400 !important;
+	font-family: $main_font_family !important;
+	border-radius: 25px;
 	transition: all .3s;
+	color: $main_color !important;
 	&:hover {
 		border: 1px solid $input_hover_border_color;
 		background-color: $input_hover_bg_color;

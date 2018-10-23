@@ -4,14 +4,24 @@
     min-height: 100%;
     height: auto !important;
     height: 100%;
+    overflow: hidden;
     margin: 0 auto (-$footer_height) auto; // отрицательный нижний отступ на высоту футера
+    background: url('../img/bg-body.jpg') no-repeat center;
+    background-size: cover;
+    background-color: #1e1d2b;
+    @media (min-width: 768px) {
+        animation: city 50s ease infinite;
+    }
 }
 
 /* Middle
  ----------------------------------------------------------------------------- */
 .main__content {
-	padding-bottom: $footer_height;
-	@extend %clear_a;
+    padding-bottom: $footer_height;
+    @extend %clear_a;
+    @media (min-width: 768px) {
+	   padding-bottom: $footer_height + 50px;
+    }
 }
 
 .container_center {
@@ -25,4 +35,11 @@
 	@include columns(4, 20px, 300px);
 }
 
-
+@keyframes city {
+    from { background-position: -800px 100%, 0 0;}
+    16% {background-position: -500px -300px, 0 0;}
+    42% {background-position: -300px -600px, 0 0;}
+    60% {background-position: -500px -300px, 0 0;}
+    86% {background-position: -300px -200px, 0 0;}
+    to { background-position: -800px 100%; }
+}

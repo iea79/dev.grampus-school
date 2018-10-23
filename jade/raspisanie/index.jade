@@ -1,0 +1,21 @@
+extends ../layout/template.jade
+
+block variables
+	-var pageClass = "";
+	-var raspisanie = 'active';
+
+block title
+	title Школа веб-дизайна Grampus - Расписание очных и онлайн курсов
+
+block content
+
+	h1.title.title__page
+		.title__page_name Расписание очных и онлайн курсов
+		.title__page_line
+
+	#WdgMoyklassCalendar1878
+
+	//- MoyKlass calendar widget begin
+	<script src="https://app.moyklass.com/api/site/widget/calendar?id=v2vicy0oGv1TcJBC9CfaaQJvFSWv0m2pQI" type="text/javascript" charset="UTF-8"></script>
+	<script type="text/javascript">WdgMoyklassCalendar['calendarv2vicy0oGv1TcJBC9CfaaQJvFSWv0m2pQI'].init('WdgMoyklassCalendar1878');</script>
+	//- MoyKlass calendar widget end

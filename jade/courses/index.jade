@@ -1,0 +1,25 @@
+extends ../layout/template.jade
+
+block variables
+	-var pageClass = "";
+	-var courses = 'active';
+
+block title
+	title Школа веб-дизайна Grampus - Записаться на ближайший очный курс
+
+block content
+
+	h1.title.title__page
+		.title__page_name Записаться на ближайший очный курс
+		.title__page_line
+	
+	a.hidden(href="/webdesign/") Очный курс - "Разработка сайтов - базовый уровень. HTML, CSS, jQuery"
+	a.hidden(href="/grafdesign/") Очный курс - "Графический дизайн"
+	a.hidden(href="/frontend/") Очный курс - "Дизайн и создание сайтов"
+	
+	#WdgMoyklass1878
+
+	//- MoyKlass widget begin
+	<script src="https://app.moyklass.com/api/site/widget/schedule?id=PsC5PP9FZJBOyiTrVTRAUhBbwvkx3P6eSn" type="text/javascript" charset="UTF-8"></script>
+	<script type="text/javascript">WdgMoyklass['schedulePsC5PP9FZJBOyiTrVTRAUhBbwvkx3P6eSn'].init('WdgMoyklass1878');</script>
+	//- MoyKlass widget end

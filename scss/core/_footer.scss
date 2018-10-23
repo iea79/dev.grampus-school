@@ -2,13 +2,52 @@
  ----------------------------------------------------------------------------- */
 .footer {
 	font-size: $main_font_size;
+	background-color: #1e1d2b;
 	position: relative;
-	height: $footer_height;
-	background: #BFF08E;
+	min-height: $footer_height;
+	text-align: center;
+	// background: #BFF08E;
 	@extend %clear_all;
 	.container_center {
-		padding-top: 10px;
-		padding-bottom: 10px;
+		position: relative;
+		padding-top: 40px;
+		padding-bottom: 30px;
+		&:before {
+			content: '';
+			position: absolute;
+			border-top: 1px solid rgba($color_withe, .1);
+			top: 0;
+			left: 15px;
+			right: 15px;
+		}
+	}
+	@media (min-width: 768px) {
+		text-align: left;
+		.container_center {
+			padding-top: 53px;
+			padding-bottom: 30px;
+		}
+		&__logo {
+			float: left;
+		}
+		&__contact {
+			float: right;
+			margin: 0;
+		}
+		&__center {
+			overflow: hidden;
+			padding: 8px 15px;
+		}
+	}
+	&__contact {
+		margin-top: 15px;
+		margin-bottom: 20px;
+	}
+	&__center {
+		text-align: center;
+		a {
+			color: $color_withe;
+		}
 	}
 }
 

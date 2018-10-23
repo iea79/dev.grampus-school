@@ -11,23 +11,34 @@
     z-index: 1050;
     -webkit-overflow-scrolling: touch;
     outline: 0;
+    text-align: center;
+    font-size: 0;
+    letter-spacing: -1px;
+    &:before {
+        content: '';
+        display: inline-block;
+        width: 0;
+        height: 100vh;
+        vertical-align: middle;
+    }
     &-open {
         overflow: hidden;
     }
     &-close {
         position: absolute;
-        width: 21px;
-        height: 21px;
-        right: 23px;
-        top: 23px;
+        width: 16px;
+        height: 16px;
+        right: 10px;
+        top: 10px;
+        color: $color_info;
         // background: image-url('close.svg') no-repeat center center;
         &:before,&:after {
             content: '';
             position: absolute;
             display: block;
-            width: 20px;
-            border-top: 1px solid $main_color;
-            top: 10px;
+            width: 100%;
+            border-top: 1px solid;
+            top: 50%;
         }
         &:before {
             transform: rotate(45deg);
@@ -36,7 +47,16 @@
             transform: rotate(-45deg);
         }
         &:hover {
-            opacity: .8;
+            color: $color_success;
+            transform: rotate(180deg);
+            // opacity: .8;
+            &:before,&:after {
+                
+            }
+            &:before {
+            }
+            &:after {
+            }
         }
     }
     &.fade .modal-dialog {
@@ -51,19 +71,26 @@
         position: relative;
         width: auto;
         margin: 10px auto;
-        max-width: 690px;
+        max-width: 900px;
+        display: inline-block;
+        width: 100%;
+        vertical-align: middle;
+        text-align: initial;
+        font-size: initial;
+        letter-spacing: initial;
     }
 
     &-content {
         position: relative;
-        background-color: #fff;
-        border: 1px solid #999;
-        border: 1px solid rgba(0,0,0,.2);
-        border-radius: 6px;
+        background-color: rgba($color_dark, .95);
         box-shadow: 0 3px 9px rgba(0,0,0,.5);
         background-clip: padding-box;
         outline: 0;
-        padding: 46px 53px;
+        padding: 46px 48px;
+        font-weight: 300;
+        font-size: 15px;
+        line-height: 1.8;
+        border-left: 4px solid $color_info;
     }
 
     &-backdrop {

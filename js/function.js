@@ -1,10 +1,5 @@
-/*!
- *
- * Evgeniy Ivanov - 2018
- * busforward@gmail.com
- * Skype: ivanov_ea
- *
- */
+// @prepros-append browserDetect.js
+// @prepros-append modal.js
 
 var TempApp = {
     lgWidth: 1200,
@@ -56,17 +51,15 @@ $(document).ready(function() {
 	// });
 
 	// Stiky menu // Липкое меню. При прокрутке к элементу #header добавляется класс .stiky который и стилизуем
-    // $(document).ready(function(){
-    //     var HeaderTop = $('#header').offset().top;
-        
-    //     $(window).scroll(function(){
-    //             if( $(window).scrollTop() > HeaderTop ) {
-    //                     $('#header').addClass('stiky');
-    //             } else {
-    //                     $('#header').removeClass('stiky');
-    //             }
-    //     });
-    // });
+    var HeaderTop = $('.header').offset().top;
+    
+    $(window).scroll(function(){
+            if( $(window).scrollTop() > HeaderTop ) {
+                    $('.header').addClass('stiky');
+            } else {
+                    $('.header').removeClass('stiky');
+            }
+    });
 
     // Inputmask.js
     // $('[name=tel]').inputmask("+9(999)999 99 99",{ showMaskOnHover: false });
@@ -75,6 +68,28 @@ $(document).ready(function() {
    	// gridMatch();
 
     checkOnResize();
+    mobileNav();
+
+    $('.review__slider').slick({
+        adaptiveHeight: true,
+        responsive: [
+            {
+                breakpoint: 768,
+                settings: {
+                    dots: true,
+                    arrows: false,
+                    adaptiveHeight: true
+                }
+            }
+        ]
+    });
+
+    setTimeout(function() {
+        $('.wdgMoyklass-course-title a').each(function() {
+            $(this).removeAttr('target');
+        });
+    }, 3000);
+
 
 });
 
@@ -89,24 +104,66 @@ $(window).resize(function(event) {
 });
 
 function checkOnResize() {
-   	// gridMatch();
-    fontResize();
-}
+    // gridMatch();
+    // fontResize();
+    if (isXsWidth()) {
+        $('.header__action').appendTo('.navbar');
+    } else {
+        $('.header__action').insertAfter('.header__left');
+    }
+    if (isSmWidth() || isXsWidth()) {
+        $('.training__students').insertAfter('.training__sales');
+    } else {
+        $('.training__students').insertAfter('.training__bottom');
+    }
+
+};
+
+
+function mobileNav() {
+    var toggle = $('.navbar__toggle');
+    var navbar = $('.navbar');
+    var body = $('body');
+    var backdrop = $('.navbar__backdrop');
+
+    toggle.on('click', function() {
+        if ($(this).hasClass('navbar__toggle_close')) {
+            mobileNavClose();
+        } else {
+            body.css('overflow', 'hidden');
+            body.append('<div class="navbar__backdrop"></div>')
+            toggle.addClass('navbar__toggle_close');
+            navbar.addClass('navbar_open'); 
+        }
+    });
+
+    body.on('click', '.navbar__backdrop', function() {
+        mobileNavClose();
+    });
+
+    function mobileNavClose() {
+        body.removeAttr('style');
+        $('.navbar__backdrop').remove();
+        toggle.removeClass('navbar__toggle_close');
+        navbar.removeClass('navbar_open');
+        console.log("close")
+    }
+};
 
 function gridMatch() {
-   	$('[data-grid-match] .grid__item').matchHeight({
-   		byRow: true,
-   	});
+    $('[data-grid-match] .grid__item').matchHeight({
+        byRow: true,
+    });
 }
 
 function fontResize() {
     var windowWidth = $(window).width();
     if (windowWidth >= 1200) {
-    	var fontSize = windowWidth/19.05;
+        var fontSize = windowWidth/19.05;
     } else if (windowWidth < 1200) {
-    	var fontSize = 60;
+        var fontSize = 60;
     }
-	$('body').css('fontSize', fontSize + '%');
+    $('body').css('fontSize', fontSize + '%');
 }
 
 // Видео youtube для страницы
@@ -117,7 +174,7 @@ $(function () {
             $(this).css('background-image', 'url(http://i.ytimg.com/vi/' + this.id + '/sddefault.jpg)');
 
             // Добавляем иконку Play поверх миниатюры, чтобы было похоже на видеоплеер
-            $(this).append($('<img src="img/play.svg" alt="Play" class="video__play">'));
+            $(this).append($('<div class="video__play"><img src="img/play.svg" alt="Play"></div>'));
 
         });
 
@@ -131,8 +188,6 @@ $(function () {
             var iframe = $('<iframe/>', {
                 'frameborder': '0',
                 'src': iframe_url,
-                'width': $(this).width(),
-                'height': $(this).innerHeight()
             })
 
             // Заменяем миниатюру HTML5 плеером с YouTube
