@@ -1,0 +1,39 @@
+extends ../layout/template.jade
+
+block variables
+	-var pageClass = "";
+	-var vacancy = 'active';
+
+
+block title
+	title Вакансии - Школа веб-дизайна Grampus
+
+block content
+	h1.title.title__page
+		.title__page_name Школа дизайна Grampus разыскивает опытных дизайнеров в Перми.
+		.title__page_line
+
+	h2 Особые приметы:
+	
+	.profession
+
+		.profession__info
+			.profession__item 
+				.profession__title Специализация: 
+				|web-дизайн, графический дизайн, motion-дизайн, 3d-дизайн.
+			.profession__item 
+				.profession__title Опыт в дизайнерской профессии: 
+				|от 3-х лет.
+			.profession__item
+				.profession__title Опыт во фрилансе: 
+				|желателен, но не обязателен
+			.profession__item
+				.profession__title Опыт преподавания: 
+				|не обязателен
+			//- .profession__item
+				.profession__title График работы: 
+				|гибкий
+			p Если вы хотите занятся чем то новым и интересным по вашей специальности, повысить свой скилл дизайнера, упорядочить свои знания, находиться на "острие" новинок и трендов - пишите в сообщения нашей группы 
+				a(href="https://vk.com/write-31893650") https://vk.com/write-31893650
+		.profession__img
+			img(src="/img/wanted.jpg", alt="")

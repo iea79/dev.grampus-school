@@ -11,7 +11,7 @@ $modal-bg: rgba($color_dark, 0.95);
 		margin-bottom: 50px;
 		color: $main_color;
 		font-weight: 300;
-		.wdgMoyklass-headColor {
+		a.wdgMoyklass-headColor {
 			&:after {
 				content: '↩';
 				display: inline-block;
@@ -163,7 +163,8 @@ $modal-bg: rgba($color_dark, 0.95);
 				&-course {
 					.wdgMoyklass {
 						&-course {
-							background-color: $modal-bg !important;
+							// background-color: $modal-bg !important;
+							background-color: rgba($color_muted, .1) !important;
 							margin-bottom: 20px;
 							padding: 10px 20px 0 30px;
 							border-left: 4px solid $color_info;
@@ -179,11 +180,14 @@ $modal-bg: rgba($color_dark, 0.95);
 					}
 				}
 				&-price {
-					color: $color_danger !important;
-					font-weight: 700;
+					color: $color_success !important;
+					font-weight: 400;
 					&_comment {
 						.popup {
-							color: $color_danger !important;
+							color: $color_primary !important;
+							&:hover {
+								text-decoration: underline;
+							}
 						}
 					}
 				}
@@ -197,15 +201,41 @@ $modal-bg: rgba($color_dark, 0.95);
 					}
 					// font-weight: 300;
 				}
+				&-font {
+					&-light {
+						color: $color_light !important;
+					}
+				}
 			}
 		}
+		$bw: 7px;
 		.popuptext {
-			background-color: rgba($color_dark, .95);
+			// background-color: rgba($color_dark, .95);
+			background-color: $color_dark;
 			border: 1px solid $color_info !important;
 			color: $color_info !important;
 			font-weight: 500;
-			box-shadow: 0 4px 10px rgba($color_info, 0.2);
+			box-shadow: none !important;
 			transition: .3s;
+			&:before,&:after {
+				content: '';
+				position: absolute;
+				color: transparent;
+				border-color: transparent;
+				border: $bw solid;
+				left: 50%;
+				margin-left: -$bw;
+			}
+			&:before {
+				border-top-color: $color_dark !important;
+				bottom: -$bw*2+2;
+				z-index: 2;
+			}
+			&:after {
+				border-top-color: $color_info !important;
+				bottom: -$bw*2;
+				z-index: 1;
+			}
 		}
 	}
 }
@@ -236,6 +266,7 @@ body .WdgMoyklass {
 			&-content {
 				font-family: $main_font_family !important;
 				background-color: $modal-bg;
+				// background-color: rgba($color_muted, .1);
 				color: $main_color;
 				border-radius: 0;
 				border: none;
@@ -319,4 +350,9 @@ body .WdgMoyklass {
 
 #wdgMoyklassModal-backdrop {
 	background-color: $color_dark;
+}
+
+.WdgMoyklassModalItem-open {
+	padding-right: 0 !important;
+	width: 100%;
 }

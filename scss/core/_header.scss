@@ -2,12 +2,16 @@
  ----------------------------------------------------------------------------- */
 .header {
 	// background-color: #ccc;
+	// top: -80px;
+	// position: fixed;
+	z-index: 50;
+	position: absolute;
+    top: 0;
+    left: 0;
+	width: 100%;
 	padding: 25px 0;
 	margin-bottom: 20px;
 	transition: .5s;
-	top: -80px;
-	// position: fixed;
-	z-index: 50;
 	@media (min-width: 768px) {
 		// position: static;
 		padding: 40px 0;
@@ -67,7 +71,7 @@
 
 // stiky menu
 .stiky {
-	background-color: $color_dark;
+	background-color: rgba($color_dark, 0.5);
 	position: fixed;
 	top: 0;
 	left: 0;

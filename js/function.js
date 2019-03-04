@@ -1,5 +1,6 @@
 // @prepros-append browserDetect.js
 // @prepros-append modal.js
+// @prepros-append custom-select.js
 
 var TempApp = {
     lgWidth: 1200,
@@ -82,6 +83,14 @@ $(document).ready(function() {
                 }
             }
         ]
+    });
+
+    $('.reviewLine__title').on('click', function() {
+        var item = $(this).closest('.reviewLine');
+
+        $('.reviewLine').not(item).removeClass('reviewLine_active');
+
+        item.toggleClass('reviewLine_active');
     });
 
     setTimeout(function() {

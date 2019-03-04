@@ -67,6 +67,62 @@
 				}
 			}
 		}
+		&_preline {
+			@media (min-width: 768px) {		    
+				overflow: hidden;
+				padding-top: 16px;
+				&:after {
+					content: '';
+					display: block;
+					height: 1px;
+					background-color: $color_success;
+				}
+			}
+		}
+	}
+	&_sub {
+		font-size: 20px;
+	}
+	&_center {
+		position: relative;
+		@media (min-width: 768px) {
+			text-align: center;
+		}
+		.title {
+			&__page {
+				&_name {
+					float: none;
+					display: inline-block;
+					position: relative;
+					z-index: 1;
+					max-width: 600px;
+					&:before {
+						content: '';
+						position: absolute;
+						top: 50%;
+						left: -5%;
+						width: 110%;
+						background-color: #1e1d2b;
+						height: 2px;
+						z-index: -1;
+					}
+				}
+				&_line {
+					@media (min-width: 768px) {
+					    width: 100%;
+					    position: absolute;
+					    top: 50%;
+					    padding: 0;
+					}
+				}
+				&_preline {
+					@media (min-width: 768px) {
+					    
+					}
+					
+				}
+			}
+		}
 	}
 }
 
@@ -138,7 +194,7 @@ a:not([class]),.link {
 		// text-align: center;
 	}
 	&__item {
-		background-color: rgba($color_dark, .8);
+		background-color: rgba($color_muted, .1);
 		padding: 15px;
 		border-left: 4px solid $color_info;
 	}
@@ -171,7 +227,7 @@ a:not([class]),.link {
 		}
 	}
 	&__item {
-		background-color: rgba($color_dark, .8);
+		background-color: rgba($color_muted, .1);
 		padding: 15px;
 		border-left: 4px solid $color_info;
 		margin-bottom: 20px;
@@ -270,7 +326,7 @@ $gpad: 40px;
 	// 	}
 	}
 	&__wrap {
-		background-color: rgba($color_dark, .8);
+		background-color: rgba($color_muted, .1);
 		padding: 15px;
 		border-left: 4px solid $color_info;
 		min-height: 100%;
@@ -893,7 +949,21 @@ $gpad: 40px;
 						&Form {
 							&-item {
 								select {
-									display: none !important;
+									// display: none !important;
+									background-color: transparent;
+									border-radius: 30px;
+									border: 1px solid $color_primary;
+									color: $color_withe;
+									outline: 0;
+									background-color: $color_dark;
+									appearance: none;
+									padding: 13px 18px;
+									position: relative;
+									background-image: url(../img/play.svg);
+									background-repeat: no-repeat;
+									background-size: auto 30%;
+									background-position: center right 10px;
+									
 								}
 							}
 						}
@@ -910,7 +980,7 @@ $gpad: 40px;
 
 .faq {
 	&__item {
-		background-color: rgba($color_dark, .8);
+		background-color: rgba($color_muted, .1);
 		padding: 20px 25px;
 		border-left: 4px solid $color_info;
 		margin-bottom: 15px;
@@ -929,3 +999,291 @@ $gpad: 40px;
 		}
 	}
 }
+
+.coursesList {
+	font-size: 15px;
+	&__row {
+		padding-bottom: 20px;
+		&:not(:last-child) {
+			margin-bottom: 20px;
+			border-bottom: 1px dashed $color_withe;
+		}
+	}
+	&__item {
+		background-color: rgba($color_dark, .8);
+		padding: 15px;
+		padding-left: 26px;
+		border-left: 4px solid $color_info;
+		margin-bottom: 20px;
+	}
+	&__name {
+		color: $color_info;
+		font-size: 20px;
+		font-weight: 500;
+		margin-bottom: 10px;
+		text-decoration: none;
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+	&__text {
+		line-height: 1.6;
+		margin-bottom: 15px;
+	}
+	&__couch {
+		color: $color_danger;
+		margin-bottom: 10px;
+	}
+	&__more {
+		color: $color_info;
+		text-decoration: none;
+		&:hover {
+			text-decoration: underline;			
+		}
+	}
+}
+
+.reviewLine {
+	// background-color: rgba($color_dark, .8);
+	background-color: rgba($color_muted, .1);
+	padding: 20px;
+	padding-left: 26px;
+	border-left: 4px solid $color_info;
+	margin-bottom: 10px;
+	@extend %clear_a;
+	&__title {
+		font-size: 20px;
+		font-weight: 600;
+		color: $color_withe;
+		cursor: pointer;
+		margin-bottom: 0;
+		transition: .5s;
+		&:after {
+			content: '';
+			display: block;
+			width: 0;
+			border-bottom: 1px solid $color_success;
+			transition: .5s;
+		}
+		&:hover {
+			color: lighten($color_success, 10%);
+			margin-bottom: 10px;
+			&:after {
+				// width: 30%;
+			}
+		}
+		// margin-bottom: 30px;
+	}
+	&__more {
+		display: none;
+		margin-bottom: 15px;	    
+		@media (min-width: 768px) {
+			float: left;
+		}
+	}
+	&__course {
+		display: none;
+		@media (min-width: 768px) {
+			float: right;
+		}
+	}
+	&__item {
+		height: 0;
+		overflow: hidden;
+		transition: .5s;
+		transform: translate(0, -10px);
+		@extend %clear_a;
+		// width: 0;
+		&:not(:last-child) {
+			&:after {
+				content: '';
+				display: block;
+				padding-bottom: 0;
+				margin-bottom: 0;
+				width: 0;
+				transition: .7s;
+				margin-left: 50%;
+				border-bottom: 1px dashed $color_success;
+			}
+		}
+		
+	}
+	&_active {
+		.reviewLine {
+			&__title {
+				margin-bottom: 30px;
+				color: $color_success;
+				&:after {
+					padding-top: 10px;
+					width: 100%;
+				}
+			}
+			&__item {
+				transition: .5s;
+				height: auto;
+				width: 100%;
+				transform: translate(0, 0);
+				&:not(:last-child) {
+					&:after {
+						content: '';
+						padding-bottom: 20px;
+						margin-bottom: 25px;
+						width: 100%;
+						margin-left: 0;
+					}
+				}
+			}
+			&__more {
+				display: block;
+			}
+			&__course {
+				display: block;
+			}
+		}
+	}
+	&__user {
+		margin-bottom: 15px;
+		text-align: center;
+		@media (min-width: 768px) {
+			margin-right: 25px;
+			width: 120px;
+			float: left;
+		    text-align: left;
+		}
+	}
+	&__photo {
+		border-radius: 50%;
+		overflow: hidden;
+		width: 90px;
+		height: 90px;
+		margin-bottom: 10px;
+		display: inline-block;
+		@media (min-width: 768px) {
+		}
+		img {
+			display: block;
+		}
+	}
+	&__name {
+		font-weight: 600;
+		color: $color_success;
+	}
+	&__text {
+		font-size: 13px;
+		overflow: hidden;
+		p {
+			&:first-child {
+				margin-top: 0;
+			}
+		}
+	}
+}
+.review__contact {}
+
+.reviewShow {
+	margin: 25px 0;
+	&__link {
+		color: $color_success;
+		font-size: 18px;
+		text-decoration: none;
+		&:after {
+			content: '↩';
+		    display: inline-block;
+		    margin-left: 5px;
+		    transform: scale(-1, -1);
+		    font-size: 20px;
+		}
+		&:hover {
+			color: $color_primary;
+		}
+	}
+}
+
+/* The container must be positioned relative: */
+.custom-select {
+	position: relative;
+	font-family: "Gotham Pro";
+	font-size: 16px;
+	border-radius: 2px;
+	select {
+		display: none; /*hide original SELECT element: */
+	}
+}
+
+.select-selected {
+	background-color: $color_dark;
+	border: 1px solid $color_primary;
+	padding-right: 30px;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 46px;
+	border-radius: 30px;
+	&:after {
+		position: absolute;
+		content: "";
+		top: 21px;
+		right: 17px;
+		width: 0;
+		height: 0;
+		border: 5px solid transparent;
+		border-color: $color_primary transparent transparent transparent;
+	}
+
+	/* Point the arrow upwards when the select box is open (active): */
+	&.select-arrow-active {
+		border-radius: 23px 23px 0 0;
+		border-bottom: 0;
+		&:after {
+			border-color: transparent transparent $color_primary transparent;
+			top: 14px;
+		}
+	}
+}
+
+/* Style the arrow inside the select element: */
+
+/* style the items (options), including the selected item: */
+.select-items div,.select-selected {
+	padding: 15px 20px;
+	// border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+	cursor: pointer;
+}
+
+/* Style items (options): */
+.select-items {
+	box-shadow: 0 1px 5px rgba($color_primary, 0.2);
+	background-color: $color_dark;
+	position: absolute;
+	top: 100%;
+	left: 0;
+	right: 0;
+	z-index: 99;
+	border: 1px solid $color_primary;
+	border-top: 0;
+	border-radius: 0 0 23px 23px;
+	overflow: hidden;
+	
+}
+
+/* Hide the items when the select box is closed: */
+.select-hide {
+  display: none;
+}
+
+.select-items div:hover, .same-as-selected {
+	background-color: darken($color_primary, 33%);
+}
+
+.text {
+	&_primary {
+		color: $color_primary;
+	}
+	&_danger {
+		color: $color_danger;
+	}
+	&_success {
+		color: $color_success;
+	}
+}
+
+

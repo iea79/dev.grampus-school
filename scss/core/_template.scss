@@ -9,7 +9,9 @@
     background: url('../img/bg-body.jpg') no-repeat center;
     background-size: cover;
     background-color: #1e1d2b;
+    padding-top: 85px;
     @media (min-width: 768px) {
+        padding-top: 150px;
         animation: city 50s ease infinite;
     }
 }

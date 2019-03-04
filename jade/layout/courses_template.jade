@@ -9,11 +9,13 @@ mixin courseProgramm(courseList)
 	.programm__item
 		.programm__name= courseList.title
 		div= courseList.list
+	-;
 
 mixin courseAction
 	.training__action
-		button.btn.btn_primary(data-toggle="modal" data-target="#order") Оставить заявку на обучение
+		button.btn.btn_primary(data-toggle="modal" data-target="#order" onclick="gtag('event', 'openForm', { 'event_category': 'FormKurs', 'event_action': 'click', });") Оставить заявку на обучение
 		a(href="https://vk.com/write-31893650" target="blank").btn Задать вопрос онлайн
+	-;
 
 	
 
@@ -39,7 +41,9 @@ block content
 			.training__right
 				.training__img
 					img(src= courseImg, alt="")
-		.training__promo Акция до #{coursePromoDate}
+		-if (coursePromoDate !== false) {
+		.training__promo Стоимость до #{coursePromoDate}
+		-};
 		.training__bottom
 			.training__sales
 				.training__salesWrap
@@ -66,7 +70,12 @@ block content
 
 		.programm__info Мы используем уникальный подход к обучению. Вы получите гораздо больше, чем рассчитывали ;)
 	
+	if (courseName != 'polygraphy')
+		.reviewShow
+			a.reviewShow__link(href="/review/") Читать отзывы о курсе
+
 	+courseAction
+
 
 	-var formLink = 'https://app.moyklass.com/api/site/widget/forms?id='+ vidgetId;
 
