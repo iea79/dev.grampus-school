@@ -1,64 +1,69 @@
 extends ../layout/template.jade
 
 block variables
-	-var pageClass = "";
-	-var courses = 'active';
+    -var pageClass = "";
+    -var courses = 'active';
 
 block title
-	title Школа веб-дизайна Grampus - Записаться на ближайший очный курс
+    title Школа веб-дизайна Grampus - Записаться на ближайший очный курс
 
 block content
 
-	h1.title.title__page
-		.title__page_name Записаться на ближайший очный курс
-		.title__page_line
-	
-	#WdgMoyklass1878
+    h1.title.title__page
+        .title__page_name Записаться на ближайший очный курс
+        .title__page_line
 
-	h2.title.title__page
-		.title__page_name Все программы школы
-		.title__page_line
+    #WdgMoyklass1878
 
-	.reviewLine
-		.reviewLine__title Очные курсы
-		.reviewLine__item
-			.coursesList__row
-				a.coursesList__name(href="/webdesign/") Курс - "Дизайн и создание сайтов"
-				.coursesList__text Пройдите полный практический курс очно, с личным наставником и научитесь рисовать классные сайты от идеи до готового дизайн-макета пользуясь современными инструментами, находить заказчиков и работать задорого.
-				.coursesList__couch Преподаватель: Ефим Лопатин
-				a.coursesList__more(href="/webdesign/") Смотреть подробности
-			.coursesList__row
-				a.coursesList__name(href="/grafdesign/") Курс - "Графический дизайн"
-				.coursesList__text На курсе вы научитесь разрабатывать логотипы, упаковку, фирменный стиль, начнете разбираться в материалах и современных программах, и создадите свой первый брендбук
-				.coursesList__couch Преподаватель: Екатерина Кивилева
-				a.coursesList__more(href="/grafdesign/") Смотреть подробности
-			.coursesList__row
-				a.coursesList__name(href="/polygraphy/") Курс - "Рекламный и полиграфический дизайн"
-				.coursesList__text Курс подойдет как новичкам в дизайне, так и тем, кто желает повысить свои знания и оптимизировать рабочий процесс, обучиться приемам и тонкостям при подготовке макетов к печати.
-				.coursesList__couch Преподаватель: Оксана Куликова
-				a.coursesList__more(href="/polygraphy/") Смотреть подробности
-			.coursesList__row
-				a.coursesList__name(href="/frontend/") Курс - "Разработка сайтов: HTML, CSS, jQuery"
-				.coursesList__text На курсе вы научитесь визуализировать дизайн в вебе, создавать веб-страницы, лендинги; получите основы всех аспектов веб-разработки: узнаете что такое вёрстка, как создаётся интерактивность, как делается анимация и эффекты, как разрабатываются сайты для телефонов и планшетов. А главное получите опытных наставников на длительное время
-				.coursesList__couch Преподаватель: Никита Боднар
-				a.coursesList__more(href="/frontend/") Смотреть подробности
+    h2.title.title__page
+        .title__page_name Все программы школы
+        .title__page_line
 
-	.reviewLine
-		.reviewLine__title Индивидуальные программы
-		.reviewLine__item
-			.coursesList__row
-				a.coursesList__name(href="/individual/grafdesign.html") Индивидуальная программа - "Графический дизайн"
-				.coursesList__text
-				.coursesList__couch Преподаватель: Екатерина Кивилева
-				a.coursesList__more(href="/individual/grafdesign.html") Смотреть подробности
-			.coursesList__row
-				a.coursesList__name(href="/individual/front.html") Индивидуальная программа - "Разработка сайтов: HTML, CSS, jQuery"
-				.coursesList__text
-				.coursesList__couch Преподаватель: Евгений Иванов
-				a.coursesList__more(href="/individual/front.html") Смотреть подробности
+    .reviewLine
+        .reviewLine__title Очные курсы
+        .reviewLine__item
+            .coursesList__row
+                a.coursesList__name(href="/webdesign/") Курс - "Дизайн и создание сайтов"
+                .coursesList__text Пройдите полный практический курс очно, с личным наставником и научитесь рисовать классные сайты от идеи до готового дизайн-макета пользуясь современными инструментами, находить заказчиков и работать задорого.
+                .coursesList__couch Преподаватель: Ефим Лопатин
+                a.coursesList__more(href="/webdesign/") Смотреть подробности
+            .coursesList__row
+                a.coursesList__name(href="/grafdesign/") Курс - "Графический дизайн"
+                .coursesList__text На курсе вы научитесь разрабатывать логотипы, упаковку, фирменный стиль, начнете разбираться в материалах и современных программах, и создадите свой первый брендбук
+                .coursesList__couch Преподаватель: Екатерина Кивилева
+                a.coursesList__more(href="/grafdesign/") Смотреть подробности
+            .coursesList__row
+                a.coursesList__name(href="/polygraphy/") Курс - "Рекламный и полиграфический дизайн"
+                .coursesList__text Курс подойдет как новичкам в дизайне, так и тем, кто желает повысить свои знания и оптимизировать рабочий процесс, обучиться приемам и тонкостям при подготовке макетов к печати.
+                .coursesList__couch Преподаватель: Оксана Куликова
+                a.coursesList__more(href="/polygraphy/") Смотреть подробности
+            .coursesList__row
+                a.coursesList__name(href="/decor/") Курс - "Интерьер в 3ds Max - Базовый"
+                .coursesList__text После прохождения курса Вы сможете: Понимать принципы построения трехмерной графики, Выполнять фотореалистичные интерьеры в 3D, Интерактивно работать с интерьером, Моделировать различные предметы, Менять фактуру и цвета, Реалистично освещать интерьер, Правильно выставлять ракурсы, Выстроить продуктивный рабочий процесс, Получить свои первые заказы
+                .coursesList__couch Преподаватель: Артем Смелков
+                a.coursesList__more(href="/decor/") Смотреть подробности
+            .coursesList__row
+                a.coursesList__name(href="/frontend/") Курс - "Разработка сайтов: HTML, CSS, jQuery"
+                .coursesList__text На курсе вы научитесь визуализировать дизайн в вебе, создавать веб-страницы, лендинги; получите основы всех аспектов веб-разработки: узнаете что такое вёрстка, как создаётся интерактивность, как делается анимация и эффекты, как разрабатываются сайты для телефонов и планшетов. А главное получите опытных наставников на длительное время
+                .coursesList__couch Преподаватель: Никита Боднар
+                a.coursesList__more(href="/frontend/") Смотреть подробности
+
+    .reviewLine
+        .reviewLine__title Индивидуальные программы
+        .reviewLine__item
+            .coursesList__row
+                a.coursesList__name(href="/individual/grafdesign.html") Индивидуальная программа - "Графический дизайн"
+                .coursesList__text
+                .coursesList__couch Преподаватель: Екатерина Кивилева
+                a.coursesList__more(href="/individual/grafdesign.html") Смотреть подробности
+            .coursesList__row
+                a.coursesList__name(href="/individual/front.html") Индивидуальная программа - "Разработка сайтов: HTML, CSS, jQuery"
+                .coursesList__text
+                .coursesList__couch Преподаватель: Евгений Иванов
+                a.coursesList__more(href="/individual/front.html") Смотреть подробности
 
 
-	//- MoyKlass widget begin
-	<script src="https://app.moyklass.com/api/site/widget/schedule?id=PsC5PP9FZJBOyiTrVTRAUhBbwvkx3P6eSn" type="text/javascript" charset="UTF-8"></script>
-	<script type="text/javascript">WdgMoyklass['schedulePsC5PP9FZJBOyiTrVTRAUhBbwvkx3P6eSn'].init('WdgMoyklass1878');</script>
-	//- MoyKlass widget end
+    //- MoyKlass widget begin
+    <script src="https://app.moyklass.com/api/site/widget/schedule?id=PsC5PP9FZJBOyiTrVTRAUhBbwvkx3P6eSn" type="text/javascript" charset="UTF-8"></script>
+    <script type="text/javascript">WdgMoyklass['schedulePsC5PP9FZJBOyiTrVTRAUhBbwvkx3P6eSn'].init('WdgMoyklass1878');</script>
+    //- MoyKlass widget end

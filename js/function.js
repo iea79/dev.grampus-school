@@ -7,82 +7,98 @@ var TempApp = {
     mdWidth: 992,
     smWidth: 768,
     resized: false,
-    iOS: function() { return navigator.userAgent.match(/iPhone|iPad|iPod/i); },
-    touchDevice: function() { return navigator.userAgent.match(/iPhone|iPad|iPod|Android|BlackBerry|Opera Mini|IEMobile/i); }
+    iOS: function() {
+        return navigator.userAgent.match(/iPhone|iPad|iPod/i);
+    },
+    touchDevice: function() {
+        return navigator.userAgent.match(/iPhone|iPad|iPod|Android|BlackBerry|Opera Mini|IEMobile/i);
+    }
 };
 
-function isLgWidth() { return $(window).width() >= TempApp.lgWidth; } // >= 1200
-function isMdWidth() { return $(window).width() >= TempApp.mdWidth && $(window).width() < TempApp.lgWidth; } //  >= 992 && < 1200
-function isSmWidth() { return $(window).width() >= TempApp.smWidth && $(window).width() < TempApp.mdWidth; } // >= 768 && < 992
-function isXsWidth() { return $(window).width() < TempApp.smWidth; } // < 768
-function isIOS() { return TempApp.iOS(); } // for iPhone iPad iPod
-function isTouch() { return TempApp.touchDevice(); } // for touch device
+function isLgWidth() {
+    return $(window).width() >= TempApp.lgWidth;
+} // >= 1200
+function isMdWidth() {
+    return $(window).width() >= TempApp.mdWidth && $(window).width() < TempApp.lgWidth;
+} //  >= 992 && < 1200
+function isSmWidth() {
+    return $(window).width() >= TempApp.smWidth && $(window).width() < TempApp.mdWidth;
+} // >= 768 && < 992
+function isXsWidth() {
+    return $(window).width() < TempApp.smWidth;
+} // < 768
+function isIOS() {
+    return TempApp.iOS();
+} // for iPhone iPad iPod
+function isTouch() {
+    return TempApp.touchDevice();
+} // for touch device
 
 
 $(document).ready(function() {
 
     // Хак для клика по ссылке на iOS
     if (isIOS()) {
-        $(function(){$(document).on('touchend', 'a', $.noop)});
+        $(function() {
+            $(document).on('touchend', 'a', $.noop)
+        });
     }
 
 
-	// First screen full height
-	function setHeiHeight() {
-	    $('.full__height').css({
-	        minHeight: $(window).height() + 'px'
-	    });
-	}
-	setHeiHeight(); // устанавливаем высоту окна при первой загрузке страницы
-	$(window).resize( setHeiHeight ); // обновляем при изменении размеров окна
+    // First screen full height
+    function setHeiHeight() {
+        $('.full__height').css({
+            minHeight: $(window).height() + 'px'
+        });
+    }
+    setHeiHeight(); // устанавливаем высоту окна при первой загрузке страницы
+    $(window).resize(setHeiHeight); // обновляем при изменении размеров окна
 
 
-	// Reset link whte attribute href="#"
-	$('[href*="#"]').click(function(event) {
-		event.preventDefault();
-	});
+    // Reset link whte attribute href="#"
+    $('[href*="#"]').click(function(event) {
+        event.preventDefault();
+    });
 
-	// Scroll to ID // Плавный скролл к элементу при нажатии на ссылку. В ссылке указываем ID элемента
-	// $('#main__menu a[href^="#"]').click( function(){ 
-	// 	var scroll_el = $(this).attr('href'); 
-	// 	if ($(scroll_el).length != 0) {
-	// 	$('html, body').animate({ scrollTop: $(scroll_el).offset().top }, 500);
-	// 	}
-	// 	return false;
-	// });
+    // Scroll to ID // Плавный скролл к элементу при нажатии на ссылку. В ссылке указываем ID элемента
+    // $('#main__menu a[href^="#"]').click( function(){
+    // 	var scroll_el = $(this).attr('href');
+    // 	if ($(scroll_el).length != 0) {
+    // 	$('html, body').animate({ scrollTop: $(scroll_el).offset().top }, 500);
+    // 	}
+    // 	return false;
+    // });
 
-	// Stiky menu // Липкое меню. При прокрутке к элементу #header добавляется класс .stiky который и стилизуем
+    // Stiky menu // Липкое меню. При прокрутке к элементу #header добавляется класс .stiky который и стилизуем
     var HeaderTop = $('.header').offset().top;
-    
-    $(window).scroll(function(){
-            if( $(window).scrollTop() > HeaderTop ) {
-                    $('.header').addClass('stiky');
-            } else {
-                    $('.header').removeClass('stiky');
-            }
+
+    $(window).scroll(function() {
+        if ($(window).scrollTop() > HeaderTop) {
+            $('.header').addClass('stiky');
+        } else {
+            $('.header').removeClass('stiky');
+        }
     });
 
     // Inputmask.js
     // $('[name=tel]').inputmask("+9(999)999 99 99",{ showMaskOnHover: false });
     // formSubmit();
-    
-   	// gridMatch();
+
+    // gridMatch();
 
     checkOnResize();
     mobileNav();
 
     $('.review__slider').slick({
         adaptiveHeight: true,
-        responsive: [
-            {
-                breakpoint: 768,
-                settings: {
-                    dots: true,
-                    arrows: false,
-                    adaptiveHeight: true
-                }
+        responsive: [{
+            breakpoint: 768,
+            settings: {
+                dots: true,
+                arrows: false,
+                adaptiveHeight: true
             }
-        ]
+        }]
     });
 
     $('.reviewLine__title').on('click', function() {
@@ -99,16 +115,19 @@ $(document).ready(function() {
         });
     }, 3000);
 
-
+    $('select').wrap('<div class="custom-select"></div>');
+    customSelectInit("custom-select");
 });
 
 $(window).resize(function(event) {
     var windowWidth = $(window).width();
     // Запрещаем выполнение скриптов при смене только высоты вьюпорта (фикс для скролла в IOS и Android >=v.5)
-    if (TempApp.resized == windowWidth) { return; }
+    if (TempApp.resized == windowWidth) {
+        return;
+    }
     TempApp.resized = windowWidth;
 
-	checkOnResize();
+    checkOnResize();
 
 });
 
@@ -142,7 +161,7 @@ function mobileNav() {
             body.css('overflow', 'hidden');
             body.append('<div class="navbar__backdrop"></div>')
             toggle.addClass('navbar__toggle_close');
-            navbar.addClass('navbar_open'); 
+            navbar.addClass('navbar_open');
         }
     });
 
@@ -168,7 +187,7 @@ function gridMatch() {
 function fontResize() {
     var windowWidth = $(window).width();
     if (windowWidth >= 1200) {
-        var fontSize = windowWidth/19.05;
+        var fontSize = windowWidth / 19.05;
     } else if (windowWidth < 1200) {
         var fontSize = 60;
     }
@@ -176,9 +195,9 @@ function fontResize() {
 }
 
 // Видео youtube для страницы
-$(function () {
+$(function() {
     if ($(".js_youtube")) {
-        $(".js_youtube").each(function () {
+        $(".js_youtube").each(function() {
             // Зная идентификатор видео на YouTube, легко можно найти его миниатюру
             $(this).css('background-image', 'url(http://i.ytimg.com/vi/' + this.id + '/sddefault.jpg)');
 
@@ -187,7 +206,7 @@ $(function () {
 
         });
 
-        $('.video__play, .video__prev').on('click', function () {
+        $('.video__play, .video__prev').on('click', function() {
             // создаем iframe со включенной опцией autoplay
             var videoId = $(this).closest('.js_youtube').attr('id');
             var iframe_url = "https://www.youtube.com/embed/" + videoId + "?autoplay=1&autohide=1";
@@ -216,7 +235,7 @@ $(function () {
 //         len = main.length,
 //         output = '',
 //         i = len - 1;
-    
+
 //     while(i >= 0) {
 //         output = main.charAt(i) + output;
 //         if ((len - i) % 3 === 0 && i > 0) {
@@ -249,7 +268,7 @@ $(function () {
 
 // Простая проверка форм на заполненность и отправка аяксом
 // function formSubmit() {
-//     $("[type=submit]").on('click', function (e){ 
+//     $("[type=submit]").on('click', function (e){
 //         e.preventDefault();
 //         var form = $(this).closest('.form');
 //         var url = form.attr('action');
@@ -267,14 +286,14 @@ $(function () {
 //             } else {
 //                 $(this).removeClass('invalid');
 //                 $(this).addClass('valid');
-//             }  
+//             }
 //         });
 
 //         // console.log(empty);
 
 //         if (empty > 0) {
 //             return false;
-//         } else {        
+//         } else {
 //             $.ajax({
 //                 url: url,
 //                 type: "POST",
@@ -314,5 +333,3 @@ $(function () {
 //         }
 //     });
 // }
-
-

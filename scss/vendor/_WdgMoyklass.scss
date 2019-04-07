@@ -58,11 +58,27 @@ $modal-bg: rgba($color_dark, 0.95);
 		}
 
 		.header-row {
-			background-color: $table-head;
+			background-color: $table-head !important;
 
 			.header-col {
 				font-weight: 600;
 				color: $color_dark;
+			}
+		}
+
+		.middle-cell {
+			background-color: transparent;
+
+			&-current {
+				background-color: rgba($color_primary, 0.1);
+			}
+
+			.date-cell {
+				color: $color_withe !important;
+
+				&[style="color:grey"] {
+					color: $color_muted !important;
+				}
 			}
 		}
 
@@ -81,11 +97,14 @@ $modal-bg: rgba($color_dark, 0.95);
 
 			.arrow-link {
 				color: $main_color !important;
+				background-color: transparent;
 			}
 		}
 
-		.last-item-line {
-			border-top-color: $color_info;
+		.last-item {
+			&-line {
+				border-top-color: $color_info;
+			}
 		}
 
 		.lesson {
@@ -125,7 +144,7 @@ $modal-bg: rgba($color_dark, 0.95);
 				padding-left: 4px;
 				padding-bottom: 4px;
 				@media (max-width: 767px) {
-					// margin-bottom: 15px;
+					margin-bottom: 25px;
 				}
 
 				&-closed-inscription {
@@ -243,6 +262,26 @@ $modal-bg: rgba($color_dark, 0.95);
 						margin-left: -15px;
 						margin-right: -15px;
 					}
+
+					@media (max-width: 767px) {
+						&-title {
+							float: left;
+							padding-top: 0 !important;
+
+						}
+
+						.hourTitle {
+							padding-top: 5px;
+							overflow: hidden;
+							text-align: right;
+						}
+
+						.lesson {
+							&-item {
+								margin-bottom: 35px;
+							}
+						}
+					}
 				}
 
 				&-price {
@@ -277,6 +316,46 @@ $modal-bg: rgba($color_dark, 0.95);
 						color: $color_light !important;
 					}
 				}
+
+				&-schedule {
+					&Lessons {
+						&Mini {
+							&-item {
+								background-color: transparent;
+							}
+						}
+					}
+				}
+
+			}
+		}
+
+		.WdgMoyklass {
+			&Schedule {
+				&-submenu {
+					div.active {
+						background-color: transparent;
+						color: $color_primary;
+						font-weight: 600;
+					}
+				}
+
+				&-TypeItem {
+					&.success {
+						color: $color_primary;
+						font-weight: 600;
+					}
+				}
+			}
+
+		}
+
+		.filter-byday {
+			background-color: transparent;
+			display: none;
+
+			&-item {
+				background-color: transparent !important;
 			}
 		}
 		$bw: 7px;
@@ -314,6 +393,7 @@ $modal-bg: rgba($color_dark, 0.95);
 			}
 		}
 	}
+
 }
 
 // Modal =======================
