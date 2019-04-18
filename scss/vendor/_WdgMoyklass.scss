@@ -6,525 +6,601 @@ $table-item-bg: rgba($color_muted, .1) !important;
 $modal-bg: rgba($color_dark, 0.95);
 
 .wrapper .main__content .WdgMoyklass {
-	&Content {
-		padding: 0 !important;
-		margin-bottom: 50px;
-		color: $main_color;
-		font-weight: 300;
+    &Content {
+        padding: 0 !important;
+        margin-bottom: 50px;
+        color: $main_color;
+        font-weight: 300;
 
-		a.wdgMoyklass-headColor {
-			&:after {
-				content: '↩';
-				display: inline-block;
-				margin-left: 5px;
-				transform: scale(-1, -1);
-				color: $color_success;
-			}
-		}
+        a.wdgMoyklass-headColor {
+            &:after {
+                content: '↩';
+                display: inline-block;
+                margin-left: 5px;
+                transform: scale(-1, -1);
+                color: $color_success;
+            }
+        }
 
-		&.Wdg {
-			&Calendar {
-				&Month,
-				&Week {
-					font-size: $main_font_size;
-					font-family: $main_font_family !important;
-					font-weight: 400;
-					color: $main_color;
-				}
 
-				&Week {
-					.first-cell {
-						color: $table-color;
-					}
-				}
+        .Wdg {
+            &Calendar {
 
-				&Month {
-					.date-cell {
-						color: $table-color;
+                &Month,
+                &Week {
 
-						&[style="color:grey"] {
-							color: $color_info !important;
-						}
-					}
+                    .first-cell {
+                        // width: 100px !important;
+                        color: $table-color;
+                        background-color: transparent !important;
+                    }
+                }
+            }
+        }
 
-					.table-row-with-content {
-						box-sizing: content-box;
-						margin-left: -8px;
-						margin-right: -8px;
-						width: auto;
-					}
-				}
-			}
-		}
+        &.Wdg {
+            &Calendar {
 
-		.header-row {
-			background-color: $table-head !important;
+                &Month,
+                &Week {
+                    font-size: $main_font_size;
+                    font-family: $main_font_family !important;
+                    font-weight: 400;
+                    color: $main_color;
 
-			.header-col {
-				font-weight: 600;
-				color: $color_dark;
-			}
-		}
+                    .first-cell {
+                        color: $table-color;
+                        background-color: transparent !important;
+                    }
+                }
 
-		.middle-cell {
-			background-color: transparent;
+                &Week {
+                    .first-cell {
+                        color: $table-color;
+                        background-color: transparent !important;
+                    }
+                }
 
-			&-current {
-				background-color: rgba($color_primary, 0.1);
-			}
+                &Month {
+                    .date-cell {
+                        color: $table-color;
 
-			.date-cell {
-				color: $color_withe !important;
+                        &[style="color:grey"] {
+                            color: $color_info !important;
+                        }
+                    }
 
-				&[style="color:grey"] {
-					color: $color_muted !important;
-				}
-			}
-		}
+                    .table-row-with-content {
+                        box-sizing: content-box;
+                        margin-left: -8px;
+                        margin-right: -8px;
+                        width: auto;
+                    }
+                }
+            }
+        }
 
-		.top-row {
-			font-family: $main_font_family;
+        .header-row {
+            background-color: $table-head !important;
 
-			.view-link {
-				color: $color_primary !important;
-				font-weight: 300;
-			}
+            .header-col {
+                font-weight: 600;
+                color: $color_dark;
+            }
+        }
 
-			.headerColor {
-				font-weight: 400;
-				color: $main_color !important;
-			}
+        .middle-cell {
+            background-color: transparent;
 
-			.arrow-link {
-				color: $main_color !important;
-				background-color: transparent;
-			}
-		}
+            &-current {
+                background-color: rgba($color_primary, 0.1);
+            }
 
-		.last-item {
-			&-line {
-				border-top-color: $color_info;
-			}
-		}
+            .date-cell {
+                color: $color_withe !important;
 
-		.lesson {
-			&s-table {
-				background-color: transparent !important;
-				border-color: transparent;
-				// border-left: 4px solid $color_info;
-				@media (max-width: 767px) {
-					.go-top-link {
-						margin-top: 30px;
+                &[style="color:grey"] {
+                    color: $color_muted !important;
+                }
+            }
+        }
 
-						&:after,
-						&:before {
-							content: "";
-							// color: $color_info;
-							border: 5px solid transparent;
-							border-bottom-color: $color_info;
-							display: inline-block;
-							margin: 1px 5px 2px;
-							font-size: 20px;
-							transition: all 0.3s;
-							position: relative;
-							top: 0;
-						}
+        .top-row {
+            font-family: $main_font_family;
 
-						&:hover {
-							&:after,
-							&:before {}
-						}
-					}
-				}
-			}
+            .view-link {
+                color: $color_primary !important;
+                font-weight: 300;
+            }
 
-			&-item {
-				background-color: $table-item-bg;
-				border-left: 4px solid $color_info;
-				padding-left: 4px;
-				padding-bottom: 4px;
-				@media (max-width: 767px) {
-					margin-bottom: 25px;
-				}
+            .headerColor {
+                font-weight: 400;
+                color: $main_color !important;
+            }
 
-				&-closed-inscription {
-					background-color: $table-item-bg;
-					color: $table-color;
-					margin-left: -4px;
-					margin-bottom: -4px;
-				}
+            .arrow-link {
+                color: $main_color !important;
+                background-color: transparent;
+            }
+        }
 
-				&-bold {
-					color: $table-color;
-					font-weight: 400;
+        .last-item {
+            &-line {
+                border-top-color: $color_info;
+            }
+        }
 
-					.limit-to-3-lines {
-						margin: 10px 0;
-						color: $color_info;
-						font-weight: 500;
-						font-size: 14px;
-						line-height: 1.4;
-						max-height: 60px;
+        .lesson {
+            &s-table {
+                background-color: transparent !important;
+                border-color: transparent;
 
-					}
-				}
+                // border-left: 4px solid $color_info;
+                @media (max-width: 767px) {
+                    .go-top-link {
+                        margin-top: 30px;
 
-				&-mobile-date {
-					color: $table-color;
-					margin-top: 30px;
-					margin-bottom: 0;
-					font-weight: 500;
+                        &:after,
+                        &:before {
+                            content: "";
+                            // color: $color_info;
+                            border: 5px solid transparent;
+                            border-bottom-color: $color_info;
+                            display: inline-block;
+                            margin: 1px 5px 2px;
+                            font-size: 20px;
+                            transition: all 0.3s;
+                            position: relative;
+                            top: 0;
+                        }
 
-					hr {
-						display: none;
-					}
-				}
+                        &:hover {
 
-				&-mobile-hour {
-					color: $color_success;
-				}
+                            &:after,
+                            &:before {}
+                        }
+                    }
+                }
+            }
 
-				&-auditory {
-					color: $table-color;
-					font-weight: 500;
-				}
-			}
+            &-item {
+                background-color: $table-item-bg;
+                border-left: 4px solid $color_info;
+                padding-left: 4px;
+                padding-bottom: 4px;
 
-			&-register-link {
-				border-radius: 22px;
-				border: 2px solid $color_info;
-				background-color: $color_info !important;
-				background-image: linear-gradient(to top, lighten($color_info, 20%), rgba($color_info, 0) 50%);
-				color: $color_dark !important;
-				font-weight: 500;
-				margin-right: 4px;
-				// margin-bottom: 4px;
-				&:hover {
-					text-decoration: none;
+                @media (max-width: 767px) {
+                    margin-bottom: 25px;
+                }
 
-				}
-			}
-		}
+                &-closed-inscription {
+                    background-color: $table-item-bg;
+                    color: $table-color;
+                    margin-left: -4px;
+                    margin-bottom: -4px;
+                }
 
-		.wdg {
-			&Moyklass {
-				&-h1 {
-					display: none;
-				}
+                &-bold {
+                    color: $table-color;
+                    font-weight: 400;
 
-				&Form {
-					&-company {
-						&_link {
-							display: none;
-						}
-					}
+                    .limit-to-3-lines {
+                        margin: 10px 0;
+                        color: $color_info;
+                        font-weight: 500;
+                        font-size: 14px;
+                        line-height: 1.4;
+                        max-height: 60px;
 
-					&-consent {
-						color: $color_muted !important;
-					}
-				}
+                    }
+                }
 
-				&-h2 {
-					color: $color_info !important;
-					border-bottom: 0;
-					font-weight: 700;
-				}
+                &-mobile-date {
+                    color: $table-color;
+                    margin-top: 30px;
+                    margin-bottom: 0;
+                    font-weight: 500;
 
-				&-h3 {
-					font-weight: 300;
-				}
+                    hr {
+                        display: none;
+                    }
+                }
 
-				&-headColor {
-					color: $color_info !important;
+                &-mobile-hour {
+                    color: $color_success;
+                }
 
-					&:hover {
-						text-decoration: underline;
-					}
-				}
+                &-auditory {
+                    color: $table-color;
+                    font-weight: 500;
+                }
+            }
 
-				&-course {
-					.wdgMoyklass {
-						&-course {
-							// background-color: $modal-bg !important;
-							background-color: rgba($color_muted, .1) !important;
-							margin-bottom: 20px;
-							padding: 10px 20px 0 30px;
-							border-left: 4px solid $color_info;
-						}
+            &-register-link {
+                border-radius: 22px;
+                border: 2px solid $color_info;
+                background-color: $color_info !important;
+                background-image: linear-gradient(to top, lighten($color_info, 20%), rgba($color_info, 0) 50%);
+                color: $color_dark !important;
+                font-weight: 500;
+                margin-right: 4px;
 
-						&-group {
-							background-color: transparent !important;
-						}
-					}
+                // margin-bottom: 4px;
+                &:hover {
+                    text-decoration: none;
 
-					.row {
-						box-sizing: content-box;
-						margin-left: -15px;
-						margin-right: -15px;
-					}
+                }
+            }
+        }
 
-					@media (max-width: 767px) {
-						&-title {
-							float: left;
-							padding-top: 0 !important;
+        .wdg {
+            &Moyklass {
+                &-h1 {
+                    display: none;
+                }
 
-						}
+                &Form {
+                    &-company {
+                        &_link {
+                            display: none;
+                        }
+                    }
 
-						.hourTitle {
-							padding-top: 5px;
-							overflow: hidden;
-							text-align: right;
-						}
+                    &-consent {
+                        color: $color_muted !important;
+                    }
+                }
 
-						.lesson {
-							&-item {
-								margin-bottom: 35px;
-							}
-						}
-					}
-				}
+                &-h2 {
+                    color: $color_info !important;
+                    border-bottom: 0;
+                    font-weight: 700;
+                }
 
-				&-price {
-					color: $color_success !important;
-					font-weight: 400;
+                &-h3 {
+                    font-weight: 300;
+                }
 
-					&_comment {
-						.popup {
-							color: $color_primary !important;
+                &-headColor {
+                    color: $color_info !important;
 
-							&:hover {
-								text-decoration: underline;
-							}
-						}
-					}
-				}
+                    &:hover {
+                        text-decoration: underline;
+                    }
+                }
 
-				&-colorDefault {
-					color: $main_color;
+                &-course {
+                    .wdgMoyklass {
+                        &-course {
+                            // background-color: $modal-bg !important;
+                            background-color: rgba($color_muted, .1) !important;
+                            margin-bottom: 20px;
+                            padding: 10px 20px 0 30px;
+                            border-left: 4px solid $color_info;
+                        }
 
-					&[href] {
-						&:hover {
-							text-decoration: underline;
-						}
+                        &-group {
+                            background-color: transparent !important;
+                        }
+                    }
 
-					}
-					// font-weight: 300;
-				}
+                    .row {
+                        box-sizing: content-box;
+                        margin-left: -15px;
+                        margin-right: -15px;
+                    }
 
-				&-font {
-					&-light {
-						color: $color_light !important;
-					}
-				}
+                    @media (max-width: 767px) {
+                        &-title {
+                            float: left;
+                            padding-top: 0 !important;
 
-				&-schedule {
-					&Lessons {
-						&Mini {
-							&-item {
-								background-color: transparent;
-							}
-						}
-					}
-				}
+                        }
 
-			}
-		}
+                        .hourTitle {
+                            padding-top: 5px;
+                            overflow: hidden;
+                            text-align: right;
+                        }
 
-		.WdgMoyklass {
-			&Schedule {
-				&-submenu {
-					div.active {
-						background-color: transparent;
-						color: $color_primary;
-						font-weight: 600;
-					}
-				}
+                        .lesson {
+                            &-item {
+                                margin-bottom: 35px;
+                            }
+                        }
+                    }
+                }
 
-				&-TypeItem {
-					&.success {
-						color: $color_primary;
-						font-weight: 600;
-					}
-				}
-			}
+                &-price {
+                    color: $color_success !important;
+                    font-weight: 400;
 
-		}
+                    &_comment {
+                        .popup {
+                            color: $color_primary !important;
 
-		.filter-byday {
-			background-color: transparent;
-			display: none;
+                            &:hover {
+                                text-decoration: underline;
+                            }
+                        }
+                    }
+                }
 
-			&-item {
-				background-color: transparent !important;
-			}
-		}
-		$bw: 7px;
+                &-colorDefault {
+                    color: $main_color;
 
-		.popuptext {
-			// background-color: rgba($color_dark, .95);
-			background-color: $color_dark;
-			border: 1px solid $color_info !important;
-			color: $color_info !important;
-			font-weight: 500;
-			box-shadow: none !important;
-			transition: 0.3s;
+                    &[href] {
+                        &:hover {
+                            text-decoration: underline;
+                        }
 
-			&:after,
-			&:before {
-				content: '';
-				position: absolute;
-				color: transparent;
-				border-color: transparent;
-				border: $bw solid;
-				left: 50%;
-				margin-left: -$bw;
-			}
+                    }
 
-			&:before {
-				border-top-color: $color_dark !important;
-				bottom: -$bw*2+2;
-				z-index: 2;
-			}
+                    // font-weight: 300;
+                }
 
-			&:after {
-				border-top-color: $color_info !important;
-				bottom: -$bw*2;
-				z-index: 1;
-			}
-		}
-	}
+                &-font {
+                    &-light {
+                        color: $color_light !important;
+                    }
+                }
+
+                &-schedule {
+                    &Lessons {
+                        &Mini {
+                            &-item {
+                                background-color: transparent;
+                            }
+                        }
+                    }
+                }
+
+            }
+        }
+
+        .WdgMoyklass {
+            &Schedule {
+                &-submenu {
+                    div.active {
+                        background-color: transparent;
+                        color: $color_primary;
+                        font-weight: 600;
+                    }
+                }
+
+                &-TypeItem {
+                    &.success {
+                        color: $color_primary;
+                        font-weight: 600;
+                    }
+                }
+            }
+
+        }
+
+        .filter-byday {
+            background-color: transparent;
+            display: none;
+
+            &-item {
+                background-color: transparent !important;
+            }
+        }
+
+        $bw: 7px;
+
+        .popuptext {
+            // background-color: rgba($color_dark, .95);
+            background-color: $color_dark;
+            border: 1px solid $color_info !important;
+            color: $color_info !important;
+            font-weight: 500;
+            box-shadow: none !important;
+            transition: 0.3s;
+
+            &:after,
+            &:before {
+                content: '';
+                position: absolute;
+                color: transparent;
+                border-color: transparent;
+                border: $bw solid;
+                left: 50%;
+                margin-left: -$bw;
+            }
+
+            &:before {
+                border-top-color: $color_dark !important;
+                bottom: -$bw*2+2;
+                z-index: 2;
+            }
+
+            &:after {
+                border-top-color: $color_info !important;
+                bottom: -$bw*2;
+                z-index: 1;
+            }
+        }
+    }
 
 }
 
 // Modal =======================
 body .WdgMoyklass {
-	&Modal {
-		&Item {
-			text-align: center;
+    &Modal {
+        &Item {
+            text-align: center;
 
-			&:before {
-				content: '';
-				display: inline-block;
-				vertical-align: middle;
-				height: 100vh;
-			}
+            &:before {
+                content: '';
+                display: inline-block;
+                vertical-align: middle;
+                height: 100vh;
+            }
 
-			&In {
-				.WdgMoyklassModalItem-dialog {}
-			}
+            &In {
+                .WdgMoyklassModalItem-dialog {}
+            }
 
-			&-dialog {
-				display: inline-block;
-				vertical-align: middle;
-				text-align: left;
-				width: 95%;
-				max-width: 560px;
-				transition: 0.3s;
-			}
+            &-dialog {
+                display: inline-block;
+                vertical-align: middle;
+                text-align: left;
+                width: 95%;
+                max-width: 560px;
+                transition: 0.3s;
+            }
 
-			&-content {
-				font-family: $main_font_family !important;
-				background-color: $modal-bg;
-				// background-color: rgba($color_muted, .1);
-				color: $main_color;
-				border-radius: 0;
-				border: none;
-				border-left: 4px solid $color_info;
-			}
+            &-content {
+                font-family: $main_font_family !important;
+                background-color: $modal-bg;
+                // background-color: rgba($color_muted, .1);
+                color: $main_color;
+                border-radius: 0;
+                border: none;
+                border-left: 4px solid $color_info;
+            }
 
-			&-body {
-				// background-color: #fff;
-				.lesson-item-dialog-date {
-					font-weight: 600 !important;
-				}
+            &-body {
 
-				.group-name,
-				.wdgMoyklass-h3 {
-					margin-bottom: 13px !important;
-					display: block;
-					font-size: 20px !important;
-					font-weight: 700;
-					color: $color_info;
-				}
+                // background-color: #fff;
+                .lesson-item-dialog-date {
+                    font-weight: 600 !important;
+                }
 
-				.lesson-item-places-left {
-					color: $color_success !important;
-					font-weight: 700;
-				}
+                .group-name,
+                .wdgMoyklass-h3 {
+                    margin-bottom: 13px !important;
+                    display: block;
+                    font-size: 20px !important;
+                    font-weight: 700;
+                    color: $color_info;
+                }
 
-				.wdgMoyklass-btn {
-					padding: 20px 20px !important;
-					border-radius: 27px !important;
-				}
+                .lesson-item-places-left {
+                    color: $color_success !important;
+                    font-weight: 700;
+                }
 
-			}
+                .wdgMoyklass-btn {
+                    padding: 20px 20px !important;
+                    border-radius: 27px !important;
+                }
 
-			.WdgMoyklassclose {
-				color: $color_info;
-				font-size: 28px;
-				opacity: 1;
-				transition: 0.3s;
-				margin: 0;
-				position: absolute;
-				right: 5px;
-				top: 5px;
-				appearance: none;
-				// border: none;
-				outline: 0;
+            }
 
-				&:focus,
-				&:hover {
-					transform: rotate(135deg);
-					color: $color_success;
-					opacity: 1;
-				}
-			}
-		}
+            .WdgMoyklassclose {
+                color: $color_info;
+                font-size: 28px;
+                opacity: 1;
+                transition: 0.3s;
+                margin: 0;
+                position: absolute;
+                right: 5px;
+                top: 5px;
+                appearance: none;
+                // border: none;
+                outline: 0;
 
-		.wdg {
-			&Moyklass {
-				&-h1 {
-					font-weight: 600;
-					margin-bottom: 25px !important;
-					color: $color_success;
-				}
+                &:focus,
+                &:hover {
+                    transform: rotate(135deg);
+                    color: $color_success;
+                    opacity: 1;
+                }
+            }
+        }
 
-				&Form {
-					&-company {
-						&_link {
-							display: none;
-						}
-					}
+        .wdg {
+            &Moyklass {
+                &-h1 {
+                    font-weight: 600;
+                    margin-bottom: 25px !important;
+                    color: $color_success;
+                }
 
-					&-consent {
-						color: $color_muted;
-					}
+                &Form {
+                    &-company {
+                        &_link {
+                            display: none;
+                        }
+                    }
 
-					&-label {
-						&:not(:empty) {
-							color: $color_danger;
-							margin-bottom: 5px;
-							padding-left: 20px;
-							display: block;
-							font-size: 12px;
-						}
+                    &-consent {
+                        color: $color_muted;
+                    }
 
-					}
-				}
+                    &-label {
+                        &:not(:empty) {
+                            color: $color_danger;
+                            margin-bottom: 5px;
+                            padding-left: 20px;
+                            display: block;
+                            font-size: 12px;
+                        }
 
-				&-color {
-					color: $color_success !important;
-				}
-			}
-		}
-	}
+                    }
+                }
+
+                &-color {
+                    color: $color_success !important;
+                }
+            }
+        }
+    }
+
+    &Content {
+        .coverImage {
+            display: none;
+
+            img {
+                display: none;
+            }
+        }
+
+        .lesson-item-cover {
+            display: none;
+        }
+
+        .wdgMoyklass-courseCover {
+            display: none;
+        }
+
+        .descriptionBox {
+            background-color: transparent;
+            padding-left: 0;
+            padding-right: 0;
+        }
+
+        .imagesBoxSchedule {
+            background-color: transparent;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            margin-left: -20px;
+
+            >a {
+                display: block;
+                max-width: 300px;
+                padding-left: 20px;
+                padding-bottom: 20px;
+
+                >img {
+                    margin: 0;
+                    display: block;
+                    width: 100%;
+                }
+            }
+        }
+
+    }
 }
 
 #wdgMoyklassModal-backdrop {
-	background-color: $color_dark;
+    background-color: $color_dark;
 }
 
 .WdgMoyklassModalItem-open {
-	padding-right: 0 !important;
-	width: 100%;
+    padding-right: 0 !important;
+    width: 100%;
 }

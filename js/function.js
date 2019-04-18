@@ -115,8 +115,12 @@ $(document).ready(function() {
         });
     }, 3000);
 
-    $('select').wrap('<div class="custom-select"></div>');
-    customSelectInit("custom-select");
+    setTimeout(function() {
+        $('select').each(function(index, el) {
+            $(this).wrap('<div class="custom-select"></div>');
+            customSelectInit("custom-select");
+        });
+    }, 500);
 });
 
 $(window).resize(function(event) {
