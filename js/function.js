@@ -115,12 +115,16 @@ $(document).ready(function() {
         });
     }, 3000);
 
-    setTimeout(function() {
-        $('select').each(function(index, el) {
-            $(this).wrap('<div class="custom-select"></div>');
-            customSelectInit("custom-select");
-        });
-    }, 500);
+    // setTimeout(function() {
+    //     $('select').each(function(index, el) {
+    //         var box = $(this).parent().find('.custom-select');
+    //         console.log(box.length);
+    //         if (box.length < 1) {
+    //             // $(this).wrap('<div class="custom-select"></div>');
+    //             // customSelectInit("custom-select");
+    //         }
+    //     });
+    // }, 500);
 });
 
 $(window).resize(function(event) {

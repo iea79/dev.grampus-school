@@ -1,0 +1,21 @@
+extends ../../layout/template.jade
+
+block variables
+    -var online = true;
+    -var courses = 'active';
+
+block content
+
+    .successBox
+        h1.title.title__page
+            .title__page_name Добро пожаловать в школу "GRAMPUS"!
+            .title__page_line
+        .successBox__text
+            p Вы успешно записались в учебную группу! Остались формальности
+            ol
+                li Перейдите по 
+                    a(href="https://vk.com/club183153931" target="blank" title="Откроется в новом окне") ссылке
+                    | 
+                    |и оставьте заявку на вступление в группу вашего курса.
+                li После подтверждения с вами свяжется специалист для уточнения деталей или вы можете сами написать нам сообщение в 
+                    a(href="https://vk.com/grampus_school" target="blank" title="Откроется в новом окне") группу.

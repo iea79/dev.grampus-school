@@ -126,8 +126,7 @@
 				}
 
 				&_preline {
-					@media (min-width: 768px) {
-						}
+					@media (min-width: 768px) {}
 
 				}
 			}
@@ -188,8 +187,7 @@ a:not([class]) {
 		overflow: hidden;
 
 	}
-	@media (max-width: 767px) {
-		}
+	@media (max-width: 767px) {}
 }
 
 .infoLine {
@@ -443,8 +441,7 @@ $gpad: 40px;
 			margin-bottom: 20px;
 			font-size: 14px;
 
-			br {
-				}
+			br {}
 		}
 	}
 
@@ -580,13 +577,11 @@ $gpad: 40px;
 		}
 
 		.slick {
-			&-slide {
-				}
+			&-slide {}
 
 			&-list {}
 
-			&-current {
-				}
+			&-current {}
 
 			&-arrow {
 				position: absolute;
@@ -628,16 +623,14 @@ $gpad: 40px;
 			&-next {
 				right: 0;
 
-				&:before {
-					}
+				&:before {}
 			}
 
 			&-prev {
 				left: 0;
 				transform: rotate(180deg);
 
-				&:before {
-					}
+				&:before {}
 			}
 
 			&-dots {
@@ -803,6 +796,77 @@ $gpad: 40px;
 		}
 	}
 
+	&__grid {
+		display: block;
+		width: auto;
+		margin-bottom: 30px;
+		display: flex;
+		background-color: transparent;
+		padding: 0;
+		@media (max-width: 991px) {
+			flex-wrap: wrap;
+		}
+		@media (max-width: 767px) {
+			margin-left: -20px;
+			margin-right: -20px;
+		}
+
+		.training__sales {
+			&Title {
+				font-weight: 600;
+				font-size: 20px;
+				border-bottom: 1px solid $color_success;
+				padding-bottom: 5px;
+				margin-bottom: 15px;
+			}
+
+			&Item {
+				margin-bottom: 20px;
+				padding: 20px;
+				border-left: 4px solid $color_primary;
+				background-color: rgba($color_muted, .1);
+				width: 100%;
+				flex-grow: 1;
+
+				@media (min-width: 992px) {
+					margin: 0 20px 10px 0;
+
+					&:last-child {
+						margin-right: 0;
+					}
+				}
+
+			}
+
+			&List {
+				list-style: none;
+				padding: 0;
+				margin: 0 0 20px;
+				border-bottom: 1px solid $color_success;
+
+				li {
+					margin-bottom: 10px;
+					display: flex;
+
+					&:before {
+						content: '\2714';
+						margin-right: 10px;
+						color: $color_success;
+					}
+
+					&.disabled {
+						&:before {
+							content: '\2716';
+							color: $color_primary;
+						}
+					}
+				}
+			}
+		}
+
+		+ .training__teacher {}
+	}
+
 	&__promo {
 		color: $color_danger;
 		margin-bottom: 10px;
@@ -845,6 +909,13 @@ $gpad: 40px;
 	}
 
 	&__teacher {
+		&_online {
+			display: block;
+			background-color: rgba($color_muted, .1);
+			padding: 26px 23px;
+			border-left: 4px solid $color_primary;
+			width: auto;
+		}
 		@media (min-width: 992px) {
 			display: table-cell;
 			padding-left: 40px;
@@ -1446,5 +1517,96 @@ $gpad: 40px;
 
 	&_success {
 		color: $color_success;
+	}
+}
+
+.tooltip {
+	border: 1px solid $color_info;
+	background-color: $color_dark;
+	width: 15px;
+	height: 15px;
+	line-height: 15px;
+	text-align: center;
+	display: inline-block;
+	margin: 5px;
+	border-radius: 50%;
+	font-style: normal;
+	font-size: 10px;
+	font-weight: 400;
+	color: $color_primary;
+	position: relative;
+
+	&__content {
+		position: absolute;
+		display: none;
+		bottom: 100%;
+		right: 100%;
+		padding: 8px;
+		width: 150px;
+		border: 1px solid $color_primary;
+		background-color: $color_dark;
+		transition: 0.3s;
+	}
+
+	&:hover {
+		.tooltip__content {
+			display: block;
+		}
+	}
+
+	&:before {
+		content: '?';
+
+	}
+}
+
+.successBox {
+	&__text {
+		text-align: center;
+		margin: auto;
+		font-size: 18px;
+		line-height: 1.5;
+		max-width: 800px;
+
+		ol {
+			padding: 0 0 0 20px;
+
+			li {
+				margin-bottom: 10px;
+			}
+		}
+
+		p {}
+	}
+}
+
+select {
+	// background-color: transparent;
+	// background-color: #1e1d2b;
+	background: #1e1d2b url("../img/arow.svg") right 10px center no-repeat;
+	background-size: 10px;
+	border: 2px solid $color_primary !important;
+	border-radius: 30px;
+	outline: 0;
+	color: $color_withe;
+	appearance: none;
+	position: relative;
+	cursor: pointer;
+
+	&:before {
+		content: '';
+		border: 7px solid;
+		display: block;
+		position: absolute;
+	}
+}
+
+.schedule-filter {
+	&-top {
+		margin-bottom: 20px;
+	}
+
+	&-label {
+		font-weight: 600;
 	}
 }

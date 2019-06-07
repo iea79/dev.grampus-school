@@ -1,90 +1,161 @@
 extends template.jade
 
 block variables
-	-var pageClass = "";
-	-var courses = 'active';
+    -var pageClass = "";
+    -var courses = 'active';
+    -var online = false;
 
 mixin courseProgramm(courseList)
-	.programm
-	.programm__item
-		.programm__name= courseList.title
-		div= courseList.list
-	-;
+    .programm
+    .programm__item
+        .programm__name= courseList.title
+        div= courseList.list
+    -;
 
 mixin courseAction
-	.training__action
-		button.btn.btn_primary(data-toggle="modal" data-target="#order" onclick="gtag('event', 'openForm', { 'event_category': 'FormKurs', 'event_action': 'click', });") Оставить заявку на обучение
-		a(href="https://vk.com/write-31893650" target="blank").btn Задать вопрос онлайн
-	-;
+    .training__action
+        button.btn.btn_primary(data-toggle="modal" data-target="#order" onclick="gtag('event', 'openForm', { 'event_category': 'FormKurs', 'event_action': 'click', });") Оставить заявку на обучение
+        a(href="https://vk.com/write-31893650" target="blank").btn Задать вопрос онлайн
+    -;
 
-	
+
 
 block title
-	title #{courseTitle}
+    title #{courseTitle}
 
 block content
-	a.backLink(href="/courses/") Расписание очных и онлайн курсов в школе Grampus
+    a.backLink(href="/courses/") Расписание очных и онлайн курсов в школе Grampus
 
-	.training
-		.training__top
-			.training__left
-				.training__type !{courseType}
-				.training__title !{courseTitle}
-				.training__subtitle !{courseSub}
-				.training__info #{courseDescription}
+    .training
+        .training__top
+            .training__left
+                .training__type !{courseType}
+                .training__title !{courseTitle}
+                .training__subtitle !{courseSub}
+                .training__info #{courseDescription}
 
-				.training__date 
-					|Старт группы: #{courseDate} <br>
-					|Продолжительность: #{courseDuration} <br>
-					|Занятия по #{courseTime}
+                .training__date 
+                    |Старт группы: #{courseDate} <br>
+                    |Продолжительность: #{courseDuration} <br>
+                    |Занятия по #{courseTime}
 
-			.training__right
-				.training__img
-					img(src= courseImg, alt="")
-		-if (coursePromoDate !== false) {
-		.training__promo Стоимость до #{coursePromoDate}
-		-};
-		.training__bottom
-			.training__sales
-				.training__salesWrap
-					.training__salesItem
-						.training__price #{courseSemiPrice} руб.
-						.training__priceSub при оплате в рассрочку
-					.training__or или
-					.training__salesItem
-						.training__price #{courseTotalPrice} руб.
-						.training__priceSub одним платежом
-			.training__teacher
-				.training__photo
-					.img_circle
-						img(src=courseCoachPhoto, alt="")
-				.training__teacherDescr Преподаватель: #{courseCoachName} <br> !{courseCoachExp}
-		.training__students Для студентов и школьников скидка 20%
+            .training__right
+                .training__img
+                    img(src= courseImg, alt="")
+        -if (coursePromoDate !== false) {
+        .training__promo Стоимость до #{coursePromoDate}
+            i.tooltip
+                span.tooltip__content Стоимость постоянно растет. Вы можете зафиксировать стоимость и забронировать место на курсе внеся 2000 руб. Остальная часть суммы вносится до начала зантий по выбранному вами варианту.
+        -};
+        .training__bottom
+        if (!online)
+            .training__sales
+                .training__salesWrap
+                    .training__salesItem
+                        .training__price #{courseSemiPrice} руб.
+                        .training__priceSub при оплате в рассрочку
+                    .training__or или
+                    .training__salesItem
+                        .training__price #{courseTotalPrice} руб.
+                        .training__priceSub одним платежом
+            .training__teacher
+                .training__photo
+                    .img_circle
+                        img(src=courseCoachPhoto, alt="")
+                .training__teacherDescr Преподаватель: #{courseCoachName} <br> !{courseCoachExp}
+        else
+            .training__sales.training__grid
+                .training__salesItem
+                    .training__salesTitle Тест
+                    ul.training__salesList 
+                        li Продолжительность 1 неделя
+                        li Доступ к вэбинарам
+                        li Доступ к записям вэбинаров
+                        li Доступ к базе знаний
+                        li Доступ в группу потока в Вконтакте
+                        li Общение в чате группы
+                        li Домашние задания с проверками
+                        li.disabled Консультации с наставником. Текстом - неограниченно.
+                        li.disabled Сертификаты участникам
+                        li.disabled Выпускные проекты
+                        li.disabled Индивидуальное онлайн общение с наставником. Скайп - 60 минут в неделю.
+                        li.disabled Помощь с первыми заказми на фрилансе.
+                    .training__salesWrap
+                        .training__price= Number(courseBasePrice).toLocaleString() + ' руб.'
+                        .training__priceSub
+                .training__salesItem
+                    .training__salesTitle Стандарт
+                    ul.training__salesList 
+                        li Продолжительность 3 месяца
+                        li Доступ к вэбинарам
+                        li Доступ к записям вэбинаров
+                        li Доступ к базе знаний
+                        li Доступ в группу потока в Вконтакте
+                        li Общение в чате группы
+                        li Домашние задания с проверками
+                        li Консультации с наставником. Текстом - неограниченно.
+                        li Сертификаты участникам
+                        li 2 выпускных проекта
+                        li.disabled Индивидуальное онлайн общение с наставником. Скайп - 60 минут в неделю.
+                        li.disabled Помощь с первыми заказми на фрилансе.
+                    .training__salesWrap
+                        .training__price= Number(courseStandartPrice).toLocaleString() + ' руб.'
+                        .training__priceSub= 'или ' + (Math.round((courseStandartPrice/3*1.1)/100, 0) * 100).toLocaleString() + ' руб. в месяц'
+                .training__salesItem
+                    .training__salesTitle PRO
+                    ul.training__salesList 
+                        li Продолжительность 3+ месяца
+                        li Доступ к вэбинарам
+                        li Доступ к записям вэбинаров
+                        li Доступ к базе знаний
+                        li Доступ в группу потока в Вконтакте
+                        li Общение в чате группы
+                        li Домашние задания с проверками
+                        li Консультации с наставником. Текстом - неограниченно.
+                        li Сертификаты участникам
+                        li 3 выпускных проекта
+                        li Индивидуальное онлайн общение с наставником. Скайп - 60 минут в неделю.
+                        li Помощь с первыми заказми на фрилансе.
+                    .training__salesWrap
+                        .training__price= Number(courseProPrice).toLocaleString() + ' руб.'
+                        .training__priceSub= 'или ' + (Math.round((courseProPrice/3*1.1)/100, 0) * 100).toLocaleString() + ' руб. в месяц'
 
-		+courseAction
+            h2.programm__title Преподаватель на курсе
+            .training__teacher.training__teacher_online
+                .training__photo
+                    .img_circle
+                        img(src=courseCoachPhoto, alt="")
+                .training__teacherDescr 
+                    b #{courseCoachName} 
+                    br 
+                    |!{courseCoachExp}
 
-	h2.programm__title Программа курса
-	.programm
-		for courseList in programList
-			+courseProgramm(courseList)
+        //- .training__students Для студентов и школьников скидка 20%
 
-		.programm__info Мы используем уникальный подход к обучению. Вы получите гораздо больше, чем рассчитывали ;)
-	
-	if (courseName != 'polygraphy')
-		.reviewShow
-			a.reviewShow__link(href="/review/") Читать отзывы о курсе
+        +courseAction
 
-	+courseAction
+    h2.programm__title Программа курса
+    .programm
+        for courseList in programList
+            +courseProgramm(courseList)
+
+        .programm__info Мы используем уникальный подход к обучению. Вы получите гораздо больше, чем рассчитывали ;)
+
+    if (courseName != 'polygraphy')
+        .reviewShow
+            a.reviewShow__link(href="/review/") Читать отзывы о курсе
+
+    +courseAction
 
 
-	-var formLink = 'https://app.moyklass.com/api/site/widget/forms?id='+ vidgetId;
+    -var formLink = 'https://app.moyklass.com/api/site/widget/forms?id='+ vidgetId;
 
-	.modal.fade.order#order
-		.modal-dialog
-			.modal-content
-				a(href="#" class="modal-close" data-dismiss="modal")
-				.modal-body 
-					div(id=''+formId+'')
+    .modal.fade.order#order
+        .modal-dialog
+            .modal-content
+                a(href="#" class="modal-close" data-dismiss="modal")
+                .modal-body 
+                    div(id=''+formId+'')
 
-	script(src= formLink)
-	script WdgMoyklass['forms#{vidgetId}'].init('#{formId}')
+    script(src= formLink)
+    script WdgMoyklass['forms#{vidgetId}'].init('#{formId}')

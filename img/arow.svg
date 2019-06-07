@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="69.502708"
+   height="56.31205"
+   viewBox="0 0 69.502708 56.31205"
+   version="1.1"
+   id="svg11"
+   sodipodi:docname="arow.svg"
+   inkscape:version="0.92.4 (33fec40, 2019-01-16)">
+  <metadata
+     id="metadata15">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <sodipodi:namedview
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1"
+     objecttolerance="10"
+     gridtolerance="10"
+     guidetolerance="10"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:window-width="1920"
+     inkscape:window-height="1025"
+     id="namedview13"
+     showgrid="false"
+     inkscape:zoom="6.7428571"
+     inkscape:cx="18.624259"
+     inkscape:cy="31.031006"
+     inkscape:window-x="0"
+     inkscape:window-y="31"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg11"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0" />
+  <defs
+     id="defs3">
+    <path
+       id="z2pva"
+       d="m 619.68,1425.08 41.88,27.51 a 7.26,7.26 0 0 1 0,12.12 l -41.88,27.52 a 7.22,7.22 0 0 1 -11.17,-6.07 v -55.02 a 7.22,7.22 0 0 1 11.17,-6.06 z"
+       inkscape:connector-curvature="0" />
+  </defs>
+  <g
+     id="g9"
+     transform="translate(6.0853854,-6.4989719)">
+    <g
+       transform="translate(-608,-1424)"
+       id="g7">
+      <use
+         xlink:href="#z2pva"
+         id="use5"
+         transform="rotate(90,636.66598,1458.655)"
+         style="fill:#ffffff"
+         x="0"
+         y="0"
+         width="100%"
+         height="100%" />
+    </g>
+  </g>
+</svg>
