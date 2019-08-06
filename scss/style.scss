@@ -772,27 +772,55 @@ $gpad: 40px;
 	}
 
 	&__bottom {
-		display: table;
+		display: flex;
+		flex-flow: row wrap;
+		// justify-content: center;
+		align-items: center;
 		width: 100%;
 	}
 
 	&__sales {
 		background-color: rgba($color_muted, .1);
+		border-left: 4px solid $color_info;
 		padding: 26px 23px;
+		flex-grow: 1;
+		// width: 100%;
+		// align-items: flex-start;
+
 		@media (min-width: 992px) {
-			display: table-cell;
-			vertical-align: middle;
-			width: 50%;
+			// display: table-cell;
+			// vertical-align: middle;
+			// width: 46%;
+			// width: auto;
 		}
 		@extend %clear_a;
 
 		&Item {
-			float: left;
-			width: 46%;
+			// float: left;
+			// width: 46%;
 		}
 
 		&Wrap {
-			@extend %clear_a;
+			display: flex;
+			align-items: center;
+			// @extend %clear_a;
+
+			@media (max-width: 767px) {
+				flex-wrap: wrap;
+			}
+		}
+
+		&Free {
+			font-size: 16px;
+			text-transform: uppercase;
+			font-weight: 500;
+			margin-bottom: 15px;
+			color: $color_success;
+		}
+
+		&Attention {
+			color: $color_danger;
+			margin-bottom: 15px;
 		}
 	}
 
@@ -871,13 +899,26 @@ $gpad: 40px;
 		color: $color_danger;
 		margin-bottom: 10px;
 		font-weight: 500;
+
+		&Sub {
+			font-weight: 400;
+			color: $color_primary;
+			font-size: 13px;
+		}
 	}
 
 	&__students {
-		@extend %clear_all;
+		// @extend %clear_all;
 		margin-top: 11px;
 		color: $color_info;
 		font-weight: 300;
+		max-width: 600px;
+
+		span {
+			color: $color_muted;
+			display: block;
+			margin-top: 10px;
+		}
 	}
 
 	&__price {
@@ -892,11 +933,15 @@ $gpad: 40px;
 	}
 
 	&__or {
-		float: left;
-		width: 8%;
-		margin-top: 16px;
+		// float: left;
+		text-align: center;
+		width: 60px;
 		font-weight: 500;
+		margin-top: 16px;
 		// text-align: center;
+		@media (min-width: 768px) {
+			margin-top: -8px;
+		}
 
 	}
 
@@ -905,10 +950,15 @@ $gpad: 40px;
 	}
 
 	&__img {
-		margin-bottom: 92px;
+		margin-bottom: 0;
 	}
 
 	&__teacher {
+		background-color: rgba(137, 134, 157, 0.1);
+		border-left: 4px solid #12d5ff;
+		padding: 35px 25px;
+		margin-bottom: 20px;
+
 		&_online {
 			display: block;
 			background-color: rgba($color_muted, .1);
@@ -917,14 +967,17 @@ $gpad: 40px;
 			width: auto;
 		}
 		@media (min-width: 992px) {
-			display: table-cell;
-			padding-left: 40px;
-			width: 50%;
-			vertical-align: middle;
+			display: flex;
+			align-items: center;
+			margin-bottom: 50px;
+			// display: table-cell;
+			// padding-left: 40px;
+			// width: 50%;
+			// vertical-align: middle;
 		}
 		@media (min-width: 768px) {
 			> div {
-				display: table-cell;
+				// display: table-cell;
 				vertical-align: middle;
 			}
 		}
@@ -944,12 +997,24 @@ $gpad: 40px;
 	}
 
 	&__action {
-		clear: both;
-		padding-top: 80px;
+		// clear: both;
+		// padding-top: 80px;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-around;
+		flex-grow: 1;
 		text-align: center;
+		@media (min-width: 768px) {
+			padding: 20px;
+
+		}
 
 		.btn {
 			margin: 0 15px;
+			padding: 14px 20px;
+			line-height: 1;
+			border-width: 2px;
+
 		}
 	}
 	@media (max-width: 991px) {
@@ -1608,5 +1673,44 @@ select {
 
 	&-label {
 		font-weight: 600;
+	}
+}
+
+.contact {
+	display: flex;
+	flex-flow: row wrap;
+	margin: 0 -15px;
+
+	> div {
+		width: 100%;
+		padding-left: 15px;
+		padding-right: 15px;
+		@media (min-width: 992px) {
+			width: 50%;
+		}
+	}
+
+	&__map {
+		position: relative;
+		overflow: hidden;
+		padding-bottom: 100%;
+		@media (min-width: 768px) {
+			padding-bottom: 50%;
+		}
+		@media (min-width: 992px) {
+			padding-bottom: 30%;
+		}
+
+		> ymaps {
+			position: absolute;
+			left: 15px;
+			top: 15px;
+			right: 15px;
+			bottom: 15px;
+			width: auto !important;
+			height: auto !important;
+			// width: 100%;
+			// height: 100%;
+		}
 	}
 }

@@ -1,6 +1,7 @@
 // @prepros-append browserDetect.js
 // @prepros-append modal.js
 // @prepros-append custom-select.js
+// @prepros-append jquery.maskedinput.js
 
 var TempApp = {
     lgWidth: 1200,
@@ -81,7 +82,8 @@ $(document).ready(function() {
     });
 
     // Inputmask.js
-    // $('[name=tel]').inputmask("+9(999)999 99 99",{ showMaskOnHover: false });
+    $('[type=tel]').mask("+9(999)999 99 99",{ showMaskOnHover: false });
+    // $('[name=sum]').mask("999/999/999",{ showMaskOnHover: false });
     // formSubmit();
 
     // gridMatch();
@@ -115,16 +117,107 @@ $(document).ready(function() {
         });
     }, 3000);
 
-    // setTimeout(function() {
-    //     $('select').each(function(index, el) {
-    //         var box = $(this).parent().find('.custom-select');
-    //         console.log(box.length);
-    //         if (box.length < 1) {
-    //             // $(this).wrap('<div class="custom-select"></div>');
-    //             // customSelectInit("custom-select");
-    //         }
-    //     });
-    // }, 500);
+    setTimeout(function() {
+        $('.select').each(function(index, el) {
+            var box = $(this).parent().find('.custom-select');
+            // console.log(box.length);
+            if (box.length < 1) {
+                $(this).wrap('<div class="custom-select"></div>');
+                customSelectInit("custom-select");
+            }
+        });
+    }, 500);
+
+
+
+    $('#payType').on('change', function() {
+        var value = $(this).val();
+
+        if (value != '') {
+            if (value === 'handle') {
+                $('input#sum').val('');
+                $('.form__total').html('Сумма не выбрана');
+                $('#handle').attr('type', 'number');
+                $('#sale').prop('checked', false);
+                $('.checkbox').hide();
+                return false;
+            } else {
+                if (value !== '2000') {
+                    $('.checkbox').show();
+                } else {
+                    $('#sale').prop('checked', false);
+                    $('.checkbox').hide();
+                }
+            }
+            if ($('#sale').prop('checked') && value !== '2000') {
+                value = Math.round(value*.8);
+                // console.log(value);
+                $('#handle').attr('type', 'hidden');
+                $('input#sum').val(value);
+                $('.form__total').html('К оплате '+thousandSeparator(value)+' руб.');
+            } else {
+                value == $(this).val();
+                $('#handle').attr('type', 'hidden');
+                $('input#sum').val(value);
+                $('.form__total').html('К оплате '+thousandSeparator(value)+' руб.');
+            }
+        } else {
+            $('input#sum').val('');
+            $('.form__total').html('Сумма не выбрана');
+            $('#handle').attr('type', 'hidden');
+            $('#sale').prop('checked', false);
+            $('.checkbox').hide();
+            return false;
+        }
+    })
+
+    $('#sale').prop('checked', false);
+    $('.checkbox').hide();
+
+    $('#sale').on('change', function() {
+        var state = $(this).prop('checked');
+        var value = $('#payType').val();
+
+        switch (value) {
+            case '':
+                $('input#sum').val('');
+                $('.form__total').html('Сумма не выбрана');
+                break;
+            case 'handle':
+                $('input#sum').val('');
+                $('.form__total').html('Сумма не выбрана');
+                $('#handle').attr('type', 'number');
+                break;
+            case '2000':
+                return false;
+                break;
+
+        }
+
+        if (state) {
+            value = Math.round(value*.8);
+            // console.log(value);
+            $('#handle').attr('type', 'hidden');
+            $('input#sum').val(value);
+            $('.form__total').html('К оплате '+thousandSeparator(value)+' руб.');
+        } else {
+            value == $(this).val();
+            $('#handle').attr('type', 'hidden');
+            $('input#sum').val(value);
+            $('.form__total').html('К оплате '+thousandSeparator(value)+' руб.');
+        }
+    });
+
+    $('#handle').on('keyup', function() {
+        var value = $(this).val();
+
+        if (value.length > 0) {
+            $('input#sum').val(value);
+            $('.form__total').html('К оплате '+thousandSeparator(value)+' руб.');
+        } else {
+            $('.form__total').html('Сумма не выбрана');
+        }
+    })
 });
 
 $(window).resize(function(event) {
@@ -237,26 +330,26 @@ $(function() {
 
 // Деление чисел на разряды Например из строки 10000 получаем 10 000
 // Использование: thousandSeparator(1000) или используем переменную.
-// function thousandSeparator(str) {
-//     var parts = (str + '').split('.'),
-//         main = parts[0],
-//         len = main.length,
-//         output = '',
-//         i = len - 1;
+function thousandSeparator(str) {
+    var parts = (str + '').split('.'),
+        main = parts[0],
+        len = main.length,
+        output = '',
+        i = len - 1;
 
-//     while(i >= 0) {
-//         output = main.charAt(i) + output;
-//         if ((len - i) % 3 === 0 && i > 0) {
-//             output = ' ' + output;
-//         }
-//         --i;
-//     }
+    while(i >= 0) {
+        output = main.charAt(i) + output;
+        if ((len - i) % 3 === 0 && i > 0) {
+            output = ' ' + output;
+        }
+        --i;
+    }
 
-//     if (parts.length > 1) {
-//         output += '.' + parts[1];
-//     }
-//     return output;
-// };
+    if (parts.length > 1) {
+        output += '.' + parts[1];
+    }
+    return output;
+};
 
 
 // Хак для яндекс карт втавленных через iframe
@@ -275,69 +368,76 @@ $(function() {
 // })
 
 // Простая проверка форм на заполненность и отправка аяксом
-// function formSubmit() {
-//     $("[type=submit]").on('click', function (e){
-//         e.preventDefault();
-//         var form = $(this).closest('.form');
-//         var url = form.attr('action');
-//         var form_data = form.serialize();
-//         var field = form.find('[required]');
-//         // console.log(form_data);
+function formSubmit() {
+    $(".js_pay").on('click', function (e){
+        e.preventDefault();
+        var form = $(this).closest('.form_yk');
+        var url = form.attr('action');
+        var form_data = form.serialize();
+        var field = form.find('[required]');
+        // console.log(form_data);
 
-//         empty = 0;
+        empty = 0;
 
-//         field.each(function() {
-//             if ($(this).val() == "") {
-//                 $(this).addClass('invalid');
-//                 // return false;
-//                 empty++;
-//             } else {
-//                 $(this).removeClass('invalid');
-//                 $(this).addClass('valid');
-//             }
-//         });
+        field.each(function() {
+            if ($(this).val() == "") {
+                $(this).addClass('invalid');
+                $('.form__error').html('Не заполнены обязательные поля');
+                setTimeout(function () {
+                    $('.form__error').html('');
+                }, 5000);
+                // return false;
+                empty++;
+            } else {
+                $(this).removeClass('invalid');
+                $(this).addClass('valid');
+            }
+        });
 
-//         // console.log(empty);
+        // console.log(empty);
 
-//         if (empty > 0) {
-//             return false;
-//         } else {
-//             $.ajax({
-//                 url: url,
-//                 type: "POST",
-//                 dataType: "html",
-//                 data: form_data,
-//                 success: function (response) {
-//                     // $('#success').modal('show');
-//                     // console.log('success');
-//                     console.log(response);
-//                     // console.log(data);
-//                     // document.location.href = "success.html";
-//                 },
-//                 error: function (response) {
-//                     // $('#success').modal('show');
-//                     // console.log('error');
-//                     console.log(response);
-//                 }
-//             });
-//         }
+        if (empty > 0) {
+            return false;
+        } else {
+            form.submit();
+            // $.ajax({
+            //     url: url,
+            //     type: "POST",
+            //     dataType: "html",
+            //     data: form_data,
+            //     success: function (response) {
+            //         // $('#success').modal('show');
+            //         // console.log('success');
+            //         console.log(response);
+            //         // console.log(data);
+            //         // document.location.href = "success.html";
+            //     },
+            //     error: function (response) {
+            //         // $('#success').modal('show');
+            //         // console.log('error');
+            //         console.log(response);
+            //     }
+            // });
+        }
 
-//     });
+    });
 
-//     $('[required]').on('blur', function() {
-//         if ($(this).val() != '') {
-//             $(this).removeClass('invalid');
-//         }
-//     });
+    $('[required]').on('keyup change', function() {
+        if ($(this).val() != '') {
+            $(this).removeClass('invalid');
+        }
+    });
 
-//     $('.form__privacy input').on('change', function(event) {
-//         event.preventDefault();
-//         var btn = $(this).closest('.form').find('.btn');
-//         if ($(this).prop('checked')) {
-//             btn.removeAttr('disabled');
-//             // console.log('checked');
-//         } else {
-//             btn.attr('disabled', true);
-//         }
-//     });
-// }
+    $('.form__privacy input').on('change', function(event) {
+        event.preventDefault();
+        var btn = $(this).closest('.form').find('.btn');
+        if ($(this).prop('checked')) {
+            btn.removeAttr('disabled');
+            // console.log('checked');
+        } else {
+            btn.attr('disabled', true);
+        }
+    });
+}
+
+formSubmit();

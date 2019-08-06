@@ -1,0 +1,139 @@
+extends ../../layout/landing_template.jade
+
+block title
+    title Online интенсив - Как верстальщику работать с массивами используя Javascript и Ajax?
+
+block content
+    //- 1 УТП + подзаголовок
+    section.fScreen
+        .fScreen__bg(style="background-image: url('/img/json2.jpg')")
+        .fScreen__content
+            .fScreen__type online интенсив
+            h1.page__title Как верстальщику работать с <span>{массивами}</span> <br>используя <span>Javascript</span> и <span>Ajax</span>?
+            h2.page__subtitle <span>Прокачка</span> одиного из самых нужных навыков <span>для работы в командах</span> на простых и понятных примерах с практическими задачами.
+
+            // Дата и время
+            .fScreen__date 5,6 и 9 августа
+            .fScreen__time занятия по вечерам в 17:00 (мск). <br>Продолжительность занятия 1,5 часа
+
+
+    //- 2 Преимущества
+    section.advantage
+        .container_center
+            h2.page__title Что вы получите?
+            p По статистике - <span>навык работы с массивами</span> один из самых <span>востребованных</span> и <span>дорогих</span> при работе верстальщика. 
+            p
+                b Что он дает:
+            ul.advantage__list
+                li Умение работать с данными которые программисты передают вам с сервера и формировать из них готовый HTML
+                li Умение создавать пагинацию и подгружать(а не просто скрывать/показывать) дополнительные блоки на странице
+                li Умение работать с одностраничными приложениями где данные и url страницы меняются без перезагрузки страницы
+                li и многое другое...
+
+            p В итоге вы получаете <span>значительное конкурентное преимущество</span> перед другими html-верстальщиками и как результат <span>больше зарабатываете</span>. И приятным бонусом - <span>углубленное понимание процесса разработки</span> сайта и взаимодействия с программистами.
+
+    //- Ведущий
+    section.trainer
+        .container_center
+            h2.page__title Ведущий интенсива
+            .trainer__img
+                img(src="/img/leading/iea79.png", alt="alt")
+            .trainer__name Евгений Иванов
+            .trainer__descr владелец школы GRAMPUS, преподаватель, ТОП 20 по специализации верстка на крупнейшей бирже фриланса 
+                a(href="https://www.fl.ru/users/iea791/") fl.ru
+                |, опыт в верстке с 2010 года, фрилансер с 2013 года.
+
+
+    section.programm
+        .container_center
+            h2.page__title В программе:
+            ul.programm__list
+                li
+                    .programm__day День 1
+                    .programm__name "Вспоминаем основы js(jQuery)"
+                    ul.programm__point
+                        li переменные
+                        li условные операторы
+                        li шаблоны (вывод html)
+                        li циклы
+                        li массивы
+                        li консоль
+                li
+                    .programm__day День 2
+                    .programm__name "Принципы работы с БД"
+                    ul.programm__point
+                        li структура
+                        li наполнение
+                        li получаем данные в формате JSON
+                        li разбираем JSON
+                        li браузерные инструменты
+                li
+                    .programm__day День 1
+                    .programm__name "Объединяем воедино"
+                    ul.programm__point
+                        li AJAX
+                        li отправка запросов на сервер
+                        li получение и разбор ответов от сервера
+                        li вывод в текущую верстку
+                        li обновление без перезагрузки
+                        li простая пагинация
+                        li фильтрация
+
+    section.programm
+        .container_center
+            h2.page__title Результат интенсива
+
+            .programm__info
+                .programm__final
+                    h3 Страница как на скрине 
+                        span.sm ниже с:
+                        span.xl справа с:
+                    ul
+                        li Ajax загрузкой контента
+                        li Показом дополнительных товаров при нажатии на кнопку 
+                        li Показом деталей товара с описанием используя всего один popup
+                        li Фильтром товаров через поисковую строку с сохранением функционала
+
+                .programm__img
+                    img(src="/img/json3.png", alt="alt")
+
+    //- 3 Стоимость
+    section.pay#pay
+        .container_center
+            h2.page__title Записаться на интенсив
+            .pay__content
+                .pay__advantage
+                    ul.advantage__list
+                        b В стоимость включено:
+                        li 3 дня погружения в работу с массивами и js
+                        li Более чем на 10 часов практической работы
+                        li Видео-записи всех дней интенсива
+                        li Неограниченная поддержка от ведущего во время и после окончания интенсива
+                    p.pay__price Стоимость всего 
+                        b 2 500 
+                        | 
+                        | 1 000 руб.
+                    p.pay__next Хотите узнать как стартануть бесплатно? 
+                        span &crarr;
+                .pay__form
+                    form.form(action="https://money.yandex.ru/eshop.xml" method="post")
+                        input(name="shopId" value="597204" type="hidden" required)
+                        input(name="scid" value="959623" type="hidden" required)
+                        input(id="customerNumber" name='customerNumber' type="hidden" value='Интенсив - Массивы' required)
+                        input(id='sum' name='sum' value='1000' type='hidden' min='1' placeholder='Сумма платежа' required)
+                        .form__title Оплатить весь интенсив по сниженной цене
+                        .form__row
+                            label.form__label(for="custName") Введите ваши ФИО*
+                            input(id="custName" name='custName' type="text" value='' placeholder='Например: "Иванов Иван Иванович"' required)
+                        .form__row
+                            label.form__label(for="custAddr") Введите ваш email или телефон*
+                            input(id="custAddr" name='custAddr' type="text" value='' placeholder='Например: "+7(992)209-86-59"' required)
+                        .form__action
+                            input.btn.btn_primary(type='submit' value='Оплатить')
+
+    section.info
+        .container_center
+            h2.page__title Протестировать бесплатно
+            .info__advantage
+                p.pay__info <b>Вы можете записаться на первый день нашего интенсива абсолютно бесплатно!</b> Подписывайтесь на нашу группу в ВК и напишите нам кодовое слово "интенсив"
+                    a.btn.btn_success(href="https://vk.com/grampus_school" target="blank") Записаться сейчас

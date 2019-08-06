@@ -1,0 +1,59 @@
+extends ../layout/pay_template.jade
+
+block variables
+    -var pageClass = "";
+    -var name = 'Оплата обучения в школе GRAMPUS';
+
+block content
+    h1.title.title__page
+        .title__page_name= name
+        .title__page_line
+    //- Платежная форма Эти поля обязательные, их нельзя удалять.
+    form.form.form_pay(action="https://money.yandex.ru/eshop.xml" method="post")
+        input(name="shopId" value="597204" type="hidden" required)
+        input(name="scid" value="959623" type="hidden" required)
+        .form__row
+            label.form__label(for="customerNumber") Выберите курс/программу
+            //- input(id="customerNumber" name='customerNumber' type="text" value='' placeholder='Например: "Графический дизайн очно"' required)
+
+            select#customerNumber(name="customerNumber" required)
+                option(value="") Выберите программу
+                optgroup(label="Вэб дизайн")
+                    option(value="Вэб дизайн очно") Вэб дизайн - Очный курс
+                    option(value="Вэб дизайн индивидуально") Вэб дизайн - Индивидуальные занятия
+                optgroup(label="Графический дизайн")
+                    option(value="Графический дизайн очно") Графический дизайн - Очный курс
+                    option(value="Графический дизайн индивидуально") Графический дизайн - Индивидуальные занятия
+                optgroup(label="Разработка сайтов")
+                    option(value="Разработка сайтов очно") Разработка сайтов - Очный курс
+                    option(value="Разработка сайтов онлайн") Разработка сайтов - Онлайн курс
+                    option(value="Разработка сайтов индивидуально") Разработка сайтов - Индивидуальные занятия
+        .form__row
+            label.form__label(for="custName") Введите ваши ФИО (необходимы для договора)
+            input(id="custName" name='custName' type="text" value='' placeholder='Например: "Иванов Иван Иванович"' required)
+        .form__row
+            label.form__label(for="custAddr") Введите телефон
+            input(id="custAddr" name='custAddr' type="tel" value='' placeholder='Например: "+7(992)209-86-59"' required)
+        .form__row
+            label.form__label(for="sum") Введите сумму в рублях
+            input(id='sum' name='sum' value='' type='number' min='1' placeholder='Сумма платежа' required)
+        .form__action
+            input.btn.btn_primary(type='submit' value='Оплатить')
+
+        //- Извещение № 1
+        //- 
+        //- Получатель: http://grampus-school.ru
+        //- 
+        //- Время платежа: 26.07.2019 21:31:53
+        //- Сумма: 1.00 RUB
+        //- Номер транзакции: 2001909393719
+        //- Идентификатор клиента: test
+        //- Номер в магазине: 2001909393719
+        //- 
+        //- Заполнено плательщиком в платежной форме магазина:
+        //- 
+        //- Ф.И.О.: 
+        //- Адрес доставки: 
+        //- E-mail: 
+        //- 
+        //- Содержание заказа:

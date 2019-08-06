@@ -5,23 +5,45 @@ block variables
     -var courses = 'active';
     -var online = false;
 
+
 mixin courseProgramm(courseList)
     .programm
     .programm__item
         .programm__name= courseList.title
-        div= courseList.list
+        div !{courseList.list}
+    -;
+
+mixin orderBtn
+    button.btn.btn_primary(data-toggle="modal" data-target="#order" onclick="gtag('event', 'openForm', { 'event_category': 'FormKurs', 'event_action': 'click', });") Записаться на обучение
+    br
+    br
     -;
 
 mixin courseAction
     .training__action
-        button.btn.btn_primary(data-toggle="modal" data-target="#order" onclick="gtag('event', 'openForm', { 'event_category': 'FormKurs', 'event_action': 'click', });") Оставить заявку на обучение
-        a(href="https://vk.com/write-31893650" target="blank").btn Задать вопрос онлайн
+        //- button.btn.btn_primary(data-toggle="modal" data-target="#order" onclick="gtag('event', 'openForm', { 'event_category': 'FormKurs', 'event_action': 'click', });") Записаться на обучение
+        if (!online)
+            button.btn.btn_danger(type="button" data-toggle="modal" data-target="#payment") Оплатить обучение
+        else
+            button.btn.btn_primary(data-toggle="modal" data-target="#order" onclick="gtag('event', 'openForm', { 'event_category': 'FormKurs', 'event_action': 'click', });") Записаться на обучение
+        a.btn(href="https://vk.com/write-31893650" target="blank" title="Страница откроется в новом окне") Задать вопрос Вконтакте
     -;
 
 
-
 block title
-    title #{courseTitle}
+    title #{courseType} #{courseTitle}
+        if (courseType == "Очный курс")
+            | 
+            | в Перми
+        else
+            | 
+            | онлайн
+
+
+block meta
+    meta(name="keywords" content="Веб-дизайн, графический дизайн, школа дизайна, рекламный дизайн, дизайн сайтов, web-дизайн пермь, курсы web дизайна, курсы веб дизайна с нуля, веб дизайн обучение, веб дизайн обучение с нуля курсы, обучение веб дизайну")
+    meta(name="description" content="Очные курсы в центре Перми. C Grampus ты можешь за 2-3 месяца освоить профессию, которая позволит тебе работать на фрилансе, из любой точки земного шара")
+
 
 block content
     a.backLink(href="/courses/") Расписание очных и онлайн курсов в школе Grampus
@@ -32,37 +54,89 @@ block content
                 .training__type !{courseType}
                 .training__title !{courseTitle}
                 .training__subtitle !{courseSub}
-                .training__info #{courseDescription}
+                .training__info !{courseDescription}
 
                 .training__date 
                     |Старт группы: #{courseDate} <br>
                     |Продолжительность: #{courseDuration} <br>
                     |Занятия по #{courseTime}
 
+                +orderBtn
+
+                br
+                br
+
             .training__right
                 .training__img
                     img(src= courseImg, alt="")
-        -if (coursePromoDate !== false) {
-        .training__promo Стоимость до #{coursePromoDate}
-            i.tooltip
-                span.tooltip__content Стоимость постоянно растет. Вы можете зафиксировать стоимость и забронировать место на курсе внеся 2000 руб. Остальная часть суммы вносится до начала зантий по выбранному вами варианту.
-        -};
-        .training__bottom
+
+    .anchor#programm
+    h2#programm.programm__title Программа курса
+    .programm
+        for courseList in programList
+            +courseProgramm(courseList)
+
+        .programm__info Мы используем уникальный подход к обучению. Вы получите гораздо больше, чем рассчитывали ;)
+
+    br
+    +orderBtn
+
+    .anchor#teacher
+    h2.programm__title Преподаватель курса
+    .training__teacher
+        .training__photo
+            .img_circle
+                img(src=courseCoachPhoto, alt="")
+        .training__teacherDescr 
+            b #{courseCoachName} 
+            br 
+            |!{courseCoachExp}
+
+    if (courseName != 'polygraphy' && courseName != 'designpresent')
+        .reviewShow
+            a.reviewShow__link(href="/review/") Читать отзывы о курсе
+
+    //- +courseAction
+    .anchor#price
+    h2.programm__title Стоимость курса
+
+    if (coursePromoDate !== false)
+        .training__promo Стоимость до #{coursePromoDate} *
+            //- i.tooltip
+            //-     span.tooltip__content Стоимость постоянно растет. Вы можете зафиксировать стоимость и забронировать место на курсе внеся 2000 руб. Остальная часть суммы вносится до начала зантий по выбранному вами варианту.
+            .training__promoSub 
+
+    .training__bottom
         if (!online)
             .training__sales
                 .training__salesWrap
-                    .training__salesItem
-                        .training__price #{courseSemiPrice} руб.
-                        .training__priceSub при оплате в рассрочку
-                    .training__or или
-                    .training__salesItem
-                        .training__price #{courseTotalPrice} руб.
-                        .training__priceSub одним платежом
-            .training__teacher
-                .training__photo
-                    .img_circle
-                        img(src=courseCoachPhoto, alt="")
-                .training__teacherDescr Преподаватель: #{courseCoachName} <br> !{courseCoachExp}
+                    if courseSemiPrice
+                        .training__salesItem
+                            .training__price= (Math.round((courseTotalPrice*1.1/courseDurationMonth)/100, 0) * 100).toLocaleString() + ' руб.'
+                            .training__priceSub при оплате в рассрочку
+                        .training__or или
+                        .training__salesItem
+                            .training__price= Number(courseTotalPrice).toLocaleString() + ' руб.'
+                            .training__priceSub одним платежом
+                    else if payWeak
+                        .training__salesFree Первая неделя БЕСПЛАТНО!!!
+                        .training__salesAttention Количество мест ограничено!
+                        .training__salesItem
+                            .training__price #{courseWeakPrice} руб.
+                            .training__priceSub стоимость одной недели
+                        .training__or или
+                        .training__salesItem
+                            .training__price #{courseTotalPrice} руб.
+                            .training__priceSub весь практикум
+                    else
+                        .training__salesItem
+                            .training__price #{courseTotalPrice} руб.
+
+            //- .training__teacher
+            //-     .training__photo
+            //-         .img_circle
+            //-             img(src=courseCoachPhoto, alt="")
+            //-     .training__teacherDescr Преподаватель: #{courseCoachName} <br> !{courseCoachExp}
         else
             .training__sales.training__grid
                 .training__salesItem
@@ -81,7 +155,7 @@ block content
                         li.disabled Индивидуальное онлайн общение с наставником. Скайп - 60 минут в неделю.
                         li.disabled Помощь с первыми заказми на фрилансе.
                     .training__salesWrap
-                        .training__price= Number(courseBasePrice).toLocaleString() + ' руб.'
+                        .training__price БЕСПЛАТНО
                         .training__priceSub
                 .training__salesItem
                     .training__salesTitle Стандарт
@@ -120,30 +194,22 @@ block content
                         .training__price= Number(courseProPrice).toLocaleString() + ' руб.'
                         .training__priceSub= 'или ' + (Math.round((courseProPrice/3*1.1)/100, 0) * 100).toLocaleString() + ' руб. в месяц'
 
-            h2.programm__title Преподаватель на курсе
-            .training__teacher.training__teacher_online
-                .training__photo
-                    .img_circle
-                        img(src=courseCoachPhoto, alt="")
-                .training__teacherDescr 
-                    b #{courseCoachName} 
-                    br 
-                    |!{courseCoachExp}
-
-        //- .training__students Для студентов и школьников скидка 20%
-
-        +courseAction
-
-    h2.programm__title Программа курса
-    .programm
-        for courseList in programList
-            +courseProgramm(courseList)
-
-        .programm__info Мы используем уникальный подход к обучению. Вы получите гораздо больше, чем рассчитывали ;)
-
-    if (courseName != 'polygraphy')
-        .reviewShow
-            a.reviewShow__link(href="/review/") Читать отзывы о курсе
+        //- h2.programm__title Преподаватель на курсе
+        //- .training__teacher.training__teacher_online
+        //-     .training__photo
+        //-         .img_circle
+        //-             img(src=courseCoachPhoto, alt="")
+        //-     .training__teacherDescr 
+        //-         b #{courseCoachName} 
+        //-         br 
+        //-         |!{courseCoachExp}
+        .training__students Для студентов, школьников и постоянных клиентов скидка 20% 
+            br
+            span * Стоимость постоянно растет. Вы можете зафиксировать стоимость и забронировать место на курсе внеся 2000 руб. Остальная часть суммы вносится до начала зантий по выбранному вами варианту (рассрочка или один платеж).
+            br
+            span ** Для самых активных есть дополнительные скидки. Подробности в чате нашей группы 
+                a(href="https://vk.com/write-31893650") Вконтакте. 
+                |Просто напишите "Хочу скидку на #{courseTitle}"
 
     +courseAction
 
@@ -156,6 +222,46 @@ block content
                 a(href="#" class="modal-close" data-dismiss="modal")
                 .modal-body 
                     div(id=''+formId+'')
+
+    //- Button trigger modal payment
+    //- button(class="btn btn-primary btn-lg" data-toggle="modal" data-target="#payment") Click to open modal
+    // Begin Modal payment
+    .modal.fade.payment#payment
+        .modal-dialog
+            form.form.form_yk(action="https://money.yandex.ru/eshop.xml" method="post")
+                .modal-content
+                    a(href="#" class="modal-close" data-dismiss="modal")
+                    h2.programm__title Оплата программы "#{courseTitle}"
+                    .modal-body 
+                    input(name="shopId" value="597204" type="hidden" required)
+                    input(name="scid" value="959623" type="hidden" required)
+                    input(id="customerNumber" name='customerNumber' type="hidden" value=""+courseType+" - "+courseTitle+"" placeholder='Например: "Графический дизайн"' required)
+                    input(id='sum' name='sum' value='' type='hidden' min='1' placeholder='Сумма платежа' required)
+                    .form__row
+                        label.form__label(for="custName") Введите ваши ФИО*
+                        input(id="custName" name='custName' type="text" value='' placeholder='Например: "Иванов Иван Иванович"' required)
+                    .form__row
+                        label.form__label(for="custAddr") Введите ваш телефон*
+                        input(id="custAddr" name='custAddr' type="tel" value='' placeholder='Например: "+7(992)209-86-59"' required)
+                    .form__row
+                        label.form__label(for="payType") Выберите вариант оплаты*
+                        select#payType(name="payType" required)
+                            option(value="") Выберите
+                            option(value="2000") Бронирование места
+                            option(value=""+(Math.round((courseTotalPrice*1.1/courseDurationMonth)/100, 0) * 100)+"") Оплата в рассрочку
+                            option(value=""+courseTotalPrice+"") Оплата одним платежом
+                            option(value="handle") Ввести сумму в ручную
+                    .form__row
+                        input(type="hidden", id="handle" placeholder="Введите сумму в рублях")
+                    .form__row
+                        label.checkbox
+                            input(type="checkbox", id="sale") 
+                            |Скидка 20% (только для наших постоянных учеников, а так же студентов при предъявлении студенческого)
+                    .form__total
+                    .form__error
+                    .form__action
+                        input.btn.btn_primary.js_pay(type='submit' value='Оплатить')
+    // End modal payment
 
     script(src= formLink)
     script WdgMoyklass['forms#{vidgetId}'].init('#{formId}')

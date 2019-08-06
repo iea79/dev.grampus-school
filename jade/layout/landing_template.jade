@@ -1,0 +1,26 @@
+block variables
+    - var pageClass = 'lp';
+
+<!DOCTYPE html>
+html(lang="en")
+
+    include ../paritals/head.jade
+
+    body
+        .wrapper.l-wrapper
+
+            include ../paritals/header.jade
+
+            // begin main__content
+            main.main__content
+                block content
+
+            // end main__content 
+
+        include ../paritals/footer.jade
+
+        //- include ../paritals/scripts.jade
+
+        include ../paritals/counters.jade
+
+        //- include ../paritals/modals.jade

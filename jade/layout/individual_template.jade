@@ -1,91 +1,94 @@
 extends template.jade
 
 block variables
-	-var pageClass = "";
-	-var courses = 'active';
+    -var pageClass = "";
+    -var courses = 'active';
 
 mixin courseProgramm(courseList)
-	.programm
-	.programm__item
-		.programm__name= courseList.title
-		div= courseList.list
-	-;
+    .programm
+    .programm__item
+        .programm__name= courseList.title
+        div= courseList.list
+    -;
 
 mixin courseAction
-	.training__action
-		button.btn.btn_primary(data-toggle="modal" data-target="#order" onclick="gtag('event', 'openForm', { 'event_category': 'FormKurs', 'event_action': 'click', });") Оставить заявку на обучение
-		a(href="https://vk.com/write-31893650" target="blank").btn Задать вопрос онлайн
-	-;
+    .training__action
+        button.btn.btn_primary(data-toggle="modal" data-target="#order" onclick="gtag('event', 'openForm', { 'event_category': 'FormKurs', 'event_action': 'click', });") Оставить заявку на обучение
+        a(href="https://vk.com/write-31893650" target="blank").btn Задать вопрос онлайн
+    -;
 
-	
+
 
 block title
-	title #{courseTitle}
+    title #{courseTitle}
 
 block content
-	a.backLink(href="/courses/") Расписание очных и онлайн курсов в школе Grampus
+    a.backLink(href="/courses/") Расписание очных и онлайн курсов в школе Grampus
 
-	.training
-		.training__top
-			.training__left
-				.training__type !{courseType}
-				.training__title !{courseTitle}
-				.training__subtitle !{courseSub}
-				.training__info !{courseDescription}
+    .training
+        .training__top
+            .training__left
+                .training__type !{courseType}
+                .training__title !{courseTitle}
+                .training__subtitle !{courseSub}
+                .training__info !{courseDescription}
 
-				.training__date 
-					|Время обучения: #{courseDate} <br>
-					|Продолжительность: #{courseDuration} <br>
+                .training__date 
+                    |Время обучения: #{courseDate} <br>
+                    |Продолжительность: 12 часов занятий очно или онлайн(по вашему выбору) <br>
 
-			.training__right
-				.training__img
-					img(src= courseImg, alt="")
-		-if (coursePromoDate !== false) {
-		.training__promo Стоимость до #{coursePromoDate}
-		-};
-		.training__bottom
-			.training__sales
-				.training__salesWrap
-					.training__salesItem
-						.training__price #{courseSemiPrice} руб.
-						.training__priceSub при оплате в рассрочку
-					.training__or или
-					.training__salesItem
-						.training__price #{courseTotalPrice} руб.
-						.training__priceSub одним платежом
-			.training__teacher
-				.training__photo
-					.img_circle
-						img(src=courseCoachPhoto, alt="")
-				.training__teacherDescr Преподаватель: #{courseCoachName} <br> !{courseCoachExp}
-		.training__students Для студентов и школьников скидка 20%
+            .training__right
+                .training__img
+                    img(src= courseImg, alt="")
+        -if (coursePromoDate !== false) {
+        .training__promo Стоимость до #{coursePromoDate}
+        -};
+        .training__bottom
+            .training__sales
+                .training__salesWrap
+                    .training__salesItem
+                        .training__price #{courseSemiPrice} руб.
+                        .training__priceSub при оплате в рассрочку
+                    .training__or или
+                    .training__salesItem
+                        .training__price #{courseTotalPrice} руб.
+                        .training__priceSub одним платежом
+            .training__students Для студентов и школьников скидка 20%
+                span
 
-		+courseAction
+            +courseAction
 
-	h2.programm__title Полная программа обучения
-	.programm__sub.text_danger *Программа обучения подбирается индивидуально в зависимости от вашего уровня
-	.programm__sub.text_danger !!! Для новичков в профессии может потребоваться больше 10-и часов консультаций
-	br
-	.programm
-		for courseList in programList
-			+courseProgramm(courseList)
-
-		//- .programm__info Мы используем уникальный подход к обучению. Вы получите гораздо больше, чем рассчитывали ;)
-	
-	//- .reviewShow
-		a.reviewShow__link(href="/review/") Читать отзывы о курсе
-
-	+courseAction
+        .training__teacher
+            .training__photo
+                .img_circle
+                    img(src=courseCoachPhoto, alt="")
+            .training__teacherDescr Преподаватель: #{courseCoachName} <br> !{courseCoachExp}
 
 
-	-var formLink = 'https://app.moyklass.com/api/site/widget/forms?id='+ vidgetId;
+    h2.programm__title Полная программа обучения
+    .programm__sub.text_danger *Программа обучения подбирается индивидуально в зависимости от вашего уровня
+    .programm__sub.text_danger !!! Для новичков в профессии может потребоваться больше 12-и часов консультаций
+    br
+    .programm
+        for courseList in programList
+            +courseProgramm(courseList)
 
-	.modal.fade.order#order
-		.modal-dialog
-			.modal-content
-				a(href="#" class="modal-close" data-dismiss="modal")
-				.modal-body 
-					div(id=''+formId+'')
+        //- .programm__info Мы используем уникальный подход к обучению. Вы получите гораздо больше, чем рассчитывали ;)
 
-	script(src= formLink)
-	script WdgMoyklass['forms#{vidgetId}'].init('#{formId}')
+    //- .reviewShow
+        a.reviewShow__link(href="/review/") Читать отзывы о курсе
+
+    +courseAction
+
+
+    -var formLink = 'https://app.moyklass.com/api/site/widget/forms?id='+ vidgetId;
+
+    .modal.fade.order#order
+        .modal-dialog
+            .modal-content
+                a(href="#" class="modal-close" data-dismiss="modal")
+                .modal-body 
+                    div(id=''+formId+'')
+
+    script(src= formLink)
+    script WdgMoyklass['forms#{vidgetId}'].init('#{formId}')

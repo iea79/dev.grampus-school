@@ -1,4 +1,5 @@
 // Style for button and pseudo button for input and link
+
 .btn {
 	color: $btn_default_text_color;
 	font-family: $main_font_family;
@@ -16,11 +17,13 @@
 	border-radius: 25px;
 	transition: all 0.3s;
 	text-decoration: none;
+
 	&:hover {
 		background-color: #fff;
 		color: $color_dark;
 		text-decoration: none;
 	}
+
 	&:active {
 		background-color: transparentize(#fff, .2);
 		color: $color_dark;
@@ -48,17 +51,38 @@
 		color: $color_dark;
 		font-weight: 600;
 		box-shadow: 0 4px 10px rgba(#fff, 0.3);
+
 		&:hover {
 			background-color: lighten($color_info, 15%);
 			background-image: linear-gradient(to top, lighten($color_info, 33%), rgba($color_info, 0) 50%);
 			box-shadow: 0 2px 4px rgba(#fff, 0.3);
 		}
+
 		&:active {
 			background-color: darken($color_info, 10%);
 			background-image: linear-gradient(to top, lighten($color_info, 33%), rgba($color_info, 0) 50%);
-			
+
 		}
-	}	
+	}
+
+	&_danger {
+		border: 2px solid $color_success;
+		background-color: $btn_default_bg_color;
+		color: $color_success;
+		font-weight: 600;
+
+		&:hover {
+			background-color: lighten($color_success, 15%);
+			box-shadow: 0 2px 4px rgba(#fff, 0.3);
+			color: $color_dark;
+		}
+
+		&:active {
+			background-color: darken($color_success, 10%);
+			color: $color_dark;
+
+		}
+	}
 }
 
 .wdgMoyklass-btn {
@@ -72,16 +96,17 @@
 	font-weight: 600 !important;
 	margin-right: 4px;
 	box-shadow: 0 4px 10px rgba(#fff, 0.3);
-	transition: .3s;
+	transition: 0.3s;
 	// margin-bottom: 4px;
 	&:hover {
 		background-color: lighten($color_info, 15%);
 		background-image: linear-gradient(to top, lighten($color_info, 33%), rgba($color_info, 0) 50%);
 		box-shadow: 0 2px 4px rgba(#fff, 0.3);
 	}
+
 	&:active {
 		background-color: darken($color_info, 10%);
 		background-image: linear-gradient(to top, lighten($color_info, 33%), rgba($color_info, 0) 50%);
-		
+
 	}
 }

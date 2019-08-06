@@ -8,10 +8,12 @@
 	text-align: center;
 	// background: #BFF08E;
 	@extend %clear_all;
+
 	.container_center {
 		position: relative;
 		padding-top: 40px;
 		padding-bottom: 30px;
+
 		&:before {
 			content: '';
 			position: absolute;
@@ -23,31 +25,41 @@
 	}
 	@media (min-width: 768px) {
 		text-align: left;
+
 		.container_center {
 			padding-top: 53px;
 			padding-bottom: 30px;
 		}
+
 		&__logo {
 			float: left;
 		}
+
 		&__contact {
 			float: right;
 			margin: 0;
 		}
+
 		&__center {
 			overflow: hidden;
 			padding: 8px 15px;
+			margin-top: -9px;
 		}
 	}
+
 	&__contact {
 		margin-top: 15px;
 		margin-bottom: 20px;
 	}
+
 	&__center {
 		text-align: center;
+
 		a {
 			color: $color_withe;
+			margin-bottom: 7px;
+			display: inline-block;
+			font-size: 13px;
 		}
 	}
 }
-

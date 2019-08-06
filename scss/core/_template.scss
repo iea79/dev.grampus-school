@@ -1,29 +1,30 @@
 // Main wrappers =====================================
+
 .wrapper {
 	font-size: $main_font_size;
-    min-height: 100%;
-    height: auto !important;
-    height: 100%;
-    overflow: hidden;
-    margin: 0 auto (-$footer_height) auto; // отрицательный нижний отступ на высоту футера
-    background: url('../img/bg-body.jpg') no-repeat center;
-    background-size: cover;
-    background-color: #1e1d2b;
-    padding-top: 85px;
-    @media (min-width: 768px) {
-        padding-top: 150px;
-        animation: city 50s ease infinite;
-    }
+	min-height: 100%;
+	height: auto !important;
+	height: 100%;
+	overflow: hidden;
+	margin: 0 0 (-$footer_height*2); // Ã�Â¾Ã‘â€šÃ‘â‚¬Ã�Â¸Ã‘â€ Ã�Â°Ã‘â€šÃ�ÂµÃ�Â»Ã‘Å’Ã�Â½Ã‘â€¹Ã�Â¹ Ã�Â½Ã�Â¸Ã�Â¶Ã�Â½Ã�Â¸Ã�Â¹ Ã�Â¾Ã‘â€šÃ‘ï¿½Ã‘â€šÃ‘Æ’Ã�Â¿ Ã�Â½Ã�Â° Ã�Â²Ã‘â€¹Ã‘ï¿½Ã�Â¾Ã‘â€šÃ‘Æ’ Ã‘â€žÃ‘Æ’Ã‘â€šÃ�ÂµÃ‘â‚¬Ã�Â°
+	background: url("../img/bg-body.jpg") no-repeat center;
+	background-size: cover;
+	background-color: #1e1d2b;
+	padding-top: 85px;
+	@media (min-width: 768px) {
+		padding-top: 150px;
+		// animation: city 50s ease infinite;
+	}
 }
 
 /* Middle
  ----------------------------------------------------------------------------- */
 .main__content {
-    padding-bottom: $footer_height;
-    @extend %clear_a;
-    @media (min-width: 768px) {
-	   padding-bottom: $footer_height + 50px;
-    }
+	padding-bottom: $footer_height*2;
+	@extend %clear_a;
+	@media (min-width: 768px) {
+		padding-bottom: $footer_height*2 + 50px;
+	}
 }
 
 .container_center {
@@ -37,11 +38,34 @@
 	@include columns(4, 20px, 300px);
 }
 
+.anchor {
+	top: -50px;
+	position: relative;
+	// float: left;
+}
+
 @keyframes city {
-    from { background-position: -800px 100%, 0 0;}
-    16% {background-position: -500px -300px, 0 0;}
-    42% {background-position: -300px -600px, 0 0;}
-    60% {background-position: -500px -300px, 0 0;}
-    86% {background-position: -300px -200px, 0 0;}
-    to { background-position: -800px 100%; }
+	from {
+		background-position: -800px 100%, 0 0;
+	}
+
+	16% {
+		background-position: -500px -300px, 0 0;
+	}
+
+	42% {
+		background-position: -300px -600px, 0 0;
+	}
+
+	60% {
+		background-position: -500px -300px, 0 0;
+	}
+
+	86% {
+		background-position: -300px -200px, 0 0;
+	}
+
+	to {
+		background-position: -800px 100%;
+	}
 }
