@@ -5,7 +5,6 @@ block variables
     -var courses = 'active';
     -var online = false;
 
-
 mixin courseProgramm(courseList)
     .programm
     .programm__item
@@ -23,7 +22,7 @@ mixin courseAction
     .training__action
         //- button.btn.btn_primary(data-toggle="modal" data-target="#order" onclick="gtag('event', 'openForm', { 'event_category': 'FormKurs', 'event_action': 'click', });") Записаться на обучение
         if (!online)
-            button.btn.btn_danger(type="button" data-toggle="modal" data-target="#payment") Оплатить обучение
+            button.btn.btn_primary(type="button" data-toggle="modal" data-target="#payment" onclick="gtag('event', 'openForm', { 'event_category': 'FormPay', 'event_action': 'click', });") Записаться и оплатить
         else
             button.btn.btn_primary(data-toggle="modal" data-target="#order" onclick="gtag('event', 'openForm', { 'event_category': 'FormKurs', 'event_action': 'click', });") Записаться на обучение
         a.btn(href="https://vk.com/write-31893650" target="blank" title="Страница откроется в новом окне") Задать вопрос Вконтакте
@@ -31,18 +30,20 @@ mixin courseAction
 
 
 block title
-    title #{courseType} #{courseTitle}
-        if (courseType == "Очный курс")
-            | 
-            | в Перми
-        else
-            | 
-            | онлайн
+    if (!online)
+        -var place = ' в Перми';
+    else
+        -var place = '';
+    title #{courseType} #{courseTitle} #{place}
 
 
 block meta
-    meta(name="keywords" content="Веб-дизайн, графический дизайн, школа дизайна, рекламный дизайн, дизайн сайтов, web-дизайн пермь, курсы web дизайна, курсы веб дизайна с нуля, веб дизайн обучение, веб дизайн обучение с нуля курсы, обучение веб дизайну")
-    meta(name="description" content="Очные курсы в центре Перми. C Grampus ты можешь за 2-3 месяца освоить профессию, которая позволит тебе работать на фрилансе, из любой точки земного шара")
+    meta(name="keywords" content= courseType + ' ' + courseTitle + place)
+    meta(name="description" content= courseSub)
+
+block seo
+    meta(property="og:title" content= courseType + ' ' + courseTitle + place)
+    meta(property="og:description" content= courseDescription)
 
 
 block content
@@ -61,7 +62,8 @@ block content
                     |Продолжительность: #{courseDuration} <br>
                     |Занятия по #{courseTime}
 
-                +orderBtn
+                //- +orderBtn
+                +courseAction
 
                 br
                 br
@@ -79,7 +81,8 @@ block content
         .programm__info Мы используем уникальный подход к обучению. Вы получите гораздо больше, чем рассчитывали ;)
 
     br
-    +orderBtn
+    //- +orderBtn
+    +courseAction
 
     .anchor#teacher
     h2.programm__title Преподаватель курса
@@ -231,7 +234,7 @@ block content
             form.form.form_yk(action="https://money.yandex.ru/eshop.xml" method="post")
                 .modal-content
                     a(href="#" class="modal-close" data-dismiss="modal")
-                    h2.programm__title Оплата программы "#{courseTitle}"
+                    h2.programm__title Запись и оплата программы "#{courseTitle}"
                     .modal-body 
                     input(name="shopId" value="597204" type="hidden" required)
                     input(name="scid" value="959623" type="hidden" required)
@@ -244,13 +247,16 @@ block content
                         label.form__label(for="custAddr") Введите ваш телефон*
                         input(id="custAddr" name='custAddr' type="tel" value='' placeholder='Например: "+7(992)209-86-59"' required)
                     .form__row
+                        label.form__label(for="custEmail") Введите удобный вариант для связи с вами
+                        input(id="custEmail" name='custEmail' type="text" value='' placeholder='Например: Ссылка ВК https://vk.com/grampus_school')
+                    .form__row
                         label.form__label(for="payType") Выберите вариант оплаты*
                         select#payType(name="payType" required)
                             option(value="") Выберите
                             option(value="2000") Бронирование места
                             option(value=""+(Math.round((courseTotalPrice*1.1/courseDurationMonth)/100, 0) * 100)+"") Оплата в рассрочку
                             option(value=""+courseTotalPrice+"") Оплата одним платежом
-                            option(value="handle") Ввести сумму в ручную
+                            option(value="handle") Ввести сумму вручную
                     .form__row
                         input(type="hidden", id="handle" placeholder="Введите сумму в рублях")
                     .form__row
@@ -260,7 +266,7 @@ block content
                     .form__total
                     .form__error
                     .form__action
-                        input.btn.btn_primary.js_pay(type='submit' value='Оплатить')
+                        input.btn.btn_primary.js_pay(type='submit' value='Перейти к оплате')
     // End modal payment
 
     script(src= formLink)

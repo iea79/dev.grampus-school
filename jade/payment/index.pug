@@ -13,7 +13,7 @@ block content
         input(name="shopId" value="597204" type="hidden" required)
         input(name="scid" value="959623" type="hidden" required)
         .form__row
-            label.form__label(for="customerNumber") Выберите курс/программу
+            label.form__label(for="customerNumber") Выберите курс/программу *
             //- input(id="customerNumber" name='customerNumber' type="text" value='' placeholder='Например: "Графический дизайн очно"' required)
 
             select#customerNumber(name="customerNumber" required)
@@ -29,31 +29,21 @@ block content
                     option(value="Оплата за Разработка сайтов - Онлайн курс") Разработка сайтов - Онлайн курс
                     option(value="Оплата за Разработка сайтов - Индивидуальные занятия") Разработка сайтов - Индивидуальные занятия
         .form__row
-            label.form__label(for="custName") Введите ваши ФИО (необходимы для договора)
+            label.form__label(for="custName") Введите ваши ФИО *
             input(id="custName" name='custName' type="text" value='' placeholder='Например: "Иванов Иван Иванович"' required)
         .form__row
-            label.form__label(for="custAddr") Введите телефон
+            label.form__label(for="custAddr") Введите телефон *
             input(id="custAddr" name='custAddr' type="tel" value='' placeholder='Например: "+7(992)209-86-59"' required)
         .form__row
-            label.form__label(for="sum") Введите сумму в рублях
+            label.form__label(for="sum") Введите сумму в рублях *
             input(id='sum' name='sum' value='' type='number' min='1' placeholder='Сумма платежа' required)
         .form__action
             input.btn.btn_primary(type='submit' value='Оплатить')
 
-        //- Извещение № 1
-        //- 
-        //- Получатель: http://grampus-school.ru
-        //- 
-        //- Время платежа: 26.07.2019 21:31:53
-        //- Сумма: 1.00 RUB
-        //- Номер транзакции: 2001909393719
-        //- Идентификатор клиента: test
-        //- Номер в магазине: 2001909393719
-        //- 
-        //- Заполнено плательщиком в платежной форме магазина:
-        //- 
-        //- Ф.И.О.: 
-        //- Адрес доставки: 
-        //- E-mail: 
-        //- 
-        //- Содержание заказа:
+        br
+        .training__students 
+            span * Все поля обязательны для заполнения. Они необходимы для подготовки договора. Заполняйте пожалуйста корректно.
+            span ** Перед оплатой уточняйте стоимость в нашей группе 
+                a(href="https://vk.com/write-31893650" target="blank"  title="Страница откроется в новом окне") Вконтакте. 
+            span *** Для самых активных есть дополнительные скидки. Подробности в чате нашей группы 
+                a(href="https://vk.com/write-31893650" target="blank"  title="Страница откроется в новом окне") Вконтакте. 
