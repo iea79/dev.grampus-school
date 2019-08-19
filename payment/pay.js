@@ -25,27 +25,27 @@ $('[type="submit"]').on('click', function(e){
         $('.form__message').html('Нужно ответить на все вопросы :)');
         return false;
     } else {
-        form.submit();
-        // $.ajax({
-        //     url: url,
-        //     type: "POST",
-        //     dataType: "html",
-        //     data: form_data,
-        //     success: function (response) {
-        //         // $('#success').modal('show');
-        //         console.log('success');
-        //         console.log(response);
-        //         // console.log(data);
-        //         // document.location.href = "success.html";
-        //     },
-        //     error: function (response) {
-        //         // $('#success').modal('show');
-        //         console.log('error');
-        //         console.log(response);
-        //         // console.log(data);
-        //         // document.location.href = "success.html";
-        //     }
-        // });
+        // form.submit();
+        $.ajax({
+            url: url,
+            type: "POST",
+            dataType: "html",
+            data: form_data,
+            success: function (response) {
+                // $('#success').modal('show');
+                console.log('success');
+                console.log(response);
+                // console.log(data);
+                // document.location.href = "success.html";
+            },
+            error: function (response) {
+                // $('#success').modal('show');
+                console.log('error');
+                console.log(response);
+                // console.log(data);
+                // document.location.href = "success.html";
+            }
+        });
         // $('.form__message').html('Спасибо за ваши ответы! <br>Вы можете посмотреть результаты перейдя <a href="https://docs.google.com/forms/d/10UDf10pDDkULzaFTfH5syaK9FTZ-eFk1z7mhjLyRE2Y/#responses" target="_blank">по ссылке</a>');
         // document.querySelector('.form__message').innerHTML = getDataGoogle();
     }

@@ -9,7 +9,7 @@ block content
         .title__page_name= name
         .title__page_line
         // Платежная форма Эти поля обязательные, их нельзя удалять.
-    form.form(action='http://grampus-school.ru/payment/pay.php' method='post')
+    form.form(action='/payment/pay.php' method='post')
         .form__row
             input(name='customerNumber' value='' placeholder='Номер договора' required='')
         .form__row

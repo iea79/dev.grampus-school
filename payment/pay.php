@@ -6,7 +6,7 @@
     $payment = $client->createPayment(
         array(
             'amount' => array(
-                'value' => '10',
+                'value' => 10.0,
                 'currency' => 'RUB',
             ),
             'confirmation' => array(
@@ -14,7 +14,7 @@
                 'return_url' => 'http://grampus-school.ru/payment/success-payment.html',
             ),
             'capture' => true,
-            'description' => 'Заказ №1',
+            'description' => 'Test №1',
         ),
         uniqid('', true)
     );
