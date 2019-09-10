@@ -3,7 +3,7 @@ extends ../layout/courses_template.jade
 block variables
     -var courses = 'active';
 
-    -var courseName = 'grafdesign';
+    -var courseName = '3d';
     //- Контент
     //- Тип курса
     -var courseType = 'Очный курс';
@@ -18,20 +18,21 @@ block variables
 
     //- Дата и время старта
     //- Дата
-    -var courseDate = '11 апреля 2019';
+    -var courseDate = '19 сентября или 21 сентября 2019';
     //- Продолжительность
     -var courseDurationMonth = 2;
-    -var courseDuration = '2 месяца, 14 занятий по 2 часа';
+    -var courseDuration = '2 месяца, 15 занятий по 2 часа <br>или 6 занятий по 4 часа';
     //- Время занятий
-    -var courseTime = 'вторникам и четвергам с 19 до 21 ч';
+    -var courseTime = 'вторникам и четвергам с 19 до 21 ч <br>или по субботам с 16 до 20 ч';
 
     //- Стоимость курса
     //- Стоимость до даты
-    -var coursePromoDate = '25-ого марта';
+    -var holiday = false;
+    -var coursePromoDate = false;
     //- В рассрочку
     -var courseSemiPrice = true;
     //- Единым платежом
-    -var courseTotalPrice = '15500';
+    -var courseTotalPrice = '16500';
 
     //- Преподаватель
     //- Имя

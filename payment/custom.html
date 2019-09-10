@@ -28,7 +28,7 @@
     <meta name="msapplication-TileColor" content="#ffffff"/>
     <meta name="msapplication-TileImage" content="/img/ico//ms-icon-144x144.png"/>
     <meta name="theme-color" content="#ffffff"/>
-    <link href="/css/style.css?3.4" rel="stylesheet"/>
+    <link href="/css/style.css?4.7" rel="stylesheet"/>
   </head>
   <body>
     <div class="wrapper">
@@ -56,17 +56,29 @@
           <h1 class="title title__page">
             <div class="title__page_name">Оплата обучения в школе GRAMPUS</div>
             <div class="title__page_line"></div>
-            <!-- Платежная форма Эти поля обязательные, их нельзя удалять.-->
           </h1>
-          <form class="form" action="/payment/pay.php" method="post">
+          <!-- Платежная форма Эти поля обязательные, их нельзя удалять.-->
+          <form class="form" action="/createOrderYC.php" method="post">
             <div class="form__row">
               <input name="customerNumber" value="" placeholder="Номер договора" required=""/>
             </div>
             <div class="form__row">
               <input name="sum" value="" type="number" min="1" placeholder="Сумма платежа" required=""/>
             </div>
+            <div class="form__row">
+              <select name="payType" required="required">
+                <option value="">Выберите тип оплаты</option>
+                <option value="bank_card">Банковская карта</option>
+                <option value="installments">Рассрочка</option>
+                <option value="yandex_money">Яндекс Деньги</option>
+              </select>
+            </div>
             <input class="btn" type="submit" value="Заплатить"/>
+            <div class="form-btn"></div>
           </form>
+          <script src="https://static.yandex.net/checkout/js/v1/"></script>
+          <script src="https://static.yandex.net/checkout/ui/v1/"></script>
+          <script src="https://static.yandex.net/kassa/pay-in-parts/ui/v1/"></script>
         </div>
       </main>
       <!-- end main__content -->
@@ -84,8 +96,8 @@
     <!-- end footer -->
     <script src="/js/jquery.js"></script>
     <script src="/js/slick.min.js"></script>
-    <script src="/js/app.js?3.4"></script>
-    <script src="//code.jivosite.com/widget.js" data-jv-id="S1bxZEDzq7" async="async"></script>
+    <script src="https://static.yandex.net/kassa/pay-in-parts/ui/v1/"></script>
+    <script src="/js/app.js?4.7"></script>
     <script type="text/javascript" async="" src="https://mc.yandex.ru/metrika/watch.js"></script>
     <script type="text/javascript">
        (function (d, w, c) {(w[c] = w[c] || []).push(function() {try {w.yaCounter45489156 = new Ya.Metrika({id:45489156,clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true});} catch(e) { }});var n = d.getElementsByTagName("script")[0],s = d.createElement("script"),f = function () { n.parentNode.insertBefore(s, n); };s.type = "text/javascript";s.async = true;s.src = "https://mc.yandex.ru/metrika/watch.js";if (w.opera == "[object Opera]") {d.addEventListener("DOMContentLoaded", f, false);} else { f(); }})(document, window, "yandex_metrika_callbacks");</script>

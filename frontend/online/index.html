@@ -28,7 +28,7 @@
     <meta name="msapplication-TileColor" content="#ffffff"/>
     <meta name="msapplication-TileImage" content="/img/ico//ms-icon-144x144.png"/>
     <meta name="theme-color" content="#ffffff"/>
-    <link href="/css/style.css?3.4" rel="stylesheet"/>
+    <link href="/css/style.css?4.7" rel="stylesheet"/>
   </head>
   <body>
     <div class="wrapper">
@@ -56,18 +56,17 @@
           <div class="training">
             <div class="training__top">
               <div class="training__left">
-                <div class="training__type">Онлайн курс</div>
+                <div class="training__type">Онлайн курс <span>Возможно удаленное обучение. Подробности в нашей группе Вконтакте</span></div>
                 <div class="training__title">Разработка сайтов: HTML, CSS, jQuery</div>
                 <div class="training__subtitle">Научитесь front-end разработке сайтов с нуля за 3 месяца</div>
                 <div class="training__info">Вы научитесь визуализировать дизайн в вебе, создавать веб-страницы, лендинги; получите основы всех аспектов веб-разработки: узнаете что такое HTML и CSS, как создаётся интерактивность, как делается анимация и эффекты, как разрабатываются сайты для телефонов и планшетов. А главное, получите опытных наставников на длительное время.</div>
-                <div class="training__date">
-                   Старт группы: 15 июля 2019 <br>
-                  Продолжительность: 3 месяца, 24 занятия по 2 часа <br>
-                  Занятия по понедельникам и четвергам с 19 до 21 ч (время московское)
+                <div class="training__date"> 
+                  <div> <span>Старт группы: </span><span>15 июля 2019</span>
+                  </div>
+                  <div><span>Продолжительность: </span><span>3 месяца, 24 занятия по 2 часа</span></div>
+                  <div><span>Занятия по </span><span>понедельникам и четвергам с 19 до 21 ч (время московское)</span></div>
+                  <div class="training__creditPrice"> </div>
                 </div>
-                <div class="training__action">
-                  <button class="btn btn_primary" data-toggle="modal" data-target="#order" onclick="gtag('event', 'openForm', { 'event_category': 'FormKurs', 'event_action': 'click', });">Записаться на обучение</button><a class="btn" href="https://vk.com/write-31893650" target="blank" title="Страница откроется в новом окне">Задать вопрос Вконтакте</a>
-                </div><br/><br/>
               </div>
               <div class="training__right">
                 <div class="training__img"><img src="/img/front.png" alt=""/></div>
@@ -75,7 +74,7 @@
             </div>
           </div>
           <div class="anchor" id="programm"></div>
-          <h2 class="programm__title" id="programm">Программа курса</h2>
+          <h2 class="programm__title">Программа курса</h2>
           <div class="programm">
             <div class="programm"></div>
             <div class="programm__item">
@@ -133,6 +132,8 @@
           <div class="reviewShow"><a class="reviewShow__link" href="/review/">Читать отзывы о курсе</a></div>
           <div class="anchor" id="price"></div>
           <h2 class="programm__title">Стоимость курса</h2>
+          <script>var courseDuration = ;</script>
+          <script>var coursePrice = NaN;</script>
           <div class="training__promo">Стоимость до 24 июня *
             <div class="training__promoSub"> </div>
           </div>
@@ -228,6 +229,7 @@
                   <input id="customerNumber" name="customerNumber" type="hidden" value="Онлайн курс - Разработка сайтов: HTML, CSS, jQuery" placeholder="Например: &quot;Графический дизайн&quot;" required="required"/>
                   <input id="sum" name="sum" value="" type="hidden" min="1" placeholder="Сумма платежа" required="required"/>
                   <div class="form__row">
+                    <h3 class="form__sub">Заполните информацию о вас <span>(данные будет нужны для подтверждения оплаты и оформления договора)</span></h3>
                     <label class="form__label" for="custName">Введите ваши ФИО*</label>
                     <input id="custName" name="custName" type="text" value="" placeholder="Например: &quot;Иванов Иван Иванович&quot;" required="required"/>
                   </div>
@@ -241,12 +243,13 @@
                   </div>
                   <div class="form__row">
                     <label class="form__label" for="payType">Выберите вариант оплаты*</label>
-                    <select id="payType" name="payType" required="required">
-                      <option value="">Выберите</option>
-                      <option value="2000">Бронирование места</option>
-                      <option value="NaN">Оплата в рассрочку</option>
-                      <option value="undefined">Оплата одним платежом</option>
-                      <option value="handle">Ввести сумму вручную</option>
+                    <select class="select" id="payType" name="payType" required="required">
+                      <option value=""></option>
+                      <option id="typeBook" value="2000">Бронирование места</option>
+                      <option id="typeGrampusCredit" value="NaN">Заплатить по частям ( платежа)</option>
+                      <option id="typeYkCredit" value="undefined">Заплатить по частям (6 или 12 месяцев)</option>
+                      <option id="typeSingleSum" value="undefined">Оплата одним платежом</option>
+                      <option id="typeHandle" value="handle">Ввести сумму вручную</option>
                     </select>
                   </div>
                   <div class="form__row">
@@ -260,7 +263,8 @@
                   <div class="form__total"></div>
                   <div class="form__error"></div>
                   <div class="form__action">
-                    <input class="btn btn_primary js_pay" type="submit" value="Перейти к оплате"/>
+                    <input class="btn btn_primary js_pay" type="submit" value="Перейти к оплате"/><a class="btn" href="https://vk.com/write-31893650" target="blank" title="Страница откроется в новом окне">Задать вопрос Вконтакте</a>
+                    <p><small>Мы не собираем ваши данные, вплоть до момента оплаты на сайте платежных систем. И используем их только для подтверждения оплаты и заполнения договора.</small></p>
                   </div>
                 </div>
               </form>
@@ -286,8 +290,11 @@
     <!-- end footer -->
     <script src="/js/jquery.js"></script>
     <script src="/js/slick.min.js"></script>
-    <script src="/js/app.js?3.4"></script>
-    <script src="//code.jivosite.com/widget.js" data-jv-id="S1bxZEDzq7" async="async"></script>
+    <script src="https://static.yandex.net/kassa/pay-in-parts/ui/v1/"></script>
+    <script src="/js/app.js?4.7"></script>
+    <!-- BEGIN YAMICHAT CODE {literal}-->
+    <script type="text/javascript">(function(){ var widget_id = 'y5d65755d384f6'; var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = '//code.yamichat.ru/script/'+widget_id; var ss = document.getElementsByTagName('script')[0]; ss.parentNode.insertBefore(s, ss);})();</script>
+    <!-- {/literal} END YAMICHAT CODE-->
     <script type="text/javascript" async="" src="https://mc.yandex.ru/metrika/watch.js"></script>
     <script type="text/javascript">
        (function (d, w, c) {(w[c] = w[c] || []).push(function() {try {w.yaCounter45489156 = new Ya.Metrika({id:45489156,clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true});} catch(e) { }});var n = d.getElementsByTagName("script")[0],s = d.createElement("script"),f = function () { n.parentNode.insertBefore(s, n); };s.type = "text/javascript";s.async = true;s.src = "https://mc.yandex.ru/metrika/watch.js";if (w.opera == "[object Opera]") {d.addEventListener("DOMContentLoaded", f, false);} else { f(); }})(document, window, "yandex_metrika_callbacks");</script>

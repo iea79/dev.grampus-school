@@ -5,7 +5,7 @@
  * Skype: ivanov_ea
  *
  */
-.footer:after, .main__content:after, .header:after, .form:after, .form__row:after {
+.footer:after, .main__content:after, .header:after, .form:after {
   content: '';
   display: table;
   clear: both; }
@@ -636,7 +636,8 @@ template {
       font-size: 13px; }
 
 .form__row {
-  margin-bottom: 15px; }
+  margin-bottom: 15px;
+  position: relative; }
   .form__row .btn,
   .form__row input:not([type]),
   .form__row input[type=datetime],
@@ -698,6 +699,15 @@ template {
     bottom: 0;
     width: 40%; }
 
+.form__sub {
+  font-weight: 500;
+  font-size: 16px;
+  line-height: 1.2; }
+  .form__sub span {
+    font-weight: 300;
+    color: #89869d;
+    display: block; }
+
 .form__label {
   font-weight: 600;
   font-size: 13px;
@@ -718,12 +728,25 @@ template {
   text-align: center; }
   .form__action .btn {
     width: 100%;
-    max-width: 250px; }
+    max-width: 260px;
+    margin: 5px;
+    line-height: 1.2; }
+  .form__action small {
+    margin: auto;
+    max-width: 530px;
+    line-height: 1.4;
+    display: block; }
 
 .form__total {
   font-weight: 600;
   font-size: 22px;
   color: #daa62b; }
+  .form__total span {
+    display: block;
+    font-size: 14px;
+    line-height: 1.3;
+    font-weight: 400;
+    color: #19b5d9; }
 
 .form_pay {
   max-width: 700px;
@@ -1201,6 +1224,19 @@ input[type=checkbox]:disabled:checked:before, input[type=checkbox]:disabled:inde
     .btn_danger:active {
       background-color: #b3871f;
       color: #191822; }
+
+.js_btn_pay {
+  position: relative;
+  padding: 8px 20px 18px !important; }
+  .js_btn_pay span {
+    position: absolute;
+    bottom: 4px;
+    left: 0;
+    right: 0;
+    text-align: center;
+    color: #191822;
+    font-weight: 500;
+    font-size: 12px; }
 
 .wdgMoyklass-btn {
   border-radius: 26px !important;

@@ -3,7 +3,8 @@
 
 	&__row {
 		margin-bottom: 15px;
-		@extend %clear_a;
+		position: relative;
+		// @extend %clear_a;
 
 		.btn,
 		input:not([type]),
@@ -72,6 +73,18 @@
 		}
 	}
 
+	&__sub {
+		font-weight: 500;
+		font-size: 16px;
+		line-height: 1.2;
+
+		span {
+			font-weight: 300;
+			color: $color_muted;
+			display: block;
+		}
+	}
+
 	&__label {
 		font-weight: 600;
 		font-size: 13px;
@@ -97,7 +110,17 @@
 
 		.btn {
 			width: 100%;
-			max-width: 250px;
+			max-width: 260px;
+			margin: 5px;
+			line-height: 1.2;
+		}
+
+		small {
+			margin: auto;
+			max-width: 530px;
+			line-height: 1.4;
+			// font-size: 12px;
+			display: block;
 		}
 	}
 
@@ -105,6 +128,14 @@
 		font-weight: 600;
 		font-size: 22px;
 		color: $color_success;
+
+		span {
+			display: block;
+			font-size: 14px;
+			line-height: 1.3;
+			font-weight: 400;
+			color: $color_primary;
+		}
 	}
 
 	&_pay {
@@ -154,6 +185,7 @@
 					width: 100%;
 					max-width: 300px;
 				}
+
 			}
 		}
 	}

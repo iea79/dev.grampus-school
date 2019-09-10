@@ -22,13 +22,10 @@ $modal-bg: rgba($color_dark, 0.95);
             }
         }
 
-
         .Wdg {
             &Calendar {
-
                 &Month,
                 &Week {
-
                     .first-cell {
                         // width: 100px !important;
                         color: $table-color;
@@ -40,7 +37,6 @@ $modal-bg: rgba($color_dark, 0.95);
 
         &.Wdg {
             &Calendar {
-
                 &Month,
                 &Week {
                     font-size: $main_font_size;
@@ -155,7 +151,6 @@ $modal-bg: rgba($color_dark, 0.95);
                         }
 
                         &:hover {
-
                             &:after,
                             &:before {}
                         }
@@ -579,13 +574,13 @@ body .WdgMoyklass {
             justify-content: space-between;
             margin-left: -20px;
 
-            >a {
+            > a {
                 display: block;
                 max-width: 300px;
                 padding-left: 20px;
                 padding-bottom: 20px;
 
-                >img {
+                > img {
                     margin: 0;
                     display: block;
                     width: 100%;
@@ -593,6 +588,28 @@ body .WdgMoyklass {
             }
         }
 
+    }
+
+    &Schedule {
+        &-FilterItem {
+            position: relative;
+            padding-left: 15px !important;
+            padding-right: 15px !important;
+
+            .select2-drop {
+                left: 15px !important;
+                right: 15px;
+                width: auto;
+            }
+        }
+    }
+
+}
+
+body {
+    .WdgMoyklassContent .WdgMoyklassSchedule-FilterItem:not(:first-child),
+    .WdgMoyklassContent .combo-schedule_calendar-filter {
+        padding-left: 15px !important;
     }
 }
 

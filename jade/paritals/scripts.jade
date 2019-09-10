@@ -2,6 +2,10 @@
 script(src="/js/jquery.js")
 //- script(src="/js/modal.js")
 script(src="/js/slick.min.js")
+//- script(src="/js/select2/jquery.select2.js")
+script(src="https://static.yandex.net/kassa/pay-in-parts/ui/v1/")
+if (pageClass == "coursePage")
+    //- script(src="/js/payment.js")
 script(src="/js/app.js?"+versionsFront+"")
 
 //- script(type="text/javascript" src="https://vk.com/js/api/openapi.js?161")
@@ -10,8 +14,11 @@ script(src="/js/app.js?"+versionsFront+"")
 //- #vk_community_messages
 //- script(type="text/javascript").
 //-     VK.Widgets.CommunityMessages("vk_community_messages", 31893650, {expandTimeout: "15000",disableExpandChatSound: "1",tooltipButtonText: "Есть вопрос?"});
-
-script(src="//code.jivosite.com/widget.js" data-jv-id="S1bxZEDzq7" async)
+if (!payment)
+    //- script(src="//code.jivosite.com/widget.js" data-jv-id="S1bxZEDzq7" async)
+    // BEGIN YAMICHAT CODE {literal}
+    script(type="text/javascript") (function(){ var widget_id = 'y5d65755d384f6'; var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = '//code.yamichat.ru/script/'+widget_id; var ss = document.getElementsByTagName('script')[0]; ss.parentNode.insertBefore(s, ss);})();
+    // {/literal} END YAMICHAT CODE
 
 //- script.
 //- 	$('select').wrap('<div class="custom-select"></div>');

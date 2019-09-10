@@ -1,7 +1,7 @@
 extends template.jade
 
 block variables
-    -var pageClass = "";
+    -var pageClass = "coursePage";
     -var courses = 'active';
     -var online = false;
 
@@ -21,11 +21,16 @@ mixin orderBtn
 mixin courseAction
     .training__action
         //- button.btn.btn_primary(data-toggle="modal" data-target="#order" onclick="gtag('event', 'openForm', { 'event_category': 'FormKurs', 'event_action': 'click', });") Записаться на обучение
-        if (!online)
-            button.btn.btn_primary(type="button" data-toggle="modal" data-target="#payment" onclick="gtag('event', 'openForm', { 'event_category': 'FormPay', 'event_action': 'click', });") Записаться и оплатить
+        if courseDate
+            if (!online && courseName != '3d')
+                button.btn.btn_primary.js_btn_pay(type="button" data-toggle="modal" data-target="#payment" onclick="gtag('event', 'openForm', { 'event_category': 'FormPay', 'event_action': 'click', });") Записаться и оплатить
+                    span
+            else
+                button.btn.btn_primary(data-toggle="modal" data-target="#order" onclick="gtag('event', 'openForm', { 'event_category': 'FormKurs', 'event_action': 'click', });") Записаться на обучение
+
+            a.btn(href="https://vk.com/write-31893650" target="blank" title="Страница откроется в новом окне") Задать вопрос Вконтакте
         else
-            button.btn.btn_primary(data-toggle="modal" data-target="#order" onclick="gtag('event', 'openForm', { 'event_category': 'FormKurs', 'event_action': 'click', });") Записаться на обучение
-        a.btn(href="https://vk.com/write-31893650" target="blank" title="Страница откроется в новом окне") Задать вопрос Вконтакте
+            a.btn(href="https://vk.com/write-31893650" target="blank" title="Страница откроется в новом окне") Узнать о ближайшем наборе
     -;
 
 
@@ -47,33 +52,84 @@ block seo
 
 
 block content
+
+
     a.backLink(href="/courses/") Расписание очных и онлайн курсов в школе Grampus
 
     .training
         .training__top
             .training__left
-                .training__type !{courseType}
+                .training__type !{courseType} 
+                    span Возможно удаленное обучение. Подробности в нашей группе Вконтакте
                 .training__title !{courseTitle}
                 .training__subtitle !{courseSub}
                 .training__info !{courseDescription}
 
                 .training__date 
-                    |Старт группы: #{courseDate} <br>
-                    |Продолжительность: #{courseDuration} <br>
-                    |Занятия по #{courseTime}
+                    div 
+                        span Старт группы: 
+                        if !courseDate
+                            span набор закрыт
+                        else
+                            span !{courseDate}
+                    div
+                        span Продолжительность: 
+                        span !{courseDuration}
+                    div
+                        span Занятия по 
+                        span !{courseTime}
+                    .training__creditPrice 
 
                 //- +orderBtn
-                +courseAction
+                //- +courseAction
 
-                br
-                br
+                //- br
+                //- br
 
             .training__right
                 .training__img
                     img(src= courseImg, alt="")
 
+    if (courseName == 'grafdesign' || courseName == 'webdesign')
+        h2#earnings.programm__title Заработок после обучения
+        .earnings
+            .earnings__top !{earningTop}
+            .earnings__bottom
+                .earnings__item
+                    .panel
+                        strong от !{earningSumm} ₽
+                        |!{earningProf}
+                        small (по данным 
+                            a(href= earningLink target="blank") hh.ru
+                            |)
+                .earnings__item
+                    .panel Вы можете сразу после обучения начать получать достойное вознаграждение. И как дополнительный плюс профессии — заказы можно совмещать с основной работой.
+
+        +courseAction
+
+        h2.programm__title Кому подойдет курс
+        .anyone
+            each item in anyone
+                .anyone__item
+                    .panel
+                        .panel__title= item.title
+                        .panel__text= item.text
+
+
+        h2.programm__title Как проходит обучение
+
+        .progress
+            each item in progress
+                .progress__item
+                    .panel
+                        .panel__title= item.title
+                        .panel__text= item.text
+
+
+        //- +courseAction
+
     .anchor#programm
-    h2#programm.programm__title Программа курса
+    h2.programm__title Программа курса
     .programm
         for courseList in programList
             +courseProgramm(courseList)
@@ -99,9 +155,29 @@ block content
         .reviewShow
             a.reviewShow__link(href="/review/") Читать отзывы о курсе
 
+    if courseName == 'grafdesign'
+        h2.programm__title Ключевые навыки после обучения
+        .keyskills
+            .keyskills__list
+                each item in keyskills
+                    .keyskills__item= item
+
     //- +courseAction
     .anchor#price
     h2.programm__title Стоимость курса
+
+    if (courseName != '3d')
+        script var courseDuration = #{courseDurationMonth};
+        if !holyday
+            script var coursePrice = #{Math.round(courseTotalPrice)};
+    else
+        script var coursePrice = false;
+
+    if holiday
+        //- .training__holyday !{holidayText}
+        .training__holyday Праздничная распродажа курсов по минимальной стоимости!!!
+        script var coursePrice = #{Math.round(courseBasePrice)};
+
 
     if (coursePromoDate !== false)
         .training__promo Стоимость до #{coursePromoDate} *
@@ -114,19 +190,70 @@ block content
             .training__sales
                 .training__salesWrap
                     if courseSemiPrice
-                        .training__salesItem
-                            .training__price= (Math.round((courseTotalPrice*1.1/courseDurationMonth)/100, 0) * 100).toLocaleString() + ' руб.'
-                            .training__priceSub при оплате в рассрочку
-                        .training__or или
-                        .training__salesItem
-                            .training__price= Number(courseTotalPrice).toLocaleString() + ' руб.'
-                            .training__priceSub одним платежом
+                        if holiday
+                            -var semi = (Math.round((courseBasePrice*1.1/courseDurationMonth)/100, 0) * 100).toLocaleString();
+                            .training__salesItem
+                                .training__price
+                                    span  
+
+                                .training__priceSub при оплате в рассрочку
+                                    .tooltip.tooltip_seccondary
+                                        .tooltip__content.tooltip__content_left
+                                            span Рассрочка на #{courseDurationMonth} месяца от школы Grampus
+                                            b или
+                                            span Рассрочка на 6 или 12 месяцев от Яндекс Касса
+                                //-     .tooltip.tooltip_seccondary
+                                //-         .tooltip__content.tooltip__content_left
+                                //-             if (courseDurationMonth == 2)
+                                //-                 |2 платежа: <br>
+                                //-                 span= semi + ' руб. + ' + semi + ' руб.'
+                                //-             if courseDurationMonth == 2.5
+                                //-                 |3 платежа: <br>
+                                //-                 span= semi + ' руб. + ' + semi + ' руб. + ' + (Math.round((courseBasePrice*1.1/courseDurationMonth/2)/100, 0) * 100).toLocaleString() + ' руб.'
+                                //- .training__old Старая цена 
+                                //-     span= (Math.round((courseTotalPrice*1.1/courseDurationMonth)/100, 0) * 100).toLocaleString() + ' руб.'
+
+                            .training__or или
+                            .training__salesItem
+                                .training__price= Number(courseBasePrice).toLocaleString() + ' руб.'
+                                .training__priceSub одним платежом
+                                .training__old Старая цена 
+                                    span= Number(courseTotalPrice).toLocaleString() + ' руб.'
+                        else
+                            -var semi = (Math.round((courseTotalPrice*1.1/courseDurationMonth)/100, 0) * 100).toLocaleString();
+                            .training__salesItem
+                                if courseBasePrice
+                                    .training__price
+                                        span
+                                else
+                                    .training__price= semi + ' руб.'
+                                .training__priceSub при оплате в рассрочку 
+                                    if courseBasePrice
+                                        .tooltip.tooltip_seccondary
+                                            .tooltip__content.tooltip__content_left
+                                                span При рассрочке на 
+                                                    b 12&nbsp;месяцев 
+                                                    |от Яндекс
+                                    else
+                                        .tooltip.tooltip_seccondary
+                                            .tooltip__content.tooltip__content_left
+                                                if (courseDurationMonth == 2)
+                                                    |2 платежа: <br>
+                                                    span= semi + ' руб. + ' + semi + ' руб.'
+                                                if courseDurationMonth == 2.5
+                                                    |3 платежа: <br>
+                                                    span= semi + ' руб. + ' + semi + ' руб. + ' + (Math.round((courseTotalPrice*1.1/courseDurationMonth/2)/100, 0) * 100).toLocaleString() + ' руб.'
+                            .training__or или
+                            .training__salesItem
+                                .training__price= Number(courseTotalPrice).toLocaleString() + ' руб.'
+                                .training__priceSub одним платежом
                     else if payWeak
                         .training__salesFree Первая неделя БЕСПЛАТНО!!!
                         .training__salesAttention Количество мест ограничено!
                         .training__salesItem
                             .training__price #{courseWeakPrice} руб.
                             .training__priceSub стоимость одной недели
+
                         .training__or или
                         .training__salesItem
                             .training__price #{courseTotalPrice} руб.
@@ -229,6 +356,12 @@ block content
     //- Button trigger modal payment
     //- button(class="btn btn-primary btn-lg" data-toggle="modal" data-target="#payment") Click to open modal
     // Begin Modal payment
+
+    if holiday
+        -var formPrice = courseBasePrice;
+    else
+        -var formPrice = courseTotalPrice;
+
     .modal.fade.payment#payment
         .modal-dialog
             form.form.form_yk(action="https://money.yandex.ru/eshop.xml" method="post")
@@ -241,6 +374,8 @@ block content
                     input(id="customerNumber" name='customerNumber' type="hidden" value=""+courseType+" - "+courseTitle+"" placeholder='Например: "Графический дизайн"' required)
                     input(id='sum' name='sum' value='' type='hidden' min='1' placeholder='Сумма платежа' required)
                     .form__row
+                        h3.form__sub Заполните информацию о вас 
+                            span (данные будет нужны для подтверждения оплаты и оформления договора)
                         label.form__label(for="custName") Введите ваши ФИО*
                         input(id="custName" name='custName' type="text" value='' placeholder='Например: "Иванов Иван Иванович"' required)
                     .form__row
@@ -250,13 +385,17 @@ block content
                         label.form__label(for="custEmail") Введите удобный вариант для связи с вами
                         input(id="custEmail" name='custEmail' type="text" value='' placeholder='Например: Ссылка ВК https://vk.com/grampus_school')
                     .form__row
+                        //- h3.form__sub Сначала выберите предпочтительный вариант оплаты
+                        //- span (ваши данные мы получим только в момент совершения вами платежа)
+
                         label.form__label(for="payType") Выберите вариант оплаты*
-                        select#payType(name="payType" required)
-                            option(value="") Выберите
-                            option(value="2000") Бронирование места
-                            option(value=""+(Math.round((courseTotalPrice*1.1/courseDurationMonth)/100, 0) * 100)+"") Оплата в рассрочку
-                            option(value=""+courseTotalPrice+"") Оплата одним платежом
-                            option(value="handle") Ввести сумму вручную
+                        select#payType.select(name="payType" required)
+                            option( value="")
+                            option(id="typeBook" value="2000") Бронирование места
+                            option(id="typeGrampusCredit" value=""+ Math.round((formPrice*1.1/courseDurationMonth)/100, 0) * 100 +"") Заплатить по частям (#{courseDurationMonth} платежа)
+                            option(id="typeYkCredit" value=""+formPrice+"") Заплатить по частям (6 или 12 месяцев)
+                            option(id="typeSingleSum" value=""+formPrice+"") Оплата одним платежом
+                            option(id="typeHandle" value="handle") Ввести сумму вручную
                     .form__row
                         input(type="hidden", id="handle" placeholder="Введите сумму в рублях")
                     .form__row
@@ -267,6 +406,10 @@ block content
                     .form__error
                     .form__action
                         input.btn.btn_primary.js_pay(type='submit' value='Перейти к оплате')
+                        a.btn(href="https://vk.com/write-31893650" target="blank" title="Страница откроется в новом окне") Задать вопрос Вконтакте
+                        //- button.btn.js_sendOrder(type='button') Получить консультацию
+                        p
+                            small Мы не собираем ваши данные, вплоть до момента оплаты на сайте платежных систем. И используем их только для подтверждения оплаты и заполнения договора.
     // End modal payment
 
     script(src= formLink)

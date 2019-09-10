@@ -1,7 +1,10 @@
 // @prepros-append browserDetect.js
+// @prepros-append payment.js
+// @prepros-append submit.js
 // @prepros-append modal.js
 // @prepros-append custom-select.js
 // @prepros-append jquery.maskedinput.js
+// @prepros-append select2/select2.min.js
 
 var TempApp = {
     lgWidth: 1200,
@@ -87,7 +90,6 @@ $(document).ready(function() {
     // formSubmit();
 
     // gridMatch();
-
     checkOnResize();
     mobileNav();
 
@@ -118,106 +120,35 @@ $(document).ready(function() {
     }, 3000);
 
     setTimeout(function() {
-        $('.select').each(function(index, el) {
-            var box = $(this).parent().find('.custom-select');
-            // console.log(box.length);
-            if (box.length < 1) {
-                $(this).wrap('<div class="custom-select"></div>');
-                customSelectInit("custom-select");
-            }
+        // $('.select').each(function(index, el) {
+        //     var box = $(this).parent().find('.custom-select');
+        //     // console.log(box.length);
+        //     if (box.length < 1) {
+        //         $(this).wrap('<div class="custom-select"></div>');
+        //         customSelectInit("custom-select");
+        //     }
+        // });
+        $('select').select2({
+            placeholder: 'Выберите',
+            minimumResultsForSearch: Infinity
         });
-    }, 500);
+
+        $('select').on('select2:open', function(e) {
+            var drop = $('.select2-container').last(),
+                container = $(this).parent();
+
+            container.addClass('select2-wrapper');
+            drop.addClass('select2-drop');
+            container.append(drop);
+        })
+    }, 1000);
 
 
+    setTimeout(function () {
+        $('#yami_iframe_container').css('visibility', 'visible');
+    }, 10000);
 
-    $('#payType').on('change', function() {
-        var value = $(this).val();
 
-        if (value != '') {
-            if (value === 'handle') {
-                $('input#sum').val('');
-                $('.form__total').html('Сумма не выбрана');
-                $('#handle').attr('type', 'number');
-                $('#sale').prop('checked', false);
-                $('.checkbox').hide();
-                return false;
-            } else {
-                if (value !== '2000') {
-                    $('.checkbox').show();
-                } else {
-                    $('#sale').prop('checked', false);
-                    $('.checkbox').hide();
-                }
-            }
-            if ($('#sale').prop('checked') && value !== '2000') {
-                value = Math.round(value*.8);
-                // console.log(value);
-                $('#handle').attr('type', 'hidden');
-                $('input#sum').val(value);
-                $('.form__total').html('К оплате '+thousandSeparator(value)+' руб.');
-            } else {
-                value == $(this).val();
-                $('#handle').attr('type', 'hidden');
-                $('input#sum').val(value);
-                $('.form__total').html('К оплате '+thousandSeparator(value)+' руб.');
-            }
-        } else {
-            $('input#sum').val('');
-            $('.form__total').html('Сумма не выбрана');
-            $('#handle').attr('type', 'hidden');
-            $('#sale').prop('checked', false);
-            $('.checkbox').hide();
-            return false;
-        }
-    })
-
-    $('#sale').prop('checked', false);
-    $('.checkbox').hide();
-
-    $('#sale').on('change', function() {
-        var state = $(this).prop('checked');
-        var value = $('#payType').val();
-
-        switch (value) {
-            case '':
-                $('input#sum').val('');
-                $('.form__total').html('Сумма не выбрана');
-                break;
-            case 'handle':
-                $('input#sum').val('');
-                $('.form__total').html('Сумма не выбрана');
-                $('#handle').attr('type', 'number');
-                break;
-            case '2000':
-                return false;
-                break;
-
-        }
-
-        if (state) {
-            value = Math.round(value*.8);
-            // console.log(value);
-            $('#handle').attr('type', 'hidden');
-            $('input#sum').val(value);
-            $('.form__total').html('К оплате '+thousandSeparator(value)+' руб.');
-        } else {
-            value == $(this).val();
-            $('#handle').attr('type', 'hidden');
-            $('input#sum').val(value);
-            $('.form__total').html('К оплате '+thousandSeparator(value)+' руб.');
-        }
-    });
-
-    $('#handle').on('keyup', function() {
-        var value = $(this).val();
-
-        if (value.length > 0) {
-            $('input#sum').val(value);
-            $('.form__total').html('К оплате '+thousandSeparator(value)+' руб.');
-        } else {
-            $('.form__total').html('Сумма не выбрана');
-        }
-    })
 });
 
 $(window).resize(function(event) {
@@ -245,7 +176,6 @@ function checkOnResize() {
     } else {
         $('.training__students').insertAfter('.training__bottom');
     }
-
 };
 
 
@@ -300,7 +230,7 @@ $(function() {
     if ($(".js_youtube")) {
         $(".js_youtube").each(function() {
             // Зная идентификатор видео на YouTube, легко можно найти его миниатюру
-            $(this).css('background-image', 'url(http://i.ytimg.com/vi/' + this.id + '/sddefault.jpg)');
+            $(this).css('background-image', 'url(https://i.ytimg.com/vi/' + this.id + '/sddefault.jpg)');
 
             // Добавляем иконку Play поверх миниатюры, чтобы было похоже на видеоплеер
             $(this).append($('<div class="video__play"><img src="img/play.svg" alt="Play"></div>'));
@@ -340,7 +270,7 @@ function thousandSeparator(str) {
     while(i >= 0) {
         output = main.charAt(i) + output;
         if ((len - i) % 3 === 0 && i > 0) {
-            output = ' ' + output;
+            output = '&nbsp;' + output;
         }
         --i;
     }
@@ -367,77 +297,19 @@ function thousandSeparator(str) {
 //     }
 // })
 
-// Простая проверка форм на заполненность и отправка аяксом
-function formSubmit() {
-    $(".js_pay").on('click', function (e){
-        e.preventDefault();
-        var form = $(this).closest('.form_yk');
-        var url = form.attr('action');
-        var form_data = form.serialize();
-        var field = form.find('[required]');
-        // console.log(form_data);
 
-        empty = 0;
 
-        field.each(function() {
-            if ($(this).val() == "") {
-                $(this).addClass('invalid');
-                $('.form__error').html('Не заполнены обязательные поля');
-                setTimeout(function () {
-                    $('.form__error').html('');
-                }, 5000);
-                // return false;
-                empty++;
-            } else {
-                $(this).removeClass('invalid');
-                $(this).addClass('valid');
-            }
-        });
-
-        // console.log(empty);
-
-        if (empty > 0) {
-            return false;
-        } else {
-            form.submit();
-            // $.ajax({
-            //     url: url,
-            //     type: "POST",
-            //     dataType: "html",
-            //     data: form_data,
-            //     success: function (response) {
-            //         // $('#success').modal('show');
-            //         // console.log('success');
-            //         console.log(response);
-            //         // console.log(data);
-            //         // document.location.href = "success.html";
-            //     },
-            //     error: function (response) {
-            //         // $('#success').modal('show');
-            //         // console.log('error');
-            //         console.log(response);
-            //     }
-            // });
-        }
-
-    });
-
-    $('[required]').on('keyup change', function() {
-        if ($(this).val() != '') {
-            $(this).removeClass('invalid');
-        }
-    });
-
-    $('.form__privacy input').on('change', function(event) {
-        event.preventDefault();
-        var btn = $(this).closest('.form').find('.btn');
-        if ($(this).prop('checked')) {
-            btn.removeAttr('disabled');
-            // console.log('checked');
-        } else {
-            btn.attr('disabled', true);
-        }
-    });
-}
-
-formSubmit();
+// Получаем параметры из ссылки
+// Создаем массив из параметров
+function getUrlParams() {
+    var s1 = location.search.substring(1, location.search.length).split('&'),
+        r = {}, s2, i;
+    for (i = 0; i < s1.length; i += 1) {
+        s2 = s1[i].split('=');
+        r[decodeURIComponent(s2[0]).toLowerCase()] = decodeURIComponent(s2[1]);
+    }
+    return r;
+};
+// Получаем один параметр
+// getParams['paramName']
+var getParams = getUrlParams();

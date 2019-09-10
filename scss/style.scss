@@ -37,6 +37,7 @@
 @import 'vendor/WdgMoyklass';
 @import 'vendor/slick';
 @import 'vendor/modal';
+@import 'vendor/select2';
 
 .title {
 	// color: $color_withe;
@@ -741,6 +742,12 @@ $gpad: 40px;
 		margin-bottom: 5px;
 		font-size: 16px;
 		font-weight: 500;
+
+		span {
+			font-size: 12px;
+			font-weight: 300;
+			display: block;
+		}
 	}
 
 	&__title {
@@ -769,6 +776,32 @@ $gpad: 40px;
 		font-size: 16px;
 		line-height: 1.69;
 		margin-bottom: 43px;
+
+		> div {
+			margin-bottom: 6px;
+
+			@media (min-width: 768px) {
+				display: flex;
+				margin-bottom: 3px;
+			}
+
+			span {
+				display: block;
+
+				&:first-child {
+					// white-space: nowrap;
+					margin-right: 15px;
+					width: 177px;
+					flex: none;
+					// color: $color_primary;
+					font-weight: 600;
+				}
+
+				&:last-child {
+					flex-grow: 0;
+				}
+			}
+		}
 	}
 
 	&__bottom {
@@ -802,7 +835,7 @@ $gpad: 40px;
 
 		&Wrap {
 			display: flex;
-			align-items: center;
+			// align-items: center;
 			// @extend %clear_a;
 
 			@media (max-width: 767px) {
@@ -921,6 +954,13 @@ $gpad: 40px;
 		}
 	}
 
+	&__holyday {
+		font-weight: 500;
+		font-size: 18px;
+		margin-bottom: 10px;
+		color: $color_success;
+	}
+
 	&__price {
 		font-size: 30px;
 		font-weight: 900;
@@ -929,6 +969,39 @@ $gpad: 40px;
 		&Sub {
 			color: #75757a;
 			font-size: 16px;
+
+			span {
+				// font-size: 13px;
+				// color: $color_primary;
+				display: block;
+
+				&:first-of-type {
+					padding-top: 5px;
+				}
+			}
+		}
+	}
+
+	&__old {
+		color: $color_muted;
+		// align-self: flex-start;
+		// display: inline-block;
+		font-size: 12px;
+
+		span {
+			color: $color_primary;
+			position: relative;
+			font-size: 14px;
+
+			&:after {
+				content: '';
+				position: absolute;
+				width: 100%;
+				transform: rotate(-5deg);
+				border-top: 1px solid $color_danger;
+				left: 0;
+				top: 50%;
+			}
 		}
 	}
 
@@ -941,6 +1014,7 @@ $gpad: 40px;
 		// text-align: center;
 		@media (min-width: 768px) {
 			margin-top: -8px;
+			align-self: center;
 		}
 
 	}
@@ -1003,10 +1077,15 @@ $gpad: 40px;
 		flex-wrap: wrap;
 		// justify-content: space-around;
 		flex-grow: 1;
-		text-align: center;
+		// text-align: center;
+
 		@media (min-width: 768px) {
 			padding: 20px 0;
 
+		}
+
+		@media (max-width: 767px) {
+			justify-content: center;
 		}
 
 		.btn {
@@ -1111,8 +1190,8 @@ $gpad: 40px;
 			margin-bottom: 20px;
 
 			.btn {
-				margin: 0 0 15px;
-				max-width: 300px;
+				margin: 0 5px 15px;
+				max-width: 290px;
 				width: 100%;
 				padding-left: 10px;
 				padding-right: 10px;
@@ -1489,82 +1568,82 @@ $gpad: 40px;
 	}
 }
 
-/* The container must be positioned relative: */
-.custom-select {
-	position: relative;
-	font-family: "Gotham Pro";
-	font-size: 16px;
-	border-radius: 2px;
-	line-height: 1;
-
-	select {
-		display: none;
-		/*hide original SELECT element: */
-	}
-}
-
-.select-selected {
-	background-color: $color_dark;
-	border: 1px solid $color_primary;
-	padding-right: 30px;
-	overflow: hidden;
-	text-overflow: ellipsis;
-	height: 46px;
-	border-radius: 30px;
-
-	&:after {
-		position: absolute;
-		content: "";
-		top: 21px;
-		right: 17px;
-		width: 0;
-		height: 0;
-		border: 5px solid transparent;
-		border-color: $color_primary transparent transparent transparent;
-	}
-
-	/* Point the arrow upwards when the select box is open (active): */
-	&.select-arrow-active {
-		border-radius: 23px 23px 0 0;
-		border-bottom: 0;
-
-		&:after {
-			border-color: transparent transparent $color_primary transparent;
-			top: 14px;
-		}
-	}
-}
-
-/* Style the arrow inside the select element: */
-
-/* style the items (options), including the selected item: */
-.select-items div,
-.select-selected {
-	padding: 15px 20px;
-	// border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
-	cursor: pointer;
-}
-
-/* Style items (options): */
-.select-items {
-	box-shadow: 0 1px 5px rgba($color_primary, 0.2);
-	background-color: $color_dark;
-	position: absolute;
-	top: 100%;
-	left: 0;
-	right: 0;
-	z-index: 99;
-	border: 1px solid $color_primary;
-	border-top: 0;
-	border-radius: 0 0 23px 23px;
-	overflow: hidden;
-
-}
-
-/* Hide the items when the select box is closed: */
-.select-hide {
-	display: none;
-}
+// /* The container must be positioned relative: */
+// .custom-select {
+// 	position: relative;
+// 	font-family: "Gotham Pro";
+// 	font-size: 16px;
+// 	border-radius: 2px;
+// 	line-height: 1;
+//
+// 	select {
+// 		display: none;
+// 		/*hide original SELECT element: */
+// 	}
+// }
+//
+// .select-selected {
+// 	background-color: $color_dark;
+// 	border: 1px solid $color_primary;
+// 	padding-right: 30px;
+// 	overflow: hidden;
+// 	text-overflow: ellipsis;
+// 	height: 46px;
+// 	border-radius: 30px;
+//
+// 	&:after {
+// 		position: absolute;
+// 		content: "";
+// 		top: 21px;
+// 		right: 17px;
+// 		width: 0;
+// 		height: 0;
+// 		border: 5px solid transparent;
+// 		border-color: $color_primary transparent transparent transparent;
+// 	}
+//
+// 	/* Point the arrow upwards when the select box is open (active): */
+// 	&.select-arrow-active {
+// 		border-radius: 23px 23px 0 0;
+// 		border-bottom: 0;
+//
+// 		&:after {
+// 			border-color: transparent transparent $color_primary transparent;
+// 			top: 14px;
+// 		}
+// 	}
+// }
+//
+// /* Style the arrow inside the select element: */
+//
+// /* style the items (options), including the selected item: */
+// .select-items div,
+// .select-selected {
+// 	padding: 15px 20px;
+// 	// border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+// 	cursor: pointer;
+// }
+//
+// /* Style items (options): */
+// .select-items {
+// 	box-shadow: 0 1px 5px rgba($color_primary, 0.2);
+// 	background-color: $color_dark;
+// 	position: absolute;
+// 	top: 100%;
+// 	left: 0;
+// 	right: 0;
+// 	z-index: 99;
+// 	border: 1px solid $color_primary;
+// 	border-top: 0;
+// 	border-radius: 0 0 23px 23px;
+// 	overflow: hidden;
+//
+// }
+//
+// /* Hide the items when the select box is closed: */
+// .select-hide {
+// 	display: none;
+// }
 
 .same-as-selected,
 .select-items div:hover {
@@ -1611,6 +1690,10 @@ $gpad: 40px;
 		border: 1px solid $color_primary;
 		background-color: $color_dark;
 		transition: 0.3s;
+
+		&_left {
+			text-align: left;
+		}
 	}
 
 	&:hover {
@@ -1621,7 +1704,10 @@ $gpad: 40px;
 
 	&:before {
 		content: '?';
+	}
 
+	&_seccondary {
+		background-color: rgba($color_dark, 0.1);
 	}
 }
 
@@ -1711,6 +1797,137 @@ select {
 			height: auto !important;
 			// width: 100%;
 			// height: 100%;
+		}
+	}
+}
+
+.panel {
+	background-color: rgba($color_muted, .1);
+	padding: 20px 20px 20px 26px;
+	border-left: 4px solid $color_info;
+	// margin-bottom: 10px;
+	&__title {
+		font-size: 20px;
+		font-weight: 600;
+		color: $color_success;
+		margin-bottom: 15px;
+	}
+
+	&__text {
+		line-height: 1.5;
+	}
+}
+
+.earnings {
+	&__top {
+		// font-weight: 500;
+		// color: $color_success;
+		padding: 20px 0;
+		margin-bottom: 30px;
+		border-bottom: 1px solid $color_info;
+		font-size: 17px;
+	}
+
+	&__bottom {
+		display: flex;
+		margin-left: -30px;
+		// margin-bottom: 40px;
+
+		strong {
+			font-weight: 500;
+			font-size: 22px;
+			color: $color_success;
+			display: block;
+		}
+
+		small {
+			display: block;
+			margin-top: 15px;
+			color: $color_muted;
+		}
+
+		@media (max-width: 767px) {
+			flex-wrap: wrap;
+		}
+	}
+
+	&__item {
+		display: flex;
+		// width: 100%;
+		padding-left: 30px;
+		margin-bottom: 30px;
+		flex-grow: 1;
+		line-height: 1.5;
+	}
+}
+
+.anyone {
+	display: flex;
+	flex-wrap: wrap;
+	margin-left: -30px;
+
+	&__item {
+		display: flex;
+		padding-left: 30px;
+		margin-bottom: 30px;
+
+		@media (min-width: 768px) {
+			width: 33.3%;
+		}
+	}
+}
+
+.progress {
+	display: flex;
+	flex-wrap: wrap;
+	margin-left: -30px;
+
+	&__item {
+		display: flex;
+		padding-left: 30px;
+		margin-bottom: 30px;
+		width: 100%;
+
+		@media (min-width: 768px) {
+			width: 50%;
+		}
+		@media (min-width: 992px) {
+			width: 25%;
+		}
+	}
+}
+
+.keyskills {
+	margin-bottom: 60px;
+
+	&__list {
+		// font-size: 14px;
+
+		@media (min-width: 768px) {
+			font-size: 16px;
+		}
+	}
+
+	&__item {
+		// padding-left: 30px;
+		margin-bottom: 10px;
+		display: flex;
+		// color: $color_primary;
+
+		&:before {
+			content: '';
+			margin-right: 14px;
+			transform: rotate(45deg);
+			width: 6px;
+			height: 11px;
+			border-right: 2px solid $color_danger;
+			border-bottom: 2px solid $color_danger;
+
+			@media (min-width: 768px) {
+				margin-right: 20px;
+				width: 8px;
+				height: 14px;
+			}
 		}
 	}
 }

@@ -3,20 +3,29 @@ extends ../layout/pay_template.jade
 block variables
     -var pageClass = "";
     -var name = 'Оплата обучения в школе GRAMPUS';
+    -var payment = true;
 
 block content
     h1.title.title__page
         .title__page_name= name
         .title__page_line
-        // Платежная форма Эти поля обязательные, их нельзя удалять.
-    form.form(action='/payment/pay.php' method='post')
+
+    // Платежная форма Эти поля обязательные, их нельзя удалять.
+    //- form.form
+    form.form(action='/createOrderYC.php' method='post')
         .form__row
             input(name='customerNumber' value='' placeholder='Номер договора' required='')
         .form__row
             input(name='sum' value='' type='number' min='1' placeholder='Сумма платежа' required='')
+        .form__row
+            select(name="payType" required)
+                option(value="") Выберите тип оплаты
+                option(value="bank_card") Банковская карта
+                option(value="installments") Рассрочка
+                option(value="yandex_money") Яндекс Деньги
         //- .form__row
         //- Поле name="customerNumber" обязательное, его нельзя удалять. По нему вы сможете понять, кто вам заплатил.Вы можете назвать это поле как угодно. Например, вместо "Имя покупателя" написать "Идентификатор плательщика", "Номер клиента", "Имя клиента" или "Номер заказа".
-            input(required='' name='customerNumber' value='' size='64')
+        //- input(required='' name='customerNumber' value='' size='64')
         //- Эти поля можно убрать или переименовать. Например, вместо "Телефон покупателя" написать "Цвет глаз" или "Номер автомобиля".
         //- .form__row
         //-     input(name='custName' value='' size='64')
@@ -28,3 +37,10 @@ block content
         //-     textarea(name='orderDetails' value='' rows='5' cols='64' wrap='soft')
         //- Кнопку "Заплатить" можно назвать как угодно. Например, "Оплатить подписку" или "Внести деньги"
         input.btn(type='submit' value='Заплатить')
+
+        .form-btn
+
+
+    script(src="https://static.yandex.net/checkout/js/v1/")
+    script(src="https://static.yandex.net/checkout/ui/v1/")
+    script(src="https://static.yandex.net/kassa/pay-in-parts/ui/v1/")
