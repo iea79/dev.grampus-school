@@ -864,6 +864,7 @@ $gpad: 40px;
 		display: flex;
 		background-color: transparent;
 		padding: 0;
+		border-left: 0;
 		@media (max-width: 991px) {
 			flex-wrap: wrap;
 		}
@@ -1094,6 +1095,20 @@ $gpad: 40px;
 			line-height: 1;
 			border-width: 2px;
 
+		}
+	}
+
+	&Tarif {
+		&__action {
+			padding: 1.5em 0 0.5em;
+			margin-top: 1em;
+			border-top: 1px solid $color_muted;
+
+			.btn {
+				width: 100%;
+				// padding: 2em;
+				min-height: 54px;
+			}
 		}
 	}
 	@media (max-width: 991px) {

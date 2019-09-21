@@ -1,0 +1,306 @@
+extends template.jade
+
+block variables
+    -var pageClass = "coursePage";
+    -var courses = 'active';
+    -var online = true;
+
+mixin courseProgramm(courseList)
+    .programm
+    .programm__item
+        .programm__name= courseList.title
+        div !{courseList.list}
+    -;
+
+mixin courseAction
+    .training__action
+        if courseDate
+            button.btn.btn_primary.js_btn_pay(type="button" data-toggle="modal" data-target="#payment" onclick="gtag('event', 'openForm', { 'event_category': 'FormPay', 'event_action': 'click', });") Записаться и оплатить
+                span
+            //- button.btn.btn_primary(data-toggle="modal" data-target="#order" onclick="gtag('event', 'openForm', { 'event_category': 'FormKurs', 'event_action': 'click', });") Оставить заявку на обучение
+
+            a.btn(href="https://vk.com/write-31893650" target="blank" title="Страница откроется в новом окне") Задать вопрос Вконтакте
+        else
+            a.btn(href="https://vk.com/write-31893650" target="blank" title="Страница откроется в новом окне") Узнать о ближайшем наборе
+    -;
+
+
+block title
+    title #{courseType} #{courseTitle}
+
+block meta
+    meta(name="keywords" content= courseType + ' ' + courseTitle)
+    meta(name="description" content= courseSub)
+
+block seo
+    meta(property="og:title" content= courseType + ' ' + courseTitle)
+    meta(property="og:description" content= courseDescription)
+
+
+block content
+
+
+    a.backLink(href="/courses/") Расписание очных и онлайн курсов в школе Grampus
+
+    .training
+        .training__top
+            .training__left
+                .training__type !{courseType} 
+                    span Возможно удаленное обучение. Подробности в нашей группе Вконтакте
+                .training__title !{courseTitle}
+                .training__subtitle !{courseSub}
+                .training__info !{courseDescription}
+
+                .training__date 
+                    div 
+                        span Старт группы: 
+                        if !courseDate
+                            span набор закрыт
+                        else
+                            span !{courseDate}
+                    div
+                        span Продолжительность: 
+                        span !{courseDuration}
+                    div
+                        span Занятия по 
+                        span !{courseTime}
+                    .training__creditPrice
+
+                //- +courseAction
+
+            .training__right
+                .training__img
+                    img(src= courseImg, alt="")
+
+    h2#earnings.programm__title Заработок после обучения
+    .earnings
+        .earnings__top !{earningTop}
+        .earnings__bottom
+            .earnings__item
+                .panel
+                    strong от !{earningSumm} ₽
+                    |!{earningProf}
+                    small (по данным 
+                        a(href= earningLink target="blank") hh.ru
+                        |)
+            .earnings__item
+                .panel Вы можете сразу после обучения начать получать достойное вознаграждение. И как дополнительный плюс профессии — заказы можно совмещать с основной работой.
+
+    +courseAction
+
+    h2.programm__title Кому подойдет курс
+    .anyone
+        each item in anyone
+            .anyone__item
+                .panel
+                    .panel__title= item.title
+                    .panel__text= item.text
+
+
+    h2.programm__title Как проходит обучение
+
+    .progress
+        each item in progress
+            .progress__item
+                .panel
+                    .panel__title= item.title
+                    .panel__text= item.text
+
+
+    //- +courseAction
+
+    .anchor#programm
+    h2.programm__title Программа курса
+    .programm
+        for courseList in programList
+            +courseProgramm(courseList)
+
+        .programm__info Мы используем уникальный подход к обучению. Вы получите гораздо больше, чем рассчитывали ;)
+
+    br
+    +courseAction
+
+    .anchor#teacher
+    h2.programm__title Преподаватель курса
+    .training__teacher
+        .training__photo
+            .img_circle
+                img(src=courseCoachPhoto, alt="")
+        .training__teacherDescr 
+            b #{courseCoachName} 
+            br 
+            |!{courseCoachExp}
+
+    if (courseName != 'polygraphy' && courseName != 'designpresent')
+        .reviewShow
+            a.reviewShow__link(href="/review/") Читать отзывы о курсе
+
+    if courseName == 'grafdesign'
+        h2.programm__title Ключевые навыки после обучения
+        .keyskills
+            .keyskills__list
+                each item in keyskills
+                    .keyskills__item= item
+
+    //- +courseAction
+    .anchor#price
+    h2.programm__title Стоимость курса
+
+    script.
+        var coursePrice = [{name: 'self', summ: #{courseBasePrice}}, {name: 'standart',summ: #{courseStandartPrice}}, {name: 'pro', summ: #{courseProPrice}}];
+        var courseDuration = #{courseDurationMonth};
+        //- let courseArrPrice = [courseBasePrice, courseStandartPrice, courseProPrice];
+
+    if (coursePromoDate)
+        .training__promo Стоимость до #{coursePromoDate} *
+            i.tooltip
+                span.tooltip__content Стоимость постоянно растет. Вы можете зафиксировать стоимость и забронировать место на курсе внеся 2000 руб. Остальная часть суммы вносится до начала зантий по выбранному вами варианту.
+            .training__promoSub 
+
+    .training__bottom
+        .training__sales.training__grid
+            .training__salesItem
+                .training__salesTitle "Все сам"
+                ul.training__salesList 
+                    li Продолжительность 3 месяца
+                    li Доступ к вэбинарам
+                    li Доступ к записям вэбинаров
+                    li Доступ к базе знаний
+                    li Доступ в группу потока в Вконтакте
+                    li Общение в чате группы
+                    li.disabled Домашние задания с проверками
+                    li.disabled Консультации с наставником. Текстом - неограниченно.
+                    li.disabled Сертификаты участникам
+                    li.disabled Выпускные проекты
+                    li.disabled Индивидуальное онлайн общение с наставником. Скайп - 60 минут в неделю.
+                    li.disabled Помощь с первыми заказми на фрилансе.
+                .training__salesWrap
+                    .training__price= courseBasePrice.toLocaleString() + ' руб.'
+                    //- .training__priceSub= 'или ' + (Math.round((courseBasePrice/3*1.05)/100, 0) * 100).toLocaleString() + ' руб. в месяц'
+                .trainingTarif__action
+                    button.btn.btn_primary.js_btn_pay(type="button" data-toggle="modal" data-target="#payment" data-tarif="self" onclick="gtag('event', 'openForm', { 'event_category': 'FormPay', 'event_action': 'click', });") Купить тариф "Все сам"
+                        span 
+
+            .training__salesItem
+                .training__salesTitle "Стандарт"
+                ul.training__salesList 
+                    li Продолжительность 3 месяца
+                    li Доступ к вэбинарам
+                    li Доступ к записям вэбинаров
+                    li Доступ к базе знаний
+                    li Доступ в группу потока в Вконтакте
+                    li Общение в чате группы
+                    li Домашние задания с проверками
+                    li Консультации с наставником. Текстом - неограниченно.
+                    li Сертификаты участникам
+                    li 2 выпускных проекта
+                    li.disabled Индивидуальное онлайн общение с наставником. Скайп - 60 минут в неделю.
+                    li.disabled Помощь с первыми заказми на фрилансе.
+                .training__salesWrap
+                    .training__price= courseStandartPrice.toLocaleString() + ' руб.'
+                .trainingTarif__action
+                    button.btn.btn_primary.js_btn_pay(type="button" data-toggle="modal" data-target="#payment" data-tarif="standart" onclick="gtag('event', 'openForm', { 'event_category': 'FormPay', 'event_action': 'click', });") Купить тариф "Стандарт"
+                        span 
+            .training__salesItem
+                .training__salesTitle "PRO"
+                ul.training__salesList 
+                    li Продолжительность 3+ месяца
+                    li Доступ к вэбинарам
+                    li Доступ к записям вэбинаров
+                    li Доступ к базе знаний
+                    li Доступ в группу потока в Вконтакте
+                    li Общение в чате группы
+                    li Домашние задания с проверками
+                    li Консультации с наставником. Текстом - неограниченно.
+                    li Сертификаты участникам
+                    li 3 выпускных проекта
+                    li Индивидуальное онлайн общение с наставником. Скайп - 60 минут в неделю.
+                    li Помощь с первыми заказми на фрилансе.
+                .training__salesWrap
+                    .training__price= courseProPrice.toLocaleString() + ' руб.'
+                .trainingTarif__action
+                    button.btn.btn_primary.js_btn_pay(type="button" data-toggle="modal" data-target="#payment" data-tarif="pro" onclick="gtag('event', 'openForm', { 'event_category': 'FormPay', 'event_action': 'click', });") Купить тариф "PRO"
+                        span 
+
+        .training__students Для студентов, школьников и постоянных клиентов скидка 20% 
+            br
+            span * Стоимость постоянно растет. Вы можете зафиксировать стоимость и забронировать место на курсе внеся 2000 руб. Остальная часть суммы вносится до начала зантий по выбранному вами варианту (рассрочка или один платеж).
+            br
+            span ** Для самых активных есть дополнительные скидки. Подробности в чате нашей группы 
+                a(href="https://vk.com/write-31893650") Вконтакте. 
+                |Просто напишите "Хочу скидку на #{courseTitle}"
+
+    //- +courseAction
+
+
+    -var formLink = 'https://app.moyklass.com/api/site/widget/forms?id='+ vidgetId;
+
+    .modal.fade.order#order
+        .modal-dialog
+            .modal-content
+                a(href="#" class="modal-close" data-dismiss="modal")
+                .modal-body 
+                    div(id=''+formId+'')
+
+    //- Button trigger modal payment
+    //- button(class="btn btn-primary btn-lg" data-toggle="modal" data-target="#payment") Click to open modal
+    // Begin Modal payment
+
+    -var formPrice = courseBasePrice;
+
+    .modal.fade.payment#payment
+        .modal-dialog
+            form.form.form_yk(action="https://money.yandex.ru/eshop.xml" method="post")
+                .modal-content
+                    a(href="#" class="modal-close" data-dismiss="modal")
+                    h2.programm__title Запись и оплата программы "#{courseTitle}"
+                    .modal-body 
+                    input(name="shopId" value="597204" type="hidden" required)
+                    input(name="scid" value="959623" type="hidden" required)
+                    input(id="customerNumber" name='customerNumber' type="hidden" value=""+courseType+" - "+courseTitle+"" placeholder='Например: "Графический дизайн"' required)
+                    input(id='sum' name='sum' value='' type='hidden' min='1' placeholder='Сумма платежа' required)
+                    .form__row
+                        h3.form__sub Заполните информацию о вас 
+                            span (данные будет нужны для подтверждения оплаты и оформления договора)
+                        label.form__label(for="custName") Введите ваши ФИО*
+                        input(id="custName" name='custName' type="text" value='' placeholder='Например: "Иванов Иван Иванович"' required)
+                    .form__row
+                        label.form__label(for="custAddr") Введите ваш телефон*
+                        input(id="custAddr" name='custAddr' type="tel" value='' placeholder='Например: "+7(992)209-86-59"' required)
+                    .form__row
+                        label.form__label(for="custEmail") Введите удобный вариант для связи с вами
+                        input(id="custEmail" name='custEmail' type="text" value='' placeholder='Например: Ссылка ВК https://vk.com/grampus_school')
+                    .form__row
+                        label.form__label(for="Tarif") Выберите тариф*
+                        select#Tarif.select(name="Tarif" required)
+                            option(value="")
+                            option(id="self" value= courseBasePrice) Тариф "Все сам"
+                            option(id="standart" value= courseStandartPrice) Тариф "Стандарт"
+                            option(id="pro" value= courseProPrice) Тариф "PRO"
+                    .form__row
+                        label.form__label(for="payType") Выберите вариант оплаты*
+                        select#payType.select(name="payType" required)
+                            option( value="")
+                            option(id="typeBook" value="2000") Бронирование места
+                            option(id="typeGrampusCredit" value=""+ Math.round((formPrice*1.1/courseDurationMonth)/100, 0) * 100 +"") Заплатить по частям (#{courseDurationMonth} платежа)
+                            option(id="typeYkCredit" value=""+formPrice+"") Заплатить по частям (6 или 12 месяцев)
+                            option(id="typeSingleSum" value=""+formPrice+"") Оплата одним платежом
+                            option(id="typeHandle" value="handle") Ввести сумму вручную
+                    .form__row
+                        input(type="hidden", id="handle" placeholder="Введите сумму в рублях")
+                    .form__row
+                        label.checkbox
+                            input(type="checkbox", id="sale") 
+                            |Скидка 20% (только для наших постоянных учеников, а так же студентов при предъявлении студенческого)
+                    .form__total
+                    .form__error
+                    .form__action
+                        input.btn.btn_primary.js_pay(type='submit' value='Перейти к оплате')
+                        a.btn(href="https://vk.com/write-31893650" target="blank" title="Страница откроется в новом окне") Задать вопрос Вконтакте
+                        //- button.btn.js_sendOrder(type='button') Получить консультацию
+                        p
+                            small Мы не собираем ваши данные, вплоть до момента оплаты на сайте платежных систем. И используем их только для подтверждения оплаты и заполнения договора.
+    // End modal payment
+
+    script(src= formLink)
+    script WdgMoyklass['forms#{vidgetId}'].init('#{formId}')

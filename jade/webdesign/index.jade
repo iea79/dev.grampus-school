@@ -32,9 +32,9 @@ block variables
     //- Базовая стоимость
     -var courseBasePrice = 15800;
     //- Стоимость до даты
-    -var coursePromoDate = '16 сентября';
+    -var coursePromoDate = '20 сентября';
     //- Единым платежом
-    -var courseTotalPrice = courseBasePrice*1.05;
+    -var courseTotalPrice = Math.round((courseBasePrice*1.1)/100, 0) * 100;
     //- В рассрочку
     -var courseSemiPrice = true;
 

@@ -5,6 +5,8 @@ function calculatePayForm() {
     var shopId = '597204',
         select = $('#payType'),
         value = select.val(),
+        tarif = $('#Tarif'),
+        tarifBtn = $('[data-tarif]'),
         sale = $('#sale'),
         sumField = $('input#sum'),
         handleField = $('input#handle'),
@@ -13,6 +15,7 @@ function calculatePayForm() {
         optHandle = $('#typeHandle'),
         optYkCredit = $('#typeYkCredit'),
         optGrampusCredit = $('#typeGrampusCredit'),
+        optSingle = $('#typeSingleSum'),
         curentPrice = coursePrice,
         creditTerm = '',
         creditPercent = '',
@@ -24,7 +27,55 @@ function calculatePayForm() {
         changePaymentType($(this).val());
     });
 
+    tarif.on('change', function() {
+        curentPrice = $(this).val();
+        // tarifType = $(this).data('tarif');
+        optSingle.prop('selected', true);
+        select.trigger('change');
+
+        hideSaleBox();
+        setTarifPrice(curentPrice);
+        changePaymentType(curentPrice);
+        // switch (tarifType) {
+        //     case 'self':
+        //         break;
+        //     case 'standart':
+        //         setTarifPrice(curentPrice);
+        //         break;
+        //     case 'pro':
+        //         setTarifPrice(curentPrice);
+        //         break;
+        //     default:
+        //
+        // }
+
+    });
+
+    function setTarifPrice(sum) {
+        // optGrampusCredit.val(((sum*1.1/courseDuration)/100, 0) * 100);
+        optGrampusCredit.val(Math.round(sum*1.1/courseDuration));
+        optYkCredit.val(sum);
+        optSingle.val(sum);
+    }
+
+    tarifBtn.on('click', function() {
+        var id = $(this).data('tarif');
+        $('#'+id).attr('selected', true);
+        tarif.trigger('change');
+    })
+
     hideSaleBox();
+
+    if (Array.isArray(coursePrice)) {
+        // console.log(coursePrice);
+
+        for (var i = 0; i < coursePrice.length; i++) {
+            // console.log(coursePrice[i]);
+            setCreditPrice(coursePrice[i].summ, coursePrice[i].name);
+        }
+    } else {
+        setCreditPrice(coursePrice);
+    }
 
     sale.on('change', function() {
         if (sale.prop('checked')) {
@@ -49,8 +100,6 @@ function calculatePayForm() {
             showTotalSum('Сумма не выбрана');
         }
     });
-
-    setCreditPrice(coursePrice);
 
     function changePaymentType(value) {
 
@@ -101,7 +150,7 @@ function calculatePayForm() {
             default:
                 hideSaleBox();
                 sumField.val('');
-                showTotalSum('Данный вариант не доступен! Выберите другой');
+                showTotalSum('Выберите вариант оплаты');
 
         }
     }
@@ -123,12 +172,13 @@ function calculatePayForm() {
         messageBox.append('<span>' + message + '</span>');
     };
 
-    function setCreditPrice(sum) {
+    function setCreditPrice(sum, tariffName) {
 
         if (coursePrice) {
             // console.log(coursePrice);
             $.getJSON('https://money.yandex.ru/credit/order/ajax/credit-pre-schedule?shopId=' + shopId +'&sum='+ sum +'', function(json, textStatus) {
 
+                // console.log(coursePrice);
                 if (textStatus !== 'success') {
                     creditAmount = Math.round(((coursePrice*1.1)/courseDuration)/100, 0)*100;
                 } else {
@@ -138,15 +188,21 @@ function calculatePayForm() {
                     creditAmount = Number(json.amount).toFixed();
                     creditTotalAmount = json.totalAmount;
                 }
+                if (tariffName) {
+                    // console.log(tariffName);
+                    $('[data-tarif='+tariffName+'] span').html('от ' + thousandSeparator(creditAmount) + '&nbsp;₽&nbsp;/&nbsp;мес')
+                } else {
+                    $('.training__price span').html('от ' + thousandSeparator(creditAmount) + ' руб');
+                    $('.js_btn_pay span').html('от ' + thousandSeparator(creditAmount) + '&nbsp;₽&nbsp;/&nbsp;мес');
+                    optYkCredit.val(creditAmount);
+                }
 
-                $('.training__creditPrice').html('<span>Стоимость:</span> <span>от ' + thousandSeparator(creditAmount) + ' руб/мес</span>');
-                $('.training__price span').html('от ' + thousandSeparator(creditAmount) + ' руб');
-                $('.js_btn_pay span').html('от ' + thousandSeparator(creditAmount) + '&nbsp;₽&nbsp;/&nbsp;мес');
-                optYkCredit.val(creditAmount);
+                if (!$('.training__creditPrice').text()) {
+                    $('.training__creditPrice').html('<span>Стоимость:</span> <span>от ' + thousandSeparator(creditAmount) + '&nbsp;руб/мес</span>');
+                }
             });
         }
     };
-
 };
 
 calculatePayForm();
