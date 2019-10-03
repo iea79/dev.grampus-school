@@ -1,0 +1,63 @@
+extends ../../layout/template.jade
+
+block variables
+    -var pageClass = "";
+    -var review = 'active';
+
+
+block title
+    title Оставить отзыв о школе Grampus
+
+block content
+    form.form.form_sm.reviewForm#reviewForm(action="https://docs.google.com/forms/d/e/1FAIpQLSeAtQzh09Trmm1H19iuNuA4uyqsTe6btmDwQKjnUs8y7ot9jg/formResponse" method="POST")
+        input(type="hidden" id="antispam" value="")
+        .form__title Написать отзыв о школе Grampus
+        .form__row
+            label.form__label Выберите курс
+            select#courseName(name="entry.113233523" required)
+                option(value="")
+                option(value="Вэб-дизайн") Вэб-дизайн
+                option(value="Графический дизайн") Графический дизайн
+                option(value="Разработка сайтов") Разработка сайтов
+        .form__row
+            label.form__label Введите ваше Имя
+            input#name(type="text", name="entry.1203299263" placeholder="Иванов Иван Иванович" required)
+        .form__row
+            //- label.form__label Загрузите свое фото или аватар
+            input#photo(type="hidden" name="entry.1019608975")
+            //- form(action="/upload.php" method="POST" enctype="multipart/form-data")
+            .form__upload
+                .form__uploadFields
+                    input#inputfile(type="file" name="inputfile" accept="image/jpeg,image/png" required)
+                    label.btn(for="inputfile") Загрузить фото
+                    .form__uploadText Файл не выбран
+                .form__uploadImg
+        .form__row
+            label.form__label Введите ссылку на ваш профиль в соц сети
+            input#contactLink(type="text", name="entry.678226380" placeholder="Например https://vk.com/grampus_school" required)
+        .form__row
+            label.form__label Поставьте оценку курсу от 1-ого до 5-и
+            input#reviewRate(type="hidden" name="entry.1585708549" value="5" required)
+            .formRate
+                input(type="radio" id="five" name="rate" value="5" checked)
+                label.icon-star(for="five" title="Все супер!")
+                input(type="radio" id="four" name="rate" value="4")
+                label.icon-star(for="four" title="Хорошо")
+                input(type="radio" id="three" name="rate" value="3")
+                label.icon-star(for="three" title="Могло быть и лучше")
+                input(type="radio" id="two" name="rate" value="2")
+                label.icon-star(for="two" title="Не понравилось")
+                input(type="radio" id="one" name="rate" value="1")
+                label.icon-star(for="one" title="Полный отстой")
+        .form__row
+            label.form__label Напишите что вам понравилось у нас на курсах, и чего вам не хватало.
+            textarea#reviewMessage(name="entry.637856131" required)
+        .form__error
+        .form__action
+            button.btn.js_sendReview(type="submit") Отправить отзыв
+    .reviewRezult
+
+
+block pageScript
+    script(src="/js/review.js")
+    script(src="/js/submit.js")
