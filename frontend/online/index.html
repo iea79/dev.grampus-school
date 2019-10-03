@@ -6,11 +6,12 @@
     <title>Онлайн курс Разработка сайтов: HTML, CSS, jQuery</title>
     <meta name="keywords" content="Онлайн курс Разработка сайтов: HTML, CSS, jQuery"/>
     <meta name="description" content="Научитесь front-end разработке сайтов с нуля за 3 месяца"/>
-    <meta property="og:url" content="http://grampus-school.ru/"/>
-    <meta property="og:image" content="http://grampus-school.ru/meta_logo.jpg"/>
+    <meta property="og:url" content="https://grampus-school.ru/"/>
+    <meta property="og:image" content="https://grampus-school.ru/meta_logo.jpg"/>
     <meta property="og:title" content="Онлайн курс Разработка сайтов: HTML, CSS, jQuery"/>
     <meta property="og:description" content="Вы научитесь визуализировать дизайн в вебе, создавать веб-страницы, лендинги; получите основы всех аспектов веб-разработки: узнаете что такое HTML и CSS, как создаётся интерактивность, как делается анимация и эффекты, как разрабатываются сайты для телефонов и планшетов. А главное, получите опытных наставников на длительное время."/>
     <meta name="yandex-verification" content="19e0e109f8e8fd43"/>
+    <meta name="google-site-verification" content="8O71tY8gNldcrvgnofRVrdaEx3zSK3gqlQqCliqTFjg"/>
     <link rel="apple-touch-icon" sizes="57x57" href="/img/ico/apple-icon-57x57.png"/>
     <link rel="apple-touch-icon" sizes="60x60" href="/img/ico/apple-icon-60x60.png"/>
     <link rel="apple-touch-icon" sizes="72x72" href="/img/ico/apple-icon-72x72.png"/>
@@ -28,7 +29,7 @@
     <meta name="msapplication-TileColor" content="#ffffff"/>
     <meta name="msapplication-TileImage" content="/img/ico//ms-icon-144x144.png"/>
     <meta name="theme-color" content="#ffffff"/>
-    <link href="/css/style.css?4.7" rel="stylesheet"/>
+    <link href="/css/style.css?5.5" rel="stylesheet"/>
   </head>
   <body>
     <div class="wrapper">
@@ -120,13 +121,13 @@
             <div class="progress__item">
               <div class="panel">
                 <div class="panel__title">Домашние задания</div>
-                <div class="panel__text">Если вы думаете что 4 часа занятий в неделю мало, то поверьте - это так )</div>
+                <div class="panel__text">Если вы думаете что 4 часа занятий в неделю мало, то поверьте - это не так )</div>
               </div>
             </div>
             <div class="progress__item">
               <div class="panel">
                 <div class="panel__title">Общение</div>
-                <div class="panel__text">Постоянное общение с преподавателем и сокурсниками в общем чате потока во время и после окончания курса.</div>
+                <div class="panel__text">Постоянное общение с преподавателем и сокурсниками в общем чате потока во время и даже после окончания курса.</div>
               </div>
             </div>
             <div class="progress__item">
@@ -135,6 +136,9 @@
                 <div class="panel__text">По окончании курса у вас появится базовое портфолио из минимум 2-х созданных проектов в зависимости от выбранного тарифа</div>
               </div>
             </div>
+          </div>
+          <div class="training__action">
+            <button class="btn btn_primary js_btn_pay" type="button" data-toggle="modal" data-target="#payment" onclick="gtag('event', 'openForm', { 'event_category': 'FormPay', 'event_action': 'click', });">Записаться и оплатить<span></span></button><a class="btn" href="https://vk.com/write-31893650" target="blank" title="Страница откроется в новом окне">Задать вопрос Вконтакте</a>
           </div>
           <div class="anchor" id="programm"></div>
           <h2 class="programm__title">Программа курса</h2>
@@ -185,7 +189,7 @@
               <div>Выбор ниши (специализации), Самые прибыльные сервисы для поиска клиентов, Создание профиля, Отклики на проекты, Общение с заказчиками, Как попасть в топ по своей специализации</div>
             </div>
             <div class="programm__info">Мы используем уникальный подход к обучению. Вы получите гораздо больше, чем рассчитывали ;)</div>
-          </div><br/>
+          </div>
           <div class="training__action">
             <button class="btn btn_primary js_btn_pay" type="button" data-toggle="modal" data-target="#payment" onclick="gtag('event', 'openForm', { 'event_category': 'FormPay', 'event_action': 'click', });">Записаться и оплатить<span></span></button><a class="btn" href="https://vk.com/write-31893650" target="blank" title="Страница откроется в новом окне">Задать вопрос Вконтакте</a>
           </div>
@@ -226,11 +230,16 @@
                   <li class="disabled">Индивидуальное онлайн общение с наставником. Скайп - 60 минут в неделю.</li>
                   <li class="disabled">Помощь с первыми заказми на фрилансе.</li>
                 </ul>
-                <div class="training__salesWrap">
-                  <div class="training__price">10 800 руб.</div>
+                <div class="training__salesWrap training__salesWrap_old">
+                  <div class="training__price">10 800 руб.
+                    <div class="sub">При оплате одним платежом</div>
+                  </div>
+                  <div class="training__priceSub">Старая цена
+                    <div class="old">15 100 руб.</div>
+                  </div>
                 </div>
                 <div class="trainingTarif__action">
-                  <button class="btn btn_primary js_btn_pay" type="button" data-toggle="modal" data-target="#payment" data-tarif="self" onclick="gtag('event', 'openForm', { 'event_category': 'FormPay', 'event_action': 'click', });">Купить тариф "Все сам"<span> </span></button>
+                  <button class="btn btn_primary js_btn_pay" type="button" data-toggle="modal" data-target="#payment" data-price="10800" data-tarif="self" onclick="gtag('event', 'openForm', { 'event_category': 'FormPay', 'event_action': 'click', });">Купить тариф "Все сам"<span> </span></button>
                 </div>
               </div>
               <div class="training__salesItem">
@@ -249,11 +258,16 @@
                   <li class="disabled">Индивидуальное онлайн общение с наставником. Скайп - 60 минут в неделю.</li>
                   <li class="disabled">Помощь с первыми заказми на фрилансе.</li>
                 </ul>
-                <div class="training__salesWrap">
-                  <div class="training__price">16 500 руб.</div>
+                <div class="training__salesWrap training__salesWrap_old">
+                  <div class="training__price">16 500 руб.
+                    <div class="sub">При оплате одним платежом</div>
+                  </div>
+                  <div class="training__priceSub">Старая цена
+                    <div class="old">23 100 руб.</div>
+                  </div>
                 </div>
                 <div class="trainingTarif__action">
-                  <button class="btn btn_primary js_btn_pay" type="button" data-toggle="modal" data-target="#payment" data-tarif="standart" onclick="gtag('event', 'openForm', { 'event_category': 'FormPay', 'event_action': 'click', });">Купить тариф "Стандарт"<span> </span></button>
+                  <button class="btn btn_primary js_btn_pay" type="button" data-toggle="modal" data-target="#payment" data-price="16500" data-tarif="standart" onclick="gtag('event', 'openForm', { 'event_category': 'FormPay', 'event_action': 'click', });">Купить тариф "Стандарт"<span> </span></button>
                 </div>
               </div>
               <div class="training__salesItem">
@@ -272,15 +286,20 @@
                   <li>Индивидуальное онлайн общение с наставником. Скайп - 60 минут в неделю.</li>
                   <li>Помощь с первыми заказми на фрилансе.</li>
                 </ul>
-                <div class="training__salesWrap">
-                  <div class="training__price">21 900 руб.</div>
+                <div class="training__salesWrap training__salesWrap_old">
+                  <div class="training__price">21 900 руб.
+                    <div class="sub">При оплате одним платежом</div>
+                  </div>
+                  <div class="training__priceSub">Старая цена
+                    <div class="old">30 700 руб.</div>
+                  </div>
                 </div>
                 <div class="trainingTarif__action">
-                  <button class="btn btn_primary js_btn_pay" type="button" data-toggle="modal" data-target="#payment" data-tarif="pro" onclick="gtag('event', 'openForm', { 'event_category': 'FormPay', 'event_action': 'click', });">Купить тариф "PRO"<span> </span></button>
+                  <button class="btn btn_primary js_btn_pay" type="button" data-toggle="modal" data-target="#payment" data-price="21900" data-tarif="pro" onclick="gtag('event', 'openForm', { 'event_category': 'FormPay', 'event_action': 'click', });">Купить тариф "PRO"<span> </span></button>
                 </div>
               </div>
             </div>
-            <div class="training__students">Для студентов, школьников и постоянных клиентов скидка 20% <br/><span>* Стоимость постоянно растет. Вы можете зафиксировать стоимость и забронировать место на курсе внеся 2000 руб. Остальная часть суммы вносится до начала зантий по выбранному вами варианту (рассрочка или один платеж).</span><br/><span>** Для самых активных есть дополнительные скидки. Подробности в чате нашей группы <a href="https://vk.com/write-31893650">Вконтакте. </a>Просто напишите "Хочу скидку на Разработка сайтов: HTML, CSS, jQuery"</span></div>
+            <div class="training__students"><span>* Узнать условия и соимость именно для вас можно посмотреть нажав на кнопку "Купит тариф ..." и выбрав вариант оплаты.</span><span>** Стоимость постоянно растет. Вы можете зафиксировать стоимость и забронировать место на курсе внеся 2000 руб. Остальная часть суммы вносится до начала зантий по выбранному вами варианту (рассрочка или один платеж).</span><span>*** Есть 2 варианта рассрочки. На 3 месяца от нашей школы и на 6 или 12 месяцев от Яндекс Кассы.</span><span>**** Для самых активных есть дополнительные скидки. Подробности в чате нашей группы <a href="https://vk.com/write-31893650">Вконтакте. </a>Просто напишите "Хочу скидку на Разработка сайтов: HTML, CSS, jQuery"</span></div>
           </div>
           <div class="modal fade order" id="order">
             <div class="modal-dialog">
@@ -318,8 +337,7 @@
                   <div class="form__row">
                     <label class="form__label" for="Tarif">Выберите тариф*</label>
                     <select class="select" id="Tarif" name="Tarif" required="required">
-                      <option value=""></option>
-                      <option id="self" value="10800">Тариф "Все сам"</option>
+                      <option id="self" value="10800" selected="selected">Тариф "Все сам"</option>
                       <option id="standart" value="16500">Тариф "Стандарт"</option>
                       <option id="pro" value="21900">Тариф "PRO"</option>
                     </select>
@@ -340,7 +358,7 @@
                   </div>
                   <div class="form__row">
                     <label class="checkbox">
-                      <input type="checkbox" id="sale"/>Скидка 20% (только для наших постоянных учеников, а так же студентов при предъявлении студенческого)
+                      <input type="checkbox" id="sale"/>Скидка 5% при оплате минимум за первый месяц
                     </label>
                   </div>
                   <div class="form__total"></div>
@@ -374,7 +392,7 @@
     <script src="/js/jquery.js"></script>
     <script src="/js/slick.min.js"></script>
     <script src="https://static.yandex.net/kassa/pay-in-parts/ui/v1/"></script>
-    <script src="/js/app.js?4.7"></script>
+    <script src="/js/app.js?5.5"></script>
     <!-- BEGIN YAMICHAT CODE {literal}-->
     <script type="text/javascript">(function(){ var widget_id = 'y5d65755d384f6'; var s = document.createElement('script'); s.type = 'text/javascript'; s.async = true; s.src = '//code.yamichat.ru/script/'+widget_id; var ss = document.getElementsByTagName('script')[0]; ss.parentNode.insertBefore(s, ss);})();</script>
     <!-- {/literal} END YAMICHAT CODE-->

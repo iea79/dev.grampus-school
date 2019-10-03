@@ -107,7 +107,7 @@ block content
                     .panel__text= item.text
 
 
-    //- +courseAction
+    +courseAction
 
     .anchor#programm
     h2.programm__title Программа курса
@@ -117,7 +117,7 @@ block content
 
         .programm__info Мы используем уникальный подход к обучению. Вы получите гораздо больше, чем рассчитывали ;)
 
-    br
+    //- br
     +courseAction
 
     .anchor#teacher
@@ -174,11 +174,14 @@ block content
                     li.disabled Выпускные проекты
                     li.disabled Индивидуальное онлайн общение с наставником. Скайп - 60 минут в неделю.
                     li.disabled Помощь с первыми заказми на фрилансе.
-                .training__salesWrap
-                    .training__price= courseBasePrice.toLocaleString() + ' руб.'
+                .training__salesWrap.training__salesWrap_old
+                    .training__price= (courseBasePrice*coursePromoPercent).toLocaleString() + ' руб.'
+                        .sub При оплате одним платежом
+                    .training__priceSub Старая цена
+                        .old= (Math.round((courseBasePrice*1.4)/100, 0) * 100).toLocaleString() + ' руб.'
                     //- .training__priceSub= 'или ' + (Math.round((courseBasePrice/3*1.05)/100, 0) * 100).toLocaleString() + ' руб. в месяц'
                 .trainingTarif__action
-                    button.btn.btn_primary.js_btn_pay(type="button" data-toggle="modal" data-target="#payment" data-tarif="self" onclick="gtag('event', 'openForm', { 'event_category': 'FormPay', 'event_action': 'click', });") Купить тариф "Все сам"
+                    button.btn.btn_primary.js_btn_pay(type="button" data-toggle="modal" data-target="#payment" data-price= courseBasePrice data-tarif="self" onclick="gtag('event', 'openForm', { 'event_category': 'FormPay', 'event_action': 'click', });") Купить тариф "Все сам"
                         span 
 
             .training__salesItem
@@ -196,10 +199,13 @@ block content
                     li 2 выпускных проекта
                     li.disabled Индивидуальное онлайн общение с наставником. Скайп - 60 минут в неделю.
                     li.disabled Помощь с первыми заказми на фрилансе.
-                .training__salesWrap
-                    .training__price= courseStandartPrice.toLocaleString() + ' руб.'
+                .training__salesWrap.training__salesWrap_old
+                    .training__price= (courseStandartPrice*coursePromoPercent).toLocaleString() + ' руб.'
+                        .sub При оплате одним платежом
+                    .training__priceSub Старая цена
+                        .old= (Math.round((courseStandartPrice*1.4)/100, 0) * 100).toLocaleString() + ' руб.'
                 .trainingTarif__action
-                    button.btn.btn_primary.js_btn_pay(type="button" data-toggle="modal" data-target="#payment" data-tarif="standart" onclick="gtag('event', 'openForm', { 'event_category': 'FormPay', 'event_action': 'click', });") Купить тариф "Стандарт"
+                    button.btn.btn_primary.js_btn_pay(type="button" data-toggle="modal" data-target="#payment" data-price= courseStandartPrice data-tarif="standart" onclick="gtag('event', 'openForm', { 'event_category': 'FormPay', 'event_action': 'click', });") Купить тариф "Стандарт"
                         span 
             .training__salesItem
                 .training__salesTitle "PRO"
@@ -216,17 +222,22 @@ block content
                     li 3 выпускных проекта
                     li Индивидуальное онлайн общение с наставником. Скайп - 60 минут в неделю.
                     li Помощь с первыми заказми на фрилансе.
-                .training__salesWrap
-                    .training__price= courseProPrice.toLocaleString() + ' руб.'
+                .training__salesWrap.training__salesWrap_old
+                    .training__price= (courseProPrice*coursePromoPercent).toLocaleString() + ' руб.'
+                        .sub При оплате одним платежом
+                    .training__priceSub Старая цена
+                        .old= (Math.round((courseProPrice*1.4)/100, 0) * 100).toLocaleString() + ' руб.'
                 .trainingTarif__action
-                    button.btn.btn_primary.js_btn_pay(type="button" data-toggle="modal" data-target="#payment" data-tarif="pro" onclick="gtag('event', 'openForm', { 'event_category': 'FormPay', 'event_action': 'click', });") Купить тариф "PRO"
+                    button.btn.btn_primary.js_btn_pay(type="button" data-toggle="modal" data-target="#payment" data-price= courseProPrice data-tarif="pro" onclick="gtag('event', 'openForm', { 'event_category': 'FormPay', 'event_action': 'click', });") Купить тариф "PRO"
                         span 
 
-        .training__students Для студентов, школьников и постоянных клиентов скидка 20% 
-            br
-            span * Стоимость постоянно растет. Вы можете зафиксировать стоимость и забронировать место на курсе внеся 2000 руб. Остальная часть суммы вносится до начала зантий по выбранному вами варианту (рассрочка или один платеж).
-            br
-            span ** Для самых активных есть дополнительные скидки. Подробности в чате нашей группы 
+        //- .training__students Для студентов, школьников и постоянных клиентов скидка 20% 
+        //- br
+        .training__students
+            span * Узнать условия и соимость именно для вас можно посмотреть нажав на кнопку "Купит тариф ..." и выбрав вариант оплаты.
+            span ** Стоимость постоянно растет. Вы можете зафиксировать стоимость и забронировать место на курсе внеся 2000 руб. Остальная часть суммы вносится до начала зантий по выбранному вами варианту (рассрочка или один платеж).
+            span *** Есть 2 варианта рассрочки. На 3 месяца от нашей школы и на 6 или 12 месяцев от Яндекс Кассы.
+            span **** Для самых активных есть дополнительные скидки. Подробности в чате нашей группы 
                 a(href="https://vk.com/write-31893650") Вконтакте. 
                 |Просто напишите "Хочу скидку на #{courseTitle}"
 
@@ -273,8 +284,8 @@ block content
                     .form__row
                         label.form__label(for="Tarif") Выберите тариф*
                         select#Tarif.select(name="Tarif" required)
-                            option(value="")
-                            option(id="self" value= courseBasePrice) Тариф "Все сам"
+                            //- option(value="")
+                            option(id="self" value= courseBasePrice selected) Тариф "Все сам"
                             option(id="standart" value= courseStandartPrice) Тариф "Стандарт"
                             option(id="pro" value= courseProPrice) Тариф "PRO"
                     .form__row
@@ -291,7 +302,7 @@ block content
                     .form__row
                         label.checkbox
                             input(type="checkbox", id="sale") 
-                            |Скидка 20% (только для наших постоянных учеников, а так же студентов при предъявлении студенческого)
+                            |Скидка 5% при оплате минимум за первый месяц
                     .form__total
                     .form__error
                     .form__action

@@ -1,74 +1,86 @@
 extends ../layout/template.jade
 
 block variables
-	-var pageClass = "";
-	-var review = 'active';
+    -var pageClass = "";
+    -var review = 'active';
 
 
 block title
-	title Школа веб-дизайна Grampus
+    title Отзывы о школе веб-дизайна Grampus
 
 block content
-	
 
-	h1.title.title__page
-		.title__page_name Отзывы наших учеников
-		.title__page_line
 
-	mixin reviewList(review)
-		if review.name
-			.reviewLine__item
-				.reviewLine__user
-					.reviewLine__photo
-						if review.photo
-							img(src= review.photo, alt= review.name)
-						else
-							img(src='/img/review/empty-vk.png', alt= review.name)
-					.reviewLine__name= review.name
-				.reviewLine__text
-					each paragraph in review.text
-						p= paragraph
-					if review.link
-						.review__contact Мой профиль Вконтакте: 
-							a(href= review.link target="blank")= review.link
+    h1.title.title__page
+        .title__page_name Отзывы наших учеников
+        .title__page_line
 
-	-;
+    mixin reviewList(review)
+        if review.name
+            .reviewLine__item
+                .reviewLine__user
+                    .reviewLine__photo
+                        if review.photo
+                            img(src= review.photo, alt= review.name)
+                        else
+                            img(src='/img/review/empty-vk.png', alt= review.name)
+                    .reviewLine__name= review.name
+                .reviewLine__text
+                    each paragraph in review.text
+                        p= paragraph
+                    if review.link
+                        .review__contact Мой профиль Вконтакте: 
+                            a(href= review.link target="blank")= review.link
 
-	mixin reviewLink()
-		.reviewLine__more
-			|Больше отзывов -  
-			a(href="https://2gis.ru/perm/query/Grampus%2C%20%D1%88%D0%BA%D0%BE%D0%BB%D0%B0%20%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%D0%B0/firm/70000001027611142/reviews/firm/70000001027611142?queryState=center%2F56.232029%2C58.015313%2Fzoom%2F18" target="blank") 2GIS 
-			|и 
-			a(href="https://vk.com/board31893650" target="blank") Вконтакте
-	
-	
-	
-	.reviewLine
-		.reviewLine__title Отзывы о курсе веб-дизайна
-		include web.jade
-		each review in list
-			+reviewList(review)
-		-;
-		+reviewLink
-		.reviewLine__course
-			a.btn(href="/webdesign/") К описанию курса
+    -;
 
-	.reviewLine
-		.reviewLine__title Отзывы о курсе графического-дизайна
-		include graf.jade
-		each review in list
-			+reviewList(review)
-		-;
-		+reviewLink
-		.reviewLine__course
-			a.btn(href="/grafdesign/") К описанию курса
+    mixin reviewLink()
+        .reviewLine__more
+            |Больше отзывов -  
+            a(href="https://2gis.ru/perm/query/Grampus%2C%20%D1%88%D0%BA%D0%BE%D0%BB%D0%B0%20%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%D0%B0/firm/70000001027611142/reviews/firm/70000001027611142?queryState=center%2F56.232029%2C58.015313%2Fzoom%2F18" target="blank") 2GIS 
+            |и 
+            a(href="https://vk.com/board31893650" target="blank") Вконтакте
 
-	.reviewLine
-		.reviewLine__title Отзывы о курсе разработка сайтов
-		include front.jade
-		each review in list
-			+reviewList(review)
-		-;
-		+reviewLink
-		.reviewLine__course
-			a.btn(href="/frontend/") К описанию курса
+
+
+    .reviewLine
+        .reviewLine__title Отзывы о курсе веб-дизайна
+        #webReview
+        //- include web.jade
+        //- each review in list
+        //-     +reviewList(review)
+        //- -;
+        .reviewLine__bottom
+            +reviewLink
+            .reviewLine__course
+                a.btn(href="/webdesign/") К описанию курса
+
+    .reviewLine
+        .reviewLine__title Отзывы о курсе графического-дизайна
+        #grafReview
+        //- include graf.jade
+        //- each review in list
+        //-     +reviewList(review)
+        //- -;
+        .reviewLine__bottom
+            +reviewLink
+            .reviewLine__course
+                a.btn(href="/grafdesign/") К описанию курса
+
+    .reviewLine
+        .reviewLine__title Отзывы о курсе разработка сайтов
+        #frontReview
+        //- include front.jade
+        //- each review in list
+        //-     +reviewList(review)
+        //- -;
+        .reviewLine__bottom
+            +reviewLink
+            .reviewLine__course
+                a.btn(href="/frontend/") К описанию курса
+
+    .reviewRezult
+
+
+block pageScript
+    script(src="/js/review.js")

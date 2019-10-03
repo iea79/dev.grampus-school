@@ -826,7 +826,7 @@ $gpad: 40px;
 			// width: 46%;
 			// width: auto;
 		}
-		@extend %clear_a;
+		// @extend %clear_a;
 
 		&Item {
 			// float: left;
@@ -837,6 +837,14 @@ $gpad: 40px;
 			display: flex;
 			// align-items: center;
 			// @extend %clear_a;
+
+			&_old {
+				justify-content: space-between;
+
+				.old {
+					text-decoration: line-through;
+				}
+			}
 
 			@media (max-width: 767px) {
 				flex-wrap: wrap;
@@ -966,6 +974,15 @@ $gpad: 40px;
 		font-size: 30px;
 		font-weight: 900;
 		margin-bottom: 0;
+
+		.sub {
+			font-size: 10px;
+			font-weight: 300;
+
+			@media (min-width: 768px) {
+				font-size: 12px;
+			}
+		}
 
 		&Sub {
 			color: #75757a;
@@ -1443,9 +1460,9 @@ $gpad: 40px;
 
 	&__more {
 		display: none;
-		margin-bottom: 15px;
-		@media (min-width: 768px) {
-			float: left;
+		@media (max-width: 767px) {
+			margin-bottom: 15px;
+			// float: left;
 		}
 	}
 
@@ -1514,6 +1531,17 @@ $gpad: 40px;
 			&__course {
 				display: block;
 			}
+
+			&__bottom {
+				margin-top: 15px;
+				padding-top: 15px;
+				margin-bottom: -7px;
+				border-top: 1px solid $color_muted;
+				@media (min-width: 768px) {
+					// margin-top: 15px;
+				}
+				@media (max-width: 767px) {}
+			}
 		}
 	}
 
@@ -1526,6 +1554,11 @@ $gpad: 40px;
 			float: left;
 			text-align: left;
 		}
+		@media (max-width: 767px) {
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
 	}
 
 	&__photo {
@@ -1535,6 +1568,7 @@ $gpad: 40px;
 		height: 90px;
 		margin-bottom: 10px;
 		display: inline-block;
+		background: center no-repeat / cover;
 		@media (min-width: 768px) {}
 
 		img {
@@ -1544,7 +1578,12 @@ $gpad: 40px;
 
 	&__name {
 		font-weight: 600;
-		color: $color_success;
+		color: $color_primary;
+		text-decoration: none;
+
+		&:hover {
+			text-decoration: underline;
+		}
 	}
 
 	&__text {
@@ -1555,6 +1594,25 @@ $gpad: 40px;
 			&:first-child {
 				margin-top: 0;
 			}
+		}
+	}
+
+	&__bottom {
+
+		@media (min-width: 768px) {
+			display: flex;
+			align-items: center;
+			justify-content: space-between;
+		}
+	}
+
+	&__rate {
+		margin-top: 3px;
+		margin-left: -3px;
+
+		i {
+			margin: 2px;
+			color: $color_danger;
 		}
 	}
 }
@@ -1945,4 +2003,49 @@ select {
 			}
 		}
 	}
+}
+
+/*sprite with stars*/
+
+.formRate {
+
+	/*fix floating problems*/
+	overflow: hidden;
+	*zoom: 1;
+	/*end of fix floating problems*/
+
+	position: relative;
+	// float: left;
+	display: inline-block;
+
+	label {
+		background-position: 0 0;
+		// height: 20px;
+		// width: 20px;
+		font-size: 20px;
+		float: right;
+		cursor: pointer;
+		margin-right: 10px;
+
+		position: relative;
+		z-index: 1;
+		color: $color_muted;
+		// background: url("http://positivecrash.com/wp-content/uploads/ico-s71a7fdede6.png") no-repeat top center / 100% 200%;
+	}
+
+	input {
+		display: none;
+	}
+
+	input:checked ~ label,
+	label:hover,
+	label:hover ~ label {
+		// background-position: bottom center;
+		color: $color_success;
+	}
+
+}
+
+.txt_center {
+	text-align: center;
 }

@@ -1,5 +1,37 @@
 .form {
-	@extend %clear_a;
+	// @extend %clear_a;
+	margin: auto;
+
+	&_sm {
+		max-width: 800px;
+	}
+
+	&.loaded {
+		position: relative;
+		min-height: 70vh;
+
+		&:before {
+			content: 'Отправка...';
+			font-weight: 600;
+			font-size: 18px;
+			letter-spacing: 0.15em;
+			position: absolute;
+			left: 0;
+			top: 0;
+			right: 0;
+			bottom: 0;
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			z-index: 2;
+			// background-color: rgba($color_dark, .5);
+		}
+
+		.form__action,
+		.form__row {
+			opacity: 0.5;
+		}
+	}
 
 	&__row {
 		margin-bottom: 15px;
@@ -22,9 +54,8 @@
 		}
 
 		textarea {
-			max-width: 100%;
-			max-width: 100%;
-			min-height: 15px;
+			resize: vertical;
+			min-height: 150px;
 		}
 
 		select {
@@ -188,6 +219,65 @@
 
 			}
 		}
+	}
+
+	&__upload {
+		&Fields {
+			margin-bottom: 15px;
+
+			@media (min-width: 768px) {
+				display: flex;
+				align-items: center;
+			}
+
+			input[type=file] {
+				display: none;
+			}
+
+			.btn {
+				// width: 50%;
+				@media (min-width: 768px) {
+					max-width: 300px;
+					margin-right: 20px;
+				}
+				@media (max-width: 767px) {
+					margin-top: 15px;
+				}
+			}
+		}
+
+		&Img {
+			background: center no-repeat / cover;
+
+			&:not(:empty) {
+				width: 150px;
+				height: 150px;
+				overflow: hidden;
+				border-radius: 50%;
+			}
+
+			@media (min-width: 768px) {
+				// padding: 15px;
+			}
+
+			img {
+				opacity: 0;
+				// margin: -15px;
+			}
+		}
+
+		&Text {
+			@media (max-width: 767px) {
+				text-align: center;
+				margin-top: 10px;
+				color: $color_muted;
+			}
+		}
+	}
+
+	.formRate {
+		padding-left: 10px;
+		margin-top: 5px;
 	}
 }
 // Input text and textarea ================================================
