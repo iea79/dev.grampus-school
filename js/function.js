@@ -60,7 +60,7 @@ $(document).ready(function() {
 
 
     // Reset link whte attribute href="#"
-    $('[href*="#"]').click(function(event) {
+    $('[href="#"]').click(function(event) {
         event.preventDefault();
     });
 
@@ -313,3 +313,49 @@ function getUrlParams() {
 // Получаем один параметр
 // getParams['paramName']
 var getParams = getUrlParams();
+
+function setInfoPopUp() {
+    // var template;
+    // if (!$('div').is('.training')) return false;
+    setTemplate('Онлайн интенсив', 'Javascript для верстальщиков', '/frontend/intensive/?inner_link');
+    showPopUp();
+    // switch (courseName) {
+    //     case 'frontend':
+    //         break;
+    //     default:
+    //
+    // };
+
+    $('body').on('click', '.popupInfo__close', function(event) {
+        $('.popupInfo').removeClass('popupInfo_open');
+    })
+
+    function setTemplate(type, title, link) {
+        var template = '<div class="popupInfo">'+
+                        '<div class="popupInfo__wrap">'+
+                            '<div class="popupInfo__close"></div>'+
+                            '<div class="popupInfo__type">'+type+'</div>'+
+                            '<div class="popupInfo__title">'+title+'</div>'+
+                            '<a target="blank" class="btn popupInfo__link" href="'+link+'">Узнать больше</a>'+
+                        '</div>'+
+                    '</div>';
+        $('body').append(template);
+    };
+
+    function showPopUp(title, link) {
+        setTimeout(function () {
+            $('.popupInfo').addClass('popupInfo_open');
+            // console.log('show');
+            // setTemplate(title, link)
+        }, 10000);
+    };
+};
+
+setInfoPopUp();
+
+$('.btn_senler').on('click', function() {
+    var url = $(this).data('link'),
+        name = $(this).data('name');
+
+    window.open(url, name);
+})

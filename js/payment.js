@@ -1,3 +1,4 @@
+// Ответ при оплате ?action=PaymentSuccess&custAddr=%2B8%28912%29481+06+99&custName=Тест&customerNumber=Интенсив+-+Javascript+для+верстальщиков&netSum=1&nst_eplPayment=true&scid=959623&shopArticleId=1569169&shopId=597204&shopSuccessURL=https%3A%2F%2Fgrampus-school.ru%2Ffrontend%2Fintensive%2Fsuccess.html&sum=1
 function calculatePayForm() {
 
     if (!$('select').is('#payType')) return false;
@@ -153,7 +154,7 @@ function calculatePayForm() {
                 } else {
                     showTotalSum('От '+thousandSeparator(value)+' руб. в месяц.');
                 }
-                showTotalMessage('Кредитная программа от Яндекс Кассы. <br>На шаге оплаты выберите пункт "Заплатить по частям" для выбора варианта по срокам кредита и заполнения анкеты. <br>Решение по кредиту за 15 минут<br>30 дней погашение без процентов');
+                showTotalMessage('Кредитная программа от Яндекс Кассы. <br>Без первоначального взноса. <br>Решение по кредиту за 15 минут <br>30 дней погашение без процентов. <br>На шаге оплаты выберите пункт "Заплатить по частям" для выбора варианта по срокам кредита и заполнения анкеты.');
 
                 break;
             case 'typeSingleSum':
@@ -211,6 +212,8 @@ function calculatePayForm() {
                     creditPercent = json.creditPercent;
                     creditAmount = Number(json.amount).toFixed();
                     creditTotalAmount = json.totalAmount;
+
+                    console.log(creditAmount);
                 }
                 if (tariffName) {
                     if (tariffName == 'self') {
@@ -225,7 +228,9 @@ function calculatePayForm() {
                         .find('span')
                         .html('от ' + thousandSeparator(creditAmount) + '&nbsp;₽&nbsp;/&nbsp;мес');
                 } else {
-                    $('.training__price span').html('от ' + thousandSeparator(creditAmount) + ' руб');
+                    $('.js_btn_pay span').html('от ' + thousandSeparator(creditAmount) + '&nbsp;₽&nbsp;/&nbsp;мес');
+                    $('.training__price').first().html(thousandSeparator(creditAmount) + '&nbsp;руб/мес</span>');
+                    $('.training__creditPrice').html('<span>Стоимость:</span> <span>от ' + thousandSeparator(creditAmount) + '&nbsp;руб/мес</span>');
                     optYkCredit.val(creditAmount);
                 }
 

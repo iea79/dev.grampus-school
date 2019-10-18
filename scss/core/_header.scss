@@ -6,33 +6,36 @@
 	// position: fixed;
 	z-index: 50;
 	position: absolute;
-    top: 0;
-    left: 0;
+	top: 0;
+	left: 0;
 	width: 100%;
 	padding: 25px 0;
 	margin-bottom: 20px;
-	transition: .5s;
+	transition: 0.5s;
 	@media (min-width: 768px) {
 		// position: static;
 		padding: 40px 0;
 		margin-bottom: 50px;
 	}
 	@extend %clear_a;
+
 	&__logo {
 		@media (min-width: 768px) {
 			float: left;
 			width: 150px;
 		}
 		@media (max-width: 767px) {
-		    // margin-bottom: 10px;
+			// margin-bottom: 10px;
 		}
 	}
+
 	&__action {
 		margin-top: 15px;
 		@media (min-width: 768px) {
 			float: right;
 			margin-top: -4px;
 		}
+
 		a {
 			color: $color_withe;
 			font-size: 18px;
@@ -54,17 +57,23 @@
 				color: $color_success;
 				vertical-align: middle;
 				font-size: 24px;
+				text-decoration: none;
 			}
+
 			&:hover {
 				color: $color_success;
+				text-decoration: none;
+
+				i {}
 			}
 		}
 	}
+
 	&__nav {
 		@media (min-width: 768px) {
-			padding: 0px 15px;
+			padding: 0 15px;
 			overflow: hidden;
-			
+
 		}
 	}
 }

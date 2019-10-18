@@ -50,19 +50,18 @@
         // console.log(template);
         switch (data[i][1]) {
             case 'Вэб-дизайн':
-
                 $('#webReview').append(template);
                 break;
             case 'Графический дизайн':
-
                 $('#grafReview').append(template);
                 break;
+            case 'Javascript':
+                $('#frontReview').append(template);
+                break;
             case 'Разработка сайтов':
-
                 $('#frontReview').append(template);
                 break;
             default:
-
         }
     }
 })();

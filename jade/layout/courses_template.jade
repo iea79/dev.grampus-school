@@ -103,7 +103,7 @@ block content
                             a(href= earningLink target="blank") hh.ru
                             |)
                 .earnings__item
-                    .panel Вы можете сразу после обучения начать получать достойное вознаграждение. И как дополнительный плюс профессии — заказы можно совмещать с основной работой.
+                    .panel Вы можете сразу после обучения(а некоторые и во время его) начать получать достойное вознаграждение. И как дополнительный плюс профессии — заказы можно совмещать с основной работой.
 
         +courseAction
 
@@ -165,7 +165,7 @@ block content
     //- +courseAction
     .anchor#price
     h2.programm__title Стоимость курса
-
+    script var courseName = '!{courseName}';
     if (courseName != '3d')
         script var courseDuration = #{courseDurationMonth};
         if !holyday

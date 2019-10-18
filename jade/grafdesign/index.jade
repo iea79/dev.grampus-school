@@ -1,6 +1,7 @@
 extends ../layout/courses_template.jade
 
 block variables
+
     -var courses = 'active';
 
     -var courseName = 'grafdesign';
@@ -18,7 +19,7 @@ block variables
 
     //- Дата и время старта
     //- Дата
-    -var courseDate = 'запись начнется в октябре 2019';
+    -var courseDate = '17 ноября';
     //- Продолжительность
     -var courseDurationMonth = 2;
     -var courseDuration = '2 месяца, 9 занятий по 4 часа';
@@ -31,9 +32,9 @@ block variables
     //- Базовая стоимость
     -var courseBasePrice = 14100;
     //- Стоимость до даты
-    -var coursePromoDate = false;
+    -var coursePromoDate = "20-ого октября";
     //- Единым платежом
-    -var courseTotalPrice = courseBasePrice*1;
+    -var courseTotalPrice = Math.round((courseBasePrice*1)/100, 0) * 100;
     //- В рассрочку
     -var courseSemiPrice = true;
 
@@ -46,7 +47,7 @@ block variables
     -var courseCoachExp = 'Корпоративный дизайнер, создатель студии Alpha <br> Опыт работы 9 лет.';
 
     //- Заработок после обучения
-    -var earningTop = 'Ежемесячно на биржах труда в России появляется свыше 2 600 новых вакансий где требуются знания дизайна. Работы хватает всем!';
+    -var earningTop = '<p><b class="text_success">Ежемесячно</b> на биржах труда в России появляется <b class="text_success">свыше 2 600 новых вакансий</b> где требуются знания дизайна. Работы хватает всем!</p><p><b class="text_success">Всех своих выпускников мы продолжаем консультировать</b> и после окончания курса и <b class="text_success">помогать в получении работы</b> как на фрилансе, так и в офисе.</p>';
     -var earningSumm = '40 000';
     -var earningProf = 'зарплата начинающего графического дизайнера';
     -var earningLink = 'https://hh.ru/search/vacancy?clusters=true&enable_snippets=true&text=%D0%93%D1%80%D0%B0%D1%84%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B9+%D0%B4%D0%B8%D0%B7%D0%B0%D0%B9%D0%BD%D0%B5%D1%80&showClusters=false';

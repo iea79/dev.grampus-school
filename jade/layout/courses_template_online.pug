@@ -145,8 +145,8 @@ block content
     //- +courseAction
     .anchor#price
     h2.programm__title Стоимость курса
-
     script.
+        var courseName = '!{courseName}';
         var coursePrice = [{name: 'self', summ: #{courseBasePrice}}, {name: 'standart',summ: #{courseStandartPrice}}, {name: 'pro', summ: #{courseProPrice}}];
         var courseDuration = #{courseDurationMonth};
         //- let courseArrPrice = [courseBasePrice, courseStandartPrice, courseProPrice];

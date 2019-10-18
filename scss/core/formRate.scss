@@ -1,0 +1,38 @@
+.formRate {
+
+    /*fix floating problems*/
+    overflow: hidden;
+    *zoom: 1;
+    /*end of fix floating problems*/
+
+    position: relative;
+    // float: left;
+    display: inline-block;
+
+    label {
+        background-position: 0 0;
+        // height: 20px;
+        // width: 20px;
+        font-size: 20px;
+        float: right;
+        cursor: pointer;
+        margin-right: 10px;
+
+        position: relative;
+        z-index: 1;
+        color: $color_muted;
+        // background: url("http://positivecrash.com/wp-content/uploads/ico-s71a7fdede6.png") no-repeat top center / 100% 200%;
+    }
+
+    input {
+        display: none;
+    }
+
+    input:checked ~ label,
+    label:hover,
+    label:hover ~ label {
+        // background-position: bottom center;
+        color: $color_success;
+    }
+
+}
