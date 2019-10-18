@@ -4,7 +4,7 @@ ErrorDocument 404 /404.html
 Header set Cache-Control "max-age=31536000, public"
 
 </filesMatch>
-# Comment
+# Comment local
 # One month for css and js
 <filesMatch ".(css|js)$">
 Header set Cache-Control "max-age=2628000, public"
