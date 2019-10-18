@@ -2,6 +2,7 @@ ErrorDocument 404 /404.html
 # One year for image files
 <filesMatch ".(jpg|jpeg|png|svg|gif|ico)$">
 Header set Cache-Control "max-age=31536000, public"
+
 </filesMatch>
 # One month for css and js
 <filesMatch ".(css|js)$">
